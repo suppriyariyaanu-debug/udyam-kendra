@@ -1,0 +1,541 @@
+$flaticon_mycollection-font: "flaticon_mycollection";
+
+@font-face {
+    font-family: $flaticon_mycollection-font;
+    src: url("./flaticon_mycollection.woff2?60f9e87457f307960f657fde7517435d") format("woff2"),
+url("./flaticon_mycollection.woff?60f9e87457f307960f657fde7517435d") format("woff"),
+url("./flaticon_mycollection.eot?60f9e87457f307960f657fde7517435d#iefix") format("embedded-opentype"),
+url("./flaticon_mycollection.ttf?60f9e87457f307960f657fde7517435d") format("truetype"),
+url("./flaticon_mycollection.svg?60f9e87457f307960f657fde7517435d#flaticon_mycollection") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_mycollection !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon_mycollection-map: (
+    "team": "\f101",
+    "portfolio": "\f102",
+    "stats": "\f103",
+    "networking": "\f104",
+    "online-shop": "\f105",
+    "talk": "\f106",
+    "interview": "\f107",
+    "consulting": "\f108",
+    "advice": "\f109",
+    "discussion": "\f10a",
+    "analysis": "\f10b",
+    "customer-service": "\f10c",
+    "customer-service-1": "\f10d",
+    "customer-service-2": "\f10e",
+    "customer-service-3": "\f10f",
+    "public-service": "\f110",
+    "self-service": "\f111",
+    "enterprise": "\f112",
+    "enterprise-1": "\f113",
+    "business-and-trade": "\f114",
+    "international": "\f115",
+    "india": "\f116",
+    "save": "\f117",
+    "rupee": "\f118",
+    "rupee-1": "\f119",
+    "money": "\f11a",
+    "entrepreneur": "\f11b",
+    "globe": "\f11c",
+    "company": "\f11d",
+    "raise": "\f11e",
+    "bank": "\f11f",
+    "bank-1": "\f120",
+    "group": "\f121",
+    "group-1": "\f122",
+    "office": "\f123",
+    "workplace": "\f124",
+    "paper-bill": "\f125",
+    "contact-form": "\f126",
+    "online-registration": "\f127",
+    "account": "\f128",
+    "registration": "\f129",
+    "registration-form": "\f12a",
+    "website": "\f12b",
+    "form": "\f12c",
+    "trademark": "\f12d",
+    "profile": "\f12e",
+    "electronic-voting": "\f12f",
+    "iso-symbol": "\f130",
+    "digital-signature": "\f131",
+    "import": "\f132",
+    "import-1": "\f133",
+    "organic": "\f134",
+    "middle-east": "\f135",
+    "certificate": "\f136",
+    "premium-quality": "\f137",
+    "approval": "\f138",
+    "tea": "\f139",
+    "trademarks": "\f13a",
+    "trademark-1": "\f13b",
+    "copyright": "\f13c",
+    "patent": "\f13d",
+    "registration-1": "\f13e",
+    "registration-2": "\f13f",
+    "contact-form-1": "\f140",
+    "machine": "\f141",
+    "registration-3": "\f142",
+    "listing": "\f143",
+    "registered-document": "\f144",
+    "funeral": "\f145",
+    "registration-4": "\f146",
+    "company-1": "\f147",
+    "start-up": "\f148",
+    "start-up-1": "\f149",
+    "startup": "\f14a",
+    "registration-5": "\f14b",
+    "resume": "\f14c",
+    "enrollment": "\f14d",
+    "medical-website": "\f14e",
+    "approved": "\f14f",
+    "web-portal": "\f150",
+    "monitor": "\f151",
+    "web-searching": "\f152",
+    "document": "\f153",
+    "document-1": "\f154",
+    "documents": "\f155",
+    "tax": "\f156",
+    "tax-1": "\f157",
+    "business-report": "\f158",
+    "preparation": "\f159",
+    "taxation": "\f15a",
+    "tax-2": "\f15b",
+    "tax-3": "\f15c",
+    "map": "\f15d",
+    "door": "\f15e",
+    "planning": "\f15f",
+    "recruitment": "\f160",
+    "acquisition": "\f161",
+    "legal-document": "\f162",
+    "www": "\f163",
+    "cloud": "\f164",
+    "ssl-certificate": "\f165",
+    "payment": "\f166",
+    "globe-1": "\f167",
+    "mobile-development": "\f168",
+    "ecommerce": "\f169",
+    "digital-marketing": "\f16a",
+    "illustration": "\f16b",
+    "computer": "\f16c",
+    "laptop": "\f16d",
+    "global-network": "\f16e",
+    "rpa": "\f16f",
+    "mobile-banking": "\f170",
+    "bill": "\f171",
+    "signing": "\f172",
+    "loan": "\f173",
+    "loan-1": "\f174",
+    "loan-2": "\f175",
+    "money-1": "\f176",
+    "calculate": "\f177",
+    "loan-approved": "\f178",
+    "money-2": "\f179",
+    "money-bag": "\f17a",
+    "property-insurance": "\f17b",
+    "insurance": "\f17c",
+    "life-insurance": "\f17d",
+    "health-insurance": "\f17e",
+    "review": "\f17f",
+    "professional-services": "\f180",
+    "microservice": "\f181",
+);
+
+.flaticon-team:before {
+    content: map-get($flaticon_mycollection-map, "team");
+}
+.flaticon-portfolio:before {
+    content: map-get($flaticon_mycollection-map, "portfolio");
+}
+.flaticon-stats:before {
+    content: map-get($flaticon_mycollection-map, "stats");
+}
+.flaticon-networking:before {
+    content: map-get($flaticon_mycollection-map, "networking");
+}
+.flaticon-online-shop:before {
+    content: map-get($flaticon_mycollection-map, "online-shop");
+}
+.flaticon-talk:before {
+    content: map-get($flaticon_mycollection-map, "talk");
+}
+.flaticon-interview:before {
+    content: map-get($flaticon_mycollection-map, "interview");
+}
+.flaticon-consulting:before {
+    content: map-get($flaticon_mycollection-map, "consulting");
+}
+.flaticon-advice:before {
+    content: map-get($flaticon_mycollection-map, "advice");
+}
+.flaticon-discussion:before {
+    content: map-get($flaticon_mycollection-map, "discussion");
+}
+.flaticon-analysis:before {
+    content: map-get($flaticon_mycollection-map, "analysis");
+}
+.flaticon-customer-service:before {
+    content: map-get($flaticon_mycollection-map, "customer-service");
+}
+.flaticon-customer-service-1:before {
+    content: map-get($flaticon_mycollection-map, "customer-service-1");
+}
+.flaticon-customer-service-2:before {
+    content: map-get($flaticon_mycollection-map, "customer-service-2");
+}
+.flaticon-customer-service-3:before {
+    content: map-get($flaticon_mycollection-map, "customer-service-3");
+}
+.flaticon-public-service:before {
+    content: map-get($flaticon_mycollection-map, "public-service");
+}
+.flaticon-self-service:before {
+    content: map-get($flaticon_mycollection-map, "self-service");
+}
+.flaticon-enterprise:before {
+    content: map-get($flaticon_mycollection-map, "enterprise");
+}
+.flaticon-enterprise-1:before {
+    content: map-get($flaticon_mycollection-map, "enterprise-1");
+}
+.flaticon-business-and-trade:before {
+    content: map-get($flaticon_mycollection-map, "business-and-trade");
+}
+.flaticon-international:before {
+    content: map-get($flaticon_mycollection-map, "international");
+}
+.flaticon-india:before {
+    content: map-get($flaticon_mycollection-map, "india");
+}
+.flaticon-save:before {
+    content: map-get($flaticon_mycollection-map, "save");
+}
+.flaticon-rupee:before {
+    content: map-get($flaticon_mycollection-map, "rupee");
+}
+.flaticon-rupee-1:before {
+    content: map-get($flaticon_mycollection-map, "rupee-1");
+}
+.flaticon-money:before {
+    content: map-get($flaticon_mycollection-map, "money");
+}
+.flaticon-entrepreneur:before {
+    content: map-get($flaticon_mycollection-map, "entrepreneur");
+}
+.flaticon-globe:before {
+    content: map-get($flaticon_mycollection-map, "globe");
+}
+.flaticon-company:before {
+    content: map-get($flaticon_mycollection-map, "company");
+}
+.flaticon-raise:before {
+    content: map-get($flaticon_mycollection-map, "raise");
+}
+.flaticon-bank:before {
+    content: map-get($flaticon_mycollection-map, "bank");
+}
+.flaticon-bank-1:before {
+    content: map-get($flaticon_mycollection-map, "bank-1");
+}
+.flaticon-group:before {
+    content: map-get($flaticon_mycollection-map, "group");
+}
+.flaticon-group-1:before {
+    content: map-get($flaticon_mycollection-map, "group-1");
+}
+.flaticon-office:before {
+    content: map-get($flaticon_mycollection-map, "office");
+}
+.flaticon-workplace:before {
+    content: map-get($flaticon_mycollection-map, "workplace");
+}
+.flaticon-paper-bill:before {
+    content: map-get($flaticon_mycollection-map, "paper-bill");
+}
+.flaticon-contact-form:before {
+    content: map-get($flaticon_mycollection-map, "contact-form");
+}
+.flaticon-online-registration:before {
+    content: map-get($flaticon_mycollection-map, "online-registration");
+}
+.flaticon-account:before {
+    content: map-get($flaticon_mycollection-map, "account");
+}
+.flaticon-registration:before {
+    content: map-get($flaticon_mycollection-map, "registration");
+}
+.flaticon-registration-form:before {
+    content: map-get($flaticon_mycollection-map, "registration-form");
+}
+.flaticon-website:before {
+    content: map-get($flaticon_mycollection-map, "website");
+}
+.flaticon-form:before {
+    content: map-get($flaticon_mycollection-map, "form");
+}
+.flaticon-trademark:before {
+    content: map-get($flaticon_mycollection-map, "trademark");
+}
+.flaticon-profile:before {
+    content: map-get($flaticon_mycollection-map, "profile");
+}
+.flaticon-electronic-voting:before {
+    content: map-get($flaticon_mycollection-map, "electronic-voting");
+}
+.flaticon-iso-symbol:before {
+    content: map-get($flaticon_mycollection-map, "iso-symbol");
+}
+.flaticon-digital-signature:before {
+    content: map-get($flaticon_mycollection-map, "digital-signature");
+}
+.flaticon-import:before {
+    content: map-get($flaticon_mycollection-map, "import");
+}
+.flaticon-import-1:before {
+    content: map-get($flaticon_mycollection-map, "import-1");
+}
+.flaticon-organic:before {
+    content: map-get($flaticon_mycollection-map, "organic");
+}
+.flaticon-middle-east:before {
+    content: map-get($flaticon_mycollection-map, "middle-east");
+}
+.flaticon-certificate:before {
+    content: map-get($flaticon_mycollection-map, "certificate");
+}
+.flaticon-premium-quality:before {
+    content: map-get($flaticon_mycollection-map, "premium-quality");
+}
+.flaticon-approval:before {
+    content: map-get($flaticon_mycollection-map, "approval");
+}
+.flaticon-tea:before {
+    content: map-get($flaticon_mycollection-map, "tea");
+}
+.flaticon-trademarks:before {
+    content: map-get($flaticon_mycollection-map, "trademarks");
+}
+.flaticon-trademark-1:before {
+    content: map-get($flaticon_mycollection-map, "trademark-1");
+}
+.flaticon-copyright:before {
+    content: map-get($flaticon_mycollection-map, "copyright");
+}
+.flaticon-patent:before {
+    content: map-get($flaticon_mycollection-map, "patent");
+}
+.flaticon-registration-1:before {
+    content: map-get($flaticon_mycollection-map, "registration-1");
+}
+.flaticon-registration-2:before {
+    content: map-get($flaticon_mycollection-map, "registration-2");
+}
+.flaticon-contact-form-1:before {
+    content: map-get($flaticon_mycollection-map, "contact-form-1");
+}
+.flaticon-machine:before {
+    content: map-get($flaticon_mycollection-map, "machine");
+}
+.flaticon-registration-3:before {
+    content: map-get($flaticon_mycollection-map, "registration-3");
+}
+.flaticon-listing:before {
+    content: map-get($flaticon_mycollection-map, "listing");
+}
+.flaticon-registered-document:before {
+    content: map-get($flaticon_mycollection-map, "registered-document");
+}
+.flaticon-funeral:before {
+    content: map-get($flaticon_mycollection-map, "funeral");
+}
+.flaticon-registration-4:before {
+    content: map-get($flaticon_mycollection-map, "registration-4");
+}
+.flaticon-company-1:before {
+    content: map-get($flaticon_mycollection-map, "company-1");
+}
+.flaticon-start-up:before {
+    content: map-get($flaticon_mycollection-map, "start-up");
+}
+.flaticon-start-up-1:before {
+    content: map-get($flaticon_mycollection-map, "start-up-1");
+}
+.flaticon-startup:before {
+    content: map-get($flaticon_mycollection-map, "startup");
+}
+.flaticon-registration-5:before {
+    content: map-get($flaticon_mycollection-map, "registration-5");
+}
+.flaticon-resume:before {
+    content: map-get($flaticon_mycollection-map, "resume");
+}
+.flaticon-enrollment:before {
+    content: map-get($flaticon_mycollection-map, "enrollment");
+}
+.flaticon-medical-website:before {
+    content: map-get($flaticon_mycollection-map, "medical-website");
+}
+.flaticon-approved:before {
+    content: map-get($flaticon_mycollection-map, "approved");
+}
+.flaticon-web-portal:before {
+    content: map-get($flaticon_mycollection-map, "web-portal");
+}
+.flaticon-monitor:before {
+    content: map-get($flaticon_mycollection-map, "monitor");
+}
+.flaticon-web-searching:before {
+    content: map-get($flaticon_mycollection-map, "web-searching");
+}
+.flaticon-document:before {
+    content: map-get($flaticon_mycollection-map, "document");
+}
+.flaticon-document-1:before {
+    content: map-get($flaticon_mycollection-map, "document-1");
+}
+.flaticon-documents:before {
+    content: map-get($flaticon_mycollection-map, "documents");
+}
+.flaticon-tax:before {
+    content: map-get($flaticon_mycollection-map, "tax");
+}
+.flaticon-tax-1:before {
+    content: map-get($flaticon_mycollection-map, "tax-1");
+}
+.flaticon-business-report:before {
+    content: map-get($flaticon_mycollection-map, "business-report");
+}
+.flaticon-preparation:before {
+    content: map-get($flaticon_mycollection-map, "preparation");
+}
+.flaticon-taxation:before {
+    content: map-get($flaticon_mycollection-map, "taxation");
+}
+.flaticon-tax-2:before {
+    content: map-get($flaticon_mycollection-map, "tax-2");
+}
+.flaticon-tax-3:before {
+    content: map-get($flaticon_mycollection-map, "tax-3");
+}
+.flaticon-map:before {
+    content: map-get($flaticon_mycollection-map, "map");
+}
+.flaticon-door:before {
+    content: map-get($flaticon_mycollection-map, "door");
+}
+.flaticon-planning:before {
+    content: map-get($flaticon_mycollection-map, "planning");
+}
+.flaticon-recruitment:before {
+    content: map-get($flaticon_mycollection-map, "recruitment");
+}
+.flaticon-acquisition:before {
+    content: map-get($flaticon_mycollection-map, "acquisition");
+}
+.flaticon-legal-document:before {
+    content: map-get($flaticon_mycollection-map, "legal-document");
+}
+.flaticon-www:before {
+    content: map-get($flaticon_mycollection-map, "www");
+}
+.flaticon-cloud:before {
+    content: map-get($flaticon_mycollection-map, "cloud");
+}
+.flaticon-ssl-certificate:before {
+    content: map-get($flaticon_mycollection-map, "ssl-certificate");
+}
+.flaticon-payment:before {
+    content: map-get($flaticon_mycollection-map, "payment");
+}
+.flaticon-globe-1:before {
+    content: map-get($flaticon_mycollection-map, "globe-1");
+}
+.flaticon-mobile-development:before {
+    content: map-get($flaticon_mycollection-map, "mobile-development");
+}
+.flaticon-ecommerce:before {
+    content: map-get($flaticon_mycollection-map, "ecommerce");
+}
+.flaticon-digital-marketing:before {
+    content: map-get($flaticon_mycollection-map, "digital-marketing");
+}
+.flaticon-illustration:before {
+    content: map-get($flaticon_mycollection-map, "illustration");
+}
+.flaticon-computer:before {
+    content: map-get($flaticon_mycollection-map, "computer");
+}
+.flaticon-laptop:before {
+    content: map-get($flaticon_mycollection-map, "laptop");
+}
+.flaticon-global-network:before {
+    content: map-get($flaticon_mycollection-map, "global-network");
+}
+.flaticon-rpa:before {
+    content: map-get($flaticon_mycollection-map, "rpa");
+}
+.flaticon-mobile-banking:before {
+    content: map-get($flaticon_mycollection-map, "mobile-banking");
+}
+.flaticon-bill:before {
+    content: map-get($flaticon_mycollection-map, "bill");
+}
+.flaticon-signing:before {
+    content: map-get($flaticon_mycollection-map, "signing");
+}
+.flaticon-loan:before {
+    content: map-get($flaticon_mycollection-map, "loan");
+}
+.flaticon-loan-1:before {
+    content: map-get($flaticon_mycollection-map, "loan-1");
+}
+.flaticon-loan-2:before {
+    content: map-get($flaticon_mycollection-map, "loan-2");
+}
+.flaticon-money-1:before {
+    content: map-get($flaticon_mycollection-map, "money-1");
+}
+.flaticon-calculate:before {
+    content: map-get($flaticon_mycollection-map, "calculate");
+}
+.flaticon-loan-approved:before {
+    content: map-get($flaticon_mycollection-map, "loan-approved");
+}
+.flaticon-money-2:before {
+    content: map-get($flaticon_mycollection-map, "money-2");
+}
+.flaticon-money-bag:before {
+    content: map-get($flaticon_mycollection-map, "money-bag");
+}
+.flaticon-property-insurance:before {
+    content: map-get($flaticon_mycollection-map, "property-insurance");
+}
+.flaticon-insurance:before {
+    content: map-get($flaticon_mycollection-map, "insurance");
+}
+.flaticon-life-insurance:before {
+    content: map-get($flaticon_mycollection-map, "life-insurance");
+}
+.flaticon-health-insurance:before {
+    content: map-get($flaticon_mycollection-map, "health-insurance");
+}
+.flaticon-review:before {
+    content: map-get($flaticon_mycollection-map, "review");
+}
+.flaticon-professional-services:before {
+    content: map-get($flaticon_mycollection-map, "professional-services");
+}
+.flaticon-microservice:before {
+    content: map-get($flaticon_mycollection-map, "microservice");
+}
