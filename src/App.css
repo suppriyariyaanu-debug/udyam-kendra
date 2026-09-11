@@ -1345,3 +1345,1534 @@ a {
   }
 
 }
+/* ============================= */
+/* SERVICES PAGE - FINAL STYLE */
+/* ============================= */
+
+.services-page-hero {
+  width: 100%;
+  min-height: 400px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 70px 25px;
+
+  background: #fff8df;
+}
+
+.services-page-hero > div {
+  max-width: 850px;
+}
+
+.services-page-hero .tagline {
+  color: #d49300;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 18px;
+}
+
+.services-page-hero h1 {
+  color: #222;
+  font-size: 52px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.services-page-hero h1 span {
+  color: #e5a400;
+}
+
+.services-page-hero p:not(.tagline) {
+  color: #666;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+
+/* ============================= */
+/* ALL SERVICES */
+/* ============================= */
+
+.all-services {
+  width: 100%;
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  padding: 85px 30px;
+}
+
+.all-services-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 22px;
+
+  margin-top: 50px;
+}
+
+
+/* SERVICE CARD */
+
+.service-page-card {
+  background: #fff;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+
+  padding: 28px;
+
+  min-height: 330px;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: all 0.25s ease;
+}
+
+.service-page-card:hover {
+  transform: translateY(-7px);
+
+  border-color: #e5a400;
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ICON */
+
+.service-page-icon {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff5d6;
+
+  border-radius: 10px;
+
+  font-size: 28px;
+
+  margin-bottom: 22px;
+}
+
+
+/* TITLE */
+
+.service-page-card h3 {
+  color: #222;
+
+  font-size: 19px;
+
+  line-height: 1.4;
+
+  margin-bottom: 12px;
+}
+
+
+/* DESCRIPTION */
+
+.service-page-card p {
+  color: #666;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  margin-bottom: 18px;
+}
+
+
+/* PRICE */
+
+.service-page-card strong {
+  color: #222;
+
+  font-size: 14px;
+
+  margin-top: auto;
+
+  margin-bottom: 18px;
+}
+
+
+/* LINK */
+
+.service-page-card a {
+  color: #d49300;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.service-page-card a:hover {
+  color: #b57d00;
+}
+
+
+/* ============================= */
+/* CTA */
+/* ============================= */
+
+.services-cta {
+  width: 100%;
+
+  text-align: center;
+
+  padding: 75px 25px;
+
+  background: #fff8df;
+}
+
+.services-cta h2 {
+  color: #222;
+
+  font-size: 34px;
+
+  margin-bottom: 15px;
+}
+
+.services-cta p {
+  color: #666;
+
+  font-size: 16px;
+
+  margin-bottom: 25px;
+}
+
+.services-cta button {
+  background: #e5a400;
+
+  color: #fff;
+
+  border: none;
+
+  padding: 14px 30px;
+
+  border-radius: 6px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.services-cta button:hover {
+  background: #c98f00;
+
+  transform: translateY(-2px);
+}
+
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 1050px) {
+
+  .all-services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+
+@media (max-width: 800px) {
+
+  .services-page-hero {
+    min-height: 340px;
+  }
+
+  .services-page-hero h1 {
+    font-size: 42px;
+  }
+
+  .services-page-hero p:not(.tagline) {
+    font-size: 16px;
+  }
+
+  .all-services {
+    padding: 65px 25px;
+  }
+
+  .all-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+}
+
+
+@media (max-width: 550px) {
+
+  .services-page-hero {
+    padding: 55px 20px;
+  }
+
+  .services-page-hero h1 {
+    font-size: 34px;
+  }
+
+  .all-services {
+    padding: 55px 20px;
+  }
+
+  .all-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-page-card {
+    min-height: auto;
+  }
+
+  .services-cta h2 {
+    font-size: 28px;
+  }
+
+}
+/* ================================
+   SERVICE DETAIL - BENEFITS
+================================ */
+
+.service-benefits {
+  width: 100%;
+  padding: 80px 7%;
+  background: #fafafa;
+}
+
+.benefit-grid {
+  max-width: 1200px;
+  margin: 45px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.benefit-card {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  padding: 30px 25px;
+  transition: all 0.25s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px);
+  border-color: #e5a400;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.benefit-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff5d6;
+  color: #d49300;
+  border-radius: 50%;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.benefit-card h3 {
+  color: #222;
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.benefit-card p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+
+/* ================================
+   SERVICE PRICE
+================================ */
+
+.service-price {
+  margin: 20px 0 28px;
+  color: #666;
+  font-size: 15px;
+}
+
+.service-price strong {
+  color: #d49300;
+  font-size: 28px;
+  margin-left: 6px;
+}
+
+
+/* ================================
+   SERVICE FAQ
+================================ */
+
+.service-faq {
+  width: 100%;
+  padding: 80px 7%;
+  background: #fafafa;
+}
+
+.faq-list {
+  max-width: 900px;
+  margin: 45px auto 0;
+}
+
+.faq-item {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  border: none;
+  background: #ffffff;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  cursor: pointer;
+  color: #222;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.faq-question:hover {
+  color: #d49300;
+}
+
+.faq-question span:last-child {
+  color: #d49300;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.faq-answer {
+  padding: 0 22px 22px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* ================================
+   SERVICE DETAIL RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+  .benefit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-information {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .enquiry-card {
+    position: static;
+  }
+}
+
+@media (max-width: 650px) {
+  .service-hero {
+    min-height: 350px;
+    padding: 55px 20px;
+  }
+
+  .service-hero h1 {
+    font-size: 38px;
+  }
+
+  .service-hero p:not(.tagline) {
+    font-size: 16px;
+  }
+
+  .service-price strong {
+    font-size: 24px;
+  }
+
+  .benefit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .document-list {
+    grid-template-columns: 1fr;
+  }
+
+  .service-information {
+    padding: 55px 20px;
+  }
+
+  .service-benefits,
+  .service-faq {
+    padding: 55px 20px;
+  }
+
+  .faq-question {
+    font-size: 14px;
+    padding: 18px;
+  }
+}
+/* =========================================
+   NAVBAR - FINAL FIX
+========================================= */
+
+.navbar {
+  width: 100%;
+  height: 72px;
+  background: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+  position: relative;
+  z-index: 1000;
+}
+
+.navbar-container {
+  width: 100%;
+  max-width: 1250px;
+  height: 72px;
+  margin: 0 auto;
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+}
+
+
+/* LOGO */
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+
+  color: #222222;
+  text-decoration: none;
+
+  font-size: 24px;
+  font-weight: 700;
+  white-space: nowrap;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* NAVIGATION */
+
+.navbar .nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 28px;
+
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+}
+
+
+/* NORMAL NAV LINKS */
+
+.navbar .nav-links > a,
+.navbar .nav-dropdown-title {
+  display: flex;
+  align-items: center;
+
+  height: 72px;
+
+  color: #333333;
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.navbar .nav-links > a:hover,
+.navbar .nav-dropdown-title:hover {
+  color: #d49300;
+}
+
+
+/* DROPDOWN CONTAINER */
+
+.nav-dropdown {
+  position: relative;
+
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+}
+
+
+/* DROPDOWN MENU */
+
+.nav-dropdown .dropdown-menu {
+  position: absolute;
+
+  top: 68px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 220px;
+
+  background: #ffffff;
+
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+  padding: 8px 0;
+
+  display: none;
+
+  z-index: 2000;
+}
+
+
+/* SHOW DROPDOWN ON HOVER */
+
+.nav-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
+/* DROPDOWN LINKS */
+
+.nav-dropdown .dropdown-menu a {
+  display: block;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 12px 18px;
+
+  color: #333333;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.nav-dropdown .dropdown-menu a:hover {
+  background: #fff8df;
+  color: #d49300;
+}
+
+
+/* LOGIN BUTTON */
+
+.navbar .login-btn {
+  border: none;
+
+  background: #e5a400;
+  color: #ffffff;
+
+  padding: 11px 24px;
+
+  border-radius: 6px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.navbar .login-btn:hover {
+  background: #c98f00;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   NAVBAR RESPONSIVE
+========================================= */
+
+@media (max-width: 1050px) {
+
+  .navbar-container {
+    padding: 0 20px;
+  }
+
+  .navbar .nav-links {
+    gap: 16px;
+  }
+
+  .navbar .nav-links > a,
+  .navbar .nav-dropdown-title {
+    font-size: 13px;
+  }
+
+  .navbar .logo {
+    font-size: 21px;
+  }
+
+}
+
+
+@media (max-width: 850px) {
+
+  .navbar {
+    height: auto;
+  }
+
+  .navbar-container {
+    height: auto;
+    min-height: 72px;
+
+    flex-wrap: wrap;
+
+    padding: 15px 20px;
+    gap: 15px;
+  }
+
+  .navbar .nav-links {
+    order: 3;
+
+    width: 100%;
+
+    height: auto;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px 20px;
+
+    padding-bottom: 10px;
+  }
+
+  .navbar .nav-links > a,
+  .navbar .nav-dropdown-title {
+    height: 40px;
+  }
+
+  .nav-dropdown {
+    height: 40px;
+  }
+
+  .nav-dropdown .dropdown-menu {
+    top: 38px;
+  }
+
+}
+
+
+@media (max-width: 550px) {
+
+  .navbar-container {
+    justify-content: center;
+  }
+
+  .navbar .logo {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navbar .login-btn {
+    display: none;
+  }
+
+  .navbar .nav-links {
+    gap: 5px 15px;
+  }
+
+  .navbar .nav-links > a,
+  .navbar .nav-dropdown-title {
+    font-size: 12px;
+  }
+
+
+}
+/* =========================================
+   HOME HERO - FINAL ALIGNMENT FIX
+========================================= */
+
+.hero {
+  width: 100%;
+  min-height: 620px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 80px 25px;
+
+  background: #fff8df;
+
+  box-sizing: border-box;
+}
+
+
+.hero-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* TAGLINE */
+
+.hero .tagline {
+  margin: 0 0 22px;
+
+  color: #d49300;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+
+/* MAIN HEADING */
+
+.hero h1 {
+  margin: 0 0 25px;
+
+  color: #222;
+
+  font-size: 58px;
+  line-height: 1.12;
+  font-weight: 700;
+
+  max-width: 1100px;
+}
+
+.hero h1 span {
+  color: #e5a400;
+}
+
+
+/* DESCRIPTION */
+
+.hero-description {
+  max-width: 950px;
+
+  margin: 0 auto 32px;
+
+  color: #555;
+
+  font-size: 18px;
+  line-height: 1.7;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   HERO BUTTONS
+========================================= */
+
+.hero-buttons {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  margin: 0 0 30px;
+
+  width: 100%;
+}
+
+
+/* PRIMARY BUTTON */
+
+.hero-buttons .primary-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #e5a400;
+  color: #ffffff;
+
+  text-decoration: none;
+
+  border: none;
+  border-radius: 7px;
+
+  padding: 15px 28px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.hero-buttons .primary-btn:hover {
+  background: #c98f00;
+  transform: translateY(-2px);
+}
+
+
+/* SECONDARY BUTTON */
+
+.hero-buttons .secondary-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  color: #333333;
+
+  border: 1px solid #dddddd;
+  border-radius: 7px;
+
+  padding: 15px 28px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.hero-buttons .secondary-btn:hover {
+  border-color: #e5a400;
+  color: #d49300;
+}
+
+
+/* =========================================
+   SEARCH BOX
+========================================= */
+
+.hero .search-box {
+  width: 100%;
+  max-width: 850px;
+
+  height: 64px;
+
+  display: flex;
+  align-items: stretch;
+
+  background: #ffffff;
+
+  border: 1px solid #e3e3e3;
+
+  border-radius: 10px;
+
+  padding: 5px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  margin: 0 auto;
+}
+
+
+/* SEARCH INPUT */
+
+.hero .search-box input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 100%;
+
+  padding: 0 22px;
+
+  border: none;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #333333;
+
+  font-family: inherit;
+
+  font-size: 16px;
+
+  border-radius: 7px;
+}
+
+.hero .search-box input::placeholder {
+  color: #999999;
+}
+
+
+/* SEARCH BUTTON */
+
+.hero .search-box button {
+  width: 145px;
+
+  flex-shrink: 0;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: #e5a400;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.hero .search-box button:hover {
+  background: #c98f00;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .hero {
+    min-height: 600px;
+    padding: 70px 20px;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  .hero .search-box {
+    max-width: 650px;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .hero {
+    padding: 60px 18px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+  }
+
+  .hero-buttons .primary-btn,
+  .hero-buttons .secondary-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .hero .search-box {
+    height: auto;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    padding: 7px;
+  }
+
+  .hero .search-box input {
+    height: 52px;
+  }
+
+  .hero .search-box button {
+    width: 100%;
+    height: 52px;
+  }
+
+}
+/* =========================================
+   LOGIN PAGE
+========================================= */
+
+.login-page {
+  min-height: calc(100vh - 72px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 60px 20px;
+
+  background: #fff8df;
+
+  box-sizing: border-box;
+}
+
+
+.login-card {
+  width: 100%;
+  max-width: 450px;
+
+  background: #ffffff;
+
+  padding: 45px;
+
+  border-radius: 12px;
+
+  border: 1px solid #eeeeee;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+
+  box-sizing: border-box;
+}
+
+
+/* LOGO */
+
+.login-logo {
+  display: block;
+
+  text-align: center;
+
+  color: #222222;
+
+  font-size: 25px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  margin-bottom: 30px;
+}
+
+
+/* HEADING */
+
+.login-card h1 {
+  margin: 0 0 10px;
+
+  text-align: center;
+
+  color: #222222;
+
+  font-size: 30px;
+}
+
+
+/* SUBTITLE */
+
+.login-subtitle {
+  margin: 0 0 30px;
+
+  text-align: center;
+
+  color: #777777;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+
+/* FORM */
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+
+/* FIELD */
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.login-field label {
+  color: #333333;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.login-field input {
+  width: 100%;
+
+  height: 48px;
+
+  padding: 0 14px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dddddd;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #333333;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  transition: border-color 0.2s ease;
+}
+
+.login-field input:focus {
+  border-color: #e5a400;
+}
+
+
+/* LOGIN OPTIONS */
+
+.login-options {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: -5px;
+}
+
+
+.remember-me {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #666666;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.remember-me input {
+  accent-color: #e5a400;
+}
+
+
+/* FORGOT PASSWORD */
+
+.forgot-password {
+  border: none;
+
+  background: none;
+
+  padding: 0;
+
+  color: #d49300;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+
+/* SUBMIT */
+
+.login-submit {
+  width: 100%;
+
+  height: 50px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #e5a400;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.login-submit:hover {
+  background: #c98f00;
+
+  transform: translateY(-1px);
+}
+
+
+/* DIVIDER */
+
+.login-divider {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin: 28px 0;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background: #eeeeee;
+}
+
+.login-divider span {
+  color: #999999;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+/* REGISTER */
+
+.register-text {
+  margin: 0;
+
+  text-align: center;
+
+  color: #666666;
+
+  font-size: 14px;
+}
+
+.register-text button {
+  border: none;
+
+  background: none;
+
+  padding: 0;
+
+  margin-left: 5px;
+
+  color: #d49300;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.register-text button:hover {
+  text-decoration: underline;
+}
+
+
+/* BACK HOME */
+
+.back-home {
+  display: block;
+
+  margin-top: 25px;
+
+  text-align: center;
+
+  color: #777777;
+
+  font-size: 13px;
+
+  text-decoration: none;
+}
+
+.back-home:hover {
+  color: #d49300;
+}
+
+
+/* =========================================
+   LOGIN MOBILE
+========================================= */
+
+@media (max-width: 550px) {
+
+  .login-page {
+    padding: 40px 15px;
+  }
+
+  .login-card {
+    padding: 30px 22px;
+  }
+
+  .login-card h1 {
+    font-size: 26px;
+  }
+
+  .login-options {
+    align-items: flex-start;
+  }
+
+}
+/* =========================================
+   ENQUIRY FORM - FINAL POLISH
+========================================= */
+
+.enquiry-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.enquiry-card form {
+  width: 100%;
+}
+
+.enquiry-card input,
+.enquiry-card textarea {
+  box-sizing: border-box;
+  width: 100%;
+  background: #ffffff;
+  color: #333333;
+  transition: all 0.2s ease;
+}
+
+.enquiry-card input::placeholder,
+.enquiry-card textarea::placeholder {
+  color: #999999;
+}
+
+.enquiry-card input:focus,
+.enquiry-card textarea:focus {
+  border-color: #e5a400;
+  box-shadow: 0 0 0 3px rgba(229, 164, 0, 0.08);
+}
+
+.enquiry-card textarea {
+  min-height: 110px;
+  line-height: 1.5;
+}
+
+.enquiry-card .primary-btn {
+  height: 50px;
+  border: none;
+  border-radius: 6px;
+  background: #e5a400;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.enquiry-card .primary-btn:hover {
+  background: #c98f00;
+  transform: translateY(-1px);
+}
+
+
+/* FORM HEADING */
+
+.enquiry-card h2 {
+  color: #222222;
+  margin-top: 0;
+}
+
+.enquiry-card > p {
+  margin-bottom: 25px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+  .enquiry-card {
+    padding: 25px 20px;
+  }
+
+  .enquiry-card input {
+    height: 48px;
+  }
+
+}

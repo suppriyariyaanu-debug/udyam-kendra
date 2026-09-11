@@ -5,56 +5,64 @@ const serviceData = {
   company: {
     title: "Company Registration",
     category: "START YOUR BUSINESS",
-    description: "Register your company with professional assistance and start your business with confidence.",
+    description:
+      "Register your company with professional assistance and start your business with confidence.",
     price: "₹999",
   },
 
   llp: {
     title: "LLP Registration",
     category: "START YOUR BUSINESS",
-    description: "Set up your Limited Liability Partnership with a simple and guided registration process.",
+    description:
+      "Set up your Limited Liability Partnership with a simple and guided registration process.",
     price: "₹999",
   },
 
   gst: {
     title: "GST Registration",
     category: "TAX & GST",
-    description: "Get your GST registration completed quickly with professional assistance.",
+    description:
+      "Get your GST registration completed quickly with professional assistance.",
     price: "₹499",
   },
 
   udyam: {
     title: "Udyam Registration",
     category: "BUSINESS REGISTRATION",
-    description: "Register your MSME business and get your Udyam Registration certificate.",
+    description:
+      "Register your MSME business and get your Udyam Registration certificate.",
     price: "₹299",
   },
 
   fssai: {
     title: "FSSAI Registration",
     category: "BUSINESS REGISTRATION",
-    description: "Get your food business registered with the required FSSAI license.",
+    description:
+      "Get your food business registered with the required FSSAI license.",
     price: "₹999",
   },
 
   iec: {
     title: "Import Export Code",
     category: "BUSINESS REGISTRATION",
-    description: "Get your IEC registration to start importing and exporting goods.",
+    description:
+      "Get your IEC registration to start importing and exporting goods.",
     price: "₹999",
   },
 
   trademark: {
     title: "Trademark Registration",
     category: "PROTECT YOUR BRAND",
-    description: "Protect your brand name, logo and identity with trademark registration.",
+    description:
+      "Protect your brand name, logo and identity with trademark registration.",
     price: "₹999",
   },
 
   itr: {
     title: "Income Tax Return Filing",
     category: "TAX & COMPLIANCE",
-    description: "File your income tax returns accurately with professional assistance.",
+    description:
+      "File your income tax returns accurately with professional assistance.",
     price: "₹499",
   },
 };
@@ -62,7 +70,8 @@ const serviceData = {
 function ServicePage() {
   const { serviceId } = useParams();
 
-  const service = serviceData[serviceId] || serviceData.company;
+  const service =
+    serviceData[serviceId] || serviceData.company;
 
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -115,19 +124,19 @@ function ServicePage() {
     {
       question: "How long does the service take?",
       answer:
-        "The processing time depends on the type of service and the respective government authority.",
+        "The processing time depends on the type of service and the respective government authority. Our team will provide guidance throughout the process.",
     },
     {
       question: "Will I receive a certificate?",
       answer:
-        "Where applicable, you will receive the relevant registration certificate or confirmation after successful completion.",
+        "Where applicable, you will receive the relevant registration certificate or confirmation after successful completion of the process.",
     },
   ];
 
   return (
     <div className="service-page">
 
-      {/* HERO */}
+      {/* ================= HERO ================= */}
 
       <section className="service-hero">
 
@@ -146,7 +155,8 @@ function ServicePage() {
           </p>
 
           <div className="service-price">
-            Starting from <strong>{service.price}</strong>
+            Starting from{" "}
+            <strong>{service.price}</strong>
           </div>
 
           <button
@@ -167,7 +177,7 @@ function ServicePage() {
       </section>
 
 
-      {/* BENEFITS */}
+      {/* ================= BENEFITS ================= */}
 
       <section className="service-benefits">
 
@@ -191,35 +201,70 @@ function ServicePage() {
         <div className="benefit-grid">
 
           <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Simple Process</h3>
+
+            <div className="benefit-icon">
+              ✓
+            </div>
+
+            <h3>
+              Simple Process
+            </h3>
+
             <p>
               Easy and guided process from start to completion.
             </p>
+
           </div>
 
+
           <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Expert Assistance</h3>
+
+            <div className="benefit-icon">
+              ✓
+            </div>
+
+            <h3>
+              Expert Assistance
+            </h3>
+
             <p>
               Get professional guidance throughout the application process.
             </p>
+
           </div>
 
+
           <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Documentation Support</h3>
+
+            <div className="benefit-icon">
+              ✓
+            </div>
+
+            <h3>
+              Documentation Support
+            </h3>
+
             <p>
               Understand the documents required for your service.
             </p>
+
           </div>
 
+
           <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Complete Support</h3>
+
+            <div className="benefit-icon">
+              ✓
+            </div>
+
+            <h3>
+              Complete Support
+            </h3>
+
             <p>
               Get assistance until your service is completed.
             </p>
+
           </div>
 
         </div>
@@ -227,7 +272,7 @@ function ServicePage() {
       </section>
 
 
-      {/* SERVICE INFORMATION */}
+      {/* ================= INFORMATION ================= */}
 
       <section className="service-information">
 
@@ -252,10 +297,15 @@ function ServicePage() {
           <div className="document-list">
 
             <div>✓ PAN Card</div>
+
             <div>✓ Aadhaar Card</div>
+
             <div>✓ Address Proof</div>
+
             <div>✓ Business Details</div>
+
             <div>✓ Bank Account Details</div>
+
             <div>✓ Mobile Number & Email</div>
 
           </div>
@@ -268,35 +318,62 @@ function ServicePage() {
           <div className="process-list">
 
             <div>
+
               <span>01</span>
-              <h3>Submit Your Details</h3>
+
+              <h3>
+                Submit Your Details
+              </h3>
+
               <p>
                 Provide your basic information and requirements.
               </p>
+
             </div>
 
+
             <div>
+
               <span>02</span>
-              <h3>Share Documents</h3>
+
+              <h3>
+                Share Documents
+              </h3>
+
               <p>
                 Submit the documents required for the selected service.
               </p>
+
             </div>
 
+
             <div>
+
               <span>03</span>
-              <h3>Application Processing</h3>
+
+              <h3>
+                Application Processing
+              </h3>
+
               <p>
                 Our team assists with the application and required formalities.
               </p>
+
             </div>
 
+
             <div>
+
               <span>04</span>
-              <h3>Service Completion</h3>
+
+              <h3>
+                Service Completion
+              </h3>
+
               <p>
                 Receive confirmation or the required certificate.
               </p>
+
             </div>
 
           </div>
@@ -304,7 +381,7 @@ function ServicePage() {
         </div>
 
 
-        {/* ENQUIRY FORM */}
+        {/* ================= ENQUIRY FORM ================= */}
 
         <div
           className="enquiry-card"
@@ -361,8 +438,6 @@ function ServicePage() {
             />
 
 
-            {/* CITY / LOCATION */}
-
             <input
               type="text"
               name="location"
@@ -396,7 +471,7 @@ function ServicePage() {
       </section>
 
 
-      {/* FAQ */}
+      {/* ================= FAQ ================= */}
 
       <section className="service-faq">
 
@@ -430,7 +505,9 @@ function ServicePage() {
                 className="faq-question"
                 onClick={() =>
                   setOpenFaq(
-                    openFaq === index ? null : index
+                    openFaq === index
+                      ? null
+                      : index
                   )
                 }
               >
@@ -440,7 +517,9 @@ function ServicePage() {
                 </span>
 
                 <span>
-                  {openFaq === index ? "−" : "+"}
+                  {openFaq === index
+                    ? "−"
+                    : "+"}
                 </span>
 
               </button>
@@ -463,7 +542,7 @@ function ServicePage() {
       </section>
 
 
-      {/* CTA */}
+      {/* ================= CTA ================= */}
 
       <section className="services-cta">
 

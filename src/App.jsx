@@ -1,144 +1,253 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import React from "react";
+
+import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
 import ServicePage from "./pages/ServicePage";
 import Services from "./pages/Services";
+import Login from "./pages/Login";
 import "./App.css";
 
-function Home() {
-  const services = [
-    {
-      id: "company",
-      icon: "🏢",
-      title: "Company Registration",
-      description:
-        "Register your private limited company quickly and easily.",
-    },
-    {
-      id: "gst",
-      icon: "📄",
-      title: "GST Registration",
-      description:
-        "Get your GST registration with professional assistance.",
-    },
-    {
-      id: "udyam",
-      icon: "📋",
-      title: "Udyam Registration",
-      description:
-        "Register your MSME business and get your Udyam certificate.",
-    },
-    {
-      id: "fssai",
-      icon: "🍴",
-      title: "FSSAI Registration",
-      description:
-        "Get your food business registration and compliance support.",
-    },
-    {
-      id: "trademark",
-      icon: "™️",
-      title: "Trademark Registration",
-      description:
-        "Protect your brand name, logo and business identity.",
-    },
-    {
-      id: "itr",
-      icon: "💰",
-      title: "Income Tax Filing",
-      description:
-        "File your income tax returns with expert assistance.",
-    },
-  ];
+
+/* ================= NAVBAR ================= */
+
+function Navbar() {
+
+  const navigate = useNavigate();
+
+  const [search, setSearch] = React.useState("");
+
+  const handleSearch = () => {
+
+    const value = search.toLowerCase().trim();
+
+    if (!value) {
+      alert("Please enter a service name.");
+      return;
+    }
+
+    if (value.includes("company") || value.includes("private limited")) {
+      navigate("/services/company");
+    }
+
+    else if (value.includes("llp")) {
+      navigate("/services/llp");
+    }
+
+    else if (value.includes("gst")) {
+      navigate("/services/gst");
+    }
+
+    else if (value.includes("udyam") || value.includes("msme")) {
+      navigate("/services/udyam");
+    }
+
+    else if (value.includes("fssai") || value.includes("food")) {
+      navigate("/services/fssai");
+    }
+
+    else if (
+      value.includes("iec") ||
+      value.includes("import") ||
+      value.includes("export")
+    ) {
+      navigate("/services/iec");
+    }
+
+    else if (
+      value.includes("trademark") ||
+      value.includes("brand")
+    ) {
+      navigate("/services/trademark");
+    }
+
+    else if (
+      value.includes("income tax") ||
+      value.includes("itr") ||
+      value.includes("tax")
+    ) {
+      navigate("/services/itr");
+    }
+
+    else {
+      alert(
+        "Service not found. Try GST, Company, Udyam, FSSAI, Trademark, Income Tax, LLP or IEC."
+      );
+    }
+  };
+
 
   return (
-    <>
-      {/* NAVBAR */}
-      <header className="navbar">
+    <nav className="navbar">
 
-  <Link to="/" className="logo">
-    Udyam <span>Kendra</span>
-  </Link>
+      <div className="navbar-container">
 
-  <nav className="main-nav">
-
-    <div className="nav-dropdown">
-      <button className="nav-button">
-        Start Business <span>▼</span>
-      </button>
-
-      <div className="dropdown-menu">
-
-        <Link to="/services/company">
-          <strong>Company Registration</strong>
-          <small>Start your company</small>
+        <Link to="/" className="logo">
+          Udyam Kendra
         </Link>
 
-        <Link to="/services/llp">
-          <strong>LLP Registration</strong>
-          <small>Register your LLP</small>
-        </Link>
+
+        <div className="nav-links">
+
+          {/* START BUSINESS */}
+
+          <div className="nav-dropdown">
+
+            <span className="nav-dropdown-title">
+              Start Business ▾
+            </span>
+
+            <div className="dropdown-menu">
+
+              <Link to="/services/company">
+                Company Registration
+              </Link>
+
+              <Link to="/services/llp">
+                LLP Registration
+              </Link>
+
+            </div>
+
+          </div>
+
+
+          {/* REGISTRATIONS */}
+
+          <div className="nav-dropdown">
+
+            <span className="nav-dropdown-title">
+              Registrations ▾
+            </span>
+
+            <div className="dropdown-menu">
+
+              <Link to="/services/gst">
+                GST Registration
+              </Link>
+
+              <Link to="/services/udyam">
+                Udyam Registration
+              </Link>
+
+              <Link to="/services/fssai">
+                FSSAI Registration
+              </Link>
+
+              <Link to="/services/iec">
+                Import Export Code
+              </Link>
+
+            </div>
+
+          </div>
+
+
+          <Link to="/services/trademark">
+            Trademark
+          </Link>
+
+          <Link to="/services/gst">
+            GST
+          </Link>
+
+          <Link to="/services/itr">
+            Income Tax
+          </Link>
+
+          <Link to="/services">
+            All Services
+          </Link>
+
+        </div>
+<Link
+  to="/login"
+  className="login-btn"
+>
+  Login
+</Link>
+
+        
 
       </div>
-    </div>
+
+    </nav>
+  );
+}
 
 
-    <div className="nav-dropdown">
-      <button className="nav-button">
-        Registrations <span>▼</span>
-      </button>
+/* ================= HOME PAGE ================= */
 
-      <div className="dropdown-menu">
+function Home() {
 
-        <Link to="/services/gst">
-          <strong>GST Registration</strong>
-          <small>Register for GST</small>
-        </Link>
+  const navigate = useNavigate();
 
-        <Link to="/services/udyam">
-          <strong>Udyam Registration</strong>
-          <small>MSME registration</small>
-        </Link>
-
-        <Link to="/services/fssai">
-          <strong>FSSAI Registration</strong>
-          <small>Food business registration</small>
-        </Link>
-
-        <Link to="/services/iec">
-          <strong>IEC Registration</strong>
-          <small>Import Export Code</small>
-        </Link>
-
-      </div>
-    </div>
+  const [search, setSearch] = React.useState("");
 
 
-    <Link to="/services/trademark" className="simple-link">
-      Trademark
-    </Link>
+  const handleSearch = () => {
 
-    <Link to="/services/gst" className="simple-link">
-      GST
-    </Link>
+    const value = search.toLowerCase().trim();
 
-    <Link to="/services/itr" className="simple-link">
-      Income Tax
-    </Link>
+    if (!value) {
+      alert("Please enter a service name.");
+      return;
+    }
 
-    <Link to="/services" className="simple-link">
-      All Services
-    </Link>
+    if (value.includes("company") || value.includes("private limited")) {
+      navigate("/services/company");
+    }
 
-    <button className="login-btn">
-      Login
-    </button>
+    else if (value.includes("llp")) {
+      navigate("/services/llp");
+    }
 
-  </nav>
+    else if (value.includes("gst")) {
+      navigate("/services/gst");
+    }
 
-</header>
-              
+    else if (value.includes("udyam") || value.includes("msme")) {
+      navigate("/services/udyam");
+    }
 
+    else if (value.includes("fssai") || value.includes("food")) {
+      navigate("/services/fssai");
+    }
+
+    else if (
+      value.includes("iec") ||
+      value.includes("import") ||
+      value.includes("export")
+    ) {
+      navigate("/services/iec");
+    }
+
+    else if (
+      value.includes("trademark") ||
+      value.includes("brand")
+    ) {
+      navigate("/services/trademark");
+    }
+
+    else if (
+      value.includes("income tax") ||
+      value.includes("itr") ||
+      value.includes("tax")
+    ) {
+      navigate("/services/itr");
+    }
+
+    else {
+      alert(
+        "Service not found. Try GST, Company, Udyam, FSSAI, Trademark, Income Tax, LLP or IEC."
+      );
+    }
+  };
+
+
+  return (
+    <div>
 
       {/* HERO */}
+
       <section className="hero">
 
         <div className="hero-content">
@@ -150,131 +259,101 @@ function Home() {
           <h1>
             Start, Manage & Grow
             <br />
-            Your Business with
-            <span> Udyam Kendra</span>
+            <span>Your Business with Udyam Kendra</span>
           </h1>
 
-          <p className="description">
-            From business registration to compliance,
-            taxation and professional services — everything
-            your business needs in one place.
+          <p className="hero-description">
+            From business registration to taxation, compliance and
+            technology solutions, get everything your business needs
+            in one place.
           </p>
 
-          <Link to="/services">
-            <button className="primary-btn">
-              Explore Services
+
+          <div className="hero-buttons">
+
+            <Link
+              to="/services"
+              className="primary-btn"
+            >
+              Explore Services →
+            </Link>
+
+            <button
+              className="secondary-btn"
+              onClick={() =>
+                alert("Our team will contact you shortly.")
+              }
+            >
+              Talk to an Expert
             </button>
-          </Link>
+
+          </div>
+
+
+          {/* SEARCH */}
+
+          <div className="search-box">
+
+            <input
+              type="text"
+              value={search}
+              onChange={(event) =>
+                setSearch(event.target.value)
+              }
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  handleSearch();
+                }
+              }}
+              placeholder="Search for a business service..."
+            />
+
+            <button onClick={handleSearch}>
+              Search
+            </button>
+
+          </div>
 
         </div>
 
       </section>
 
 
-      {/* SEARCH */}
-      <section className="search-section">
-
-        <div className="search-box">
-
-          <input
-            type="text"
-            placeholder="Search for a business service..."
-          />
-
-          <button>
-            Search
-          </button>
-
-        </div>
-
-      </section>
       {/* TRUST STATS */}
-<section className="trust-stats">
 
-  <div className="stat-card">
-    <h2>10K+</h2>
-    <p>Businesses Served</p>
-  </div>
+      <section className="trust-stats">
 
-  <div className="stat-card">
-    <h2>50+</h2>
-    <p>Business Services</p>
-  </div>
+        <div className="stat-card">
+          <h2>10K+</h2>
+          <p>Businesses Served</p>
+        </div>
 
-  <div className="stat-card">
-    <h2>99%</h2>
-    <p>Customer Satisfaction</p>
-  </div>
+        <div className="stat-card">
+          <h2>50+</h2>
+          <p>Business Services</p>
+        </div>
 
-  <div className="stat-card">
-    <h2>24/7</h2>
-    <p>Online Support</p>
-  </div>
+        <div className="stat-card">
+          <h2>99%</h2>
+          <p>Customer Satisfaction</p>
+        </div>
 
-</section>
-{/* BUSINESS CATEGORIES */}
-<section className="business-categories">
+        <div className="stat-card">
+          <h2>24/7</h2>
+          <p>Online Support</p>
+        </div>
 
-  <div className="section-title">
-
-    <p className="tagline">
-      BUSINESS SOLUTIONS
-    </p>
-
-    <h2>
-      What Does Your Business Need?
-    </h2>
-
-    <p>
-      Explore our complete range of business services.
-    </p>
-
-  </div>
+      </section>
 
 
-  <div className="category-grid">
+      {/* BUSINESS CATEGORIES */}
 
-    <Link to="/services/company" className="category-card">
-      <div className="category-icon">🚀</div>
-      <h3>Start a Business</h3>
-      <p>Register and launch your new business.</p>
-      <span>Explore →</span>
-    </Link>
-
-
-    <Link to="/services/gst" className="category-card">
-      <div className="category-icon">📊</div>
-      <h3>Tax & GST</h3>
-      <p>GST registration, tax filing and compliance.</p>
-      <span>Explore →</span>
-    </Link>
-
-
-    <Link to="/services/trademark" className="category-card">
-      <div className="category-icon">™️</div>
-      <h3>Protect Your Brand</h3>
-      <p>Trademark and intellectual property services.</p>
-      <span>Explore →</span>
-    </Link>
-
-
-    <Link to="/services/udyam" className="category-card">
-      <div className="category-icon">📋</div>
-      <h3>Registrations</h3>
-      <p>Essential registrations for your business.</p>
-      <span>Explore →</span>
-    </Link>
-
-  </div>
-
-</section>
-      {/* SERVICES */}
-      <section className="services">
+      <section className="business-categories">
 
         <div className="section-title">
 
           <p className="tagline">
-            OUR SERVICES
+            BUSINESS SOLUTIONS
           </p>
 
           <h2>
@@ -282,139 +361,237 @@ function Home() {
           </h2>
 
           <p>
-            Professional services to start, manage and grow
-            your business.
+            From starting your business to managing compliance,
+            we provide services to help your business grow.
           </p>
 
         </div>
 
 
-        <div className="service-grid">
+        <div className="category-grid">
 
-          {services.map((service) => (
+          <Link
+            to="/services/company"
+            className="category-card"
+          >
 
-            <div
-              className="service-card"
-              key={service.id}
-            >
-
-              <div className="icon">
-                {service.icon}
-              </div>
-
-              <h3>
-                {service.title}
-              </h3>
-
-              <p>
-                {service.description}
-              </p>
-
-              <Link to={`/services/${service.id}`}>
-                <button>
-                  Know More →
-                </button>
-              </Link>
-
+            <div className="category-icon">
+              🏢
             </div>
 
-          ))}
+            <h3>
+              Start a Business
+            </h3>
+
+            <p>
+              Register your company or LLP and get your business started.
+            </p>
+
+            <span>
+              Explore →
+            </span>
+
+          </Link>
+
+
+          <Link
+            to="/services/gst"
+            className="category-card"
+          >
+
+            <div className="category-icon">
+              📊
+            </div>
+
+            <h3>
+              Tax & GST
+            </h3>
+
+            <p>
+              Manage GST registration, income tax filing and tax services.
+            </p>
+
+            <span>
+              Explore →
+            </span>
+
+          </Link>
+
+
+          <Link
+            to="/services/trademark"
+            className="category-card"
+          >
+
+            <div className="category-icon">
+              ™️
+            </div>
+
+            <h3>
+              Protect Your Brand
+            </h3>
+
+            <p>
+              Protect your business identity with trademark registration.
+            </p>
+
+            <span>
+              Explore →
+            </span>
+
+          </Link>
+
+
+          <Link
+            to="/services/udyam"
+            className="category-card"
+          >
+
+            <div className="category-icon">
+              📋
+            </div>
+
+            <h3>
+              Registrations
+            </h3>
+
+            <p>
+              Complete important registrations required for your business.
+            </p>
+
+            <span>
+              Explore →
+            </span>
+
+          </Link>
 
         </div>
 
       </section>
 
-{/* TRUSTED BY BUSINESSES */}
-<section className="client-trust">
 
-  <div className="section-title">
+      {/* SERVICES */}
 
-    <p className="tagline">
-      TRUSTED BY BUSINESSES
-    </p>
+      <section className="services">
 
-    <h2>
-      Helping Businesses Move Forward
-    </h2>
+        <div className="section-title">
 
-    <p>
-      Businesses across different industries trust Udyam Kendra
-      for their registration and compliance needs.
-    </p>
+          <p className="tagline">
+            POPULAR SERVICES
+          </p>
 
-  </div>
+          <h2>
+            Business Services
+          </h2>
+
+          <p>
+            Professional assistance for your most important business needs.
+          </p>
+
+        </div>
 
 
-  <div className="client-logos">
+        <div className="services-grid">
 
-    <div className="client-logo">
-      TECHNOVA
-    </div>
+          <ServiceCard
+            icon="🏢"
+            title="Company Registration"
+            description="Register your company and start your business."
+            link="/services/company"
+          />
 
-    <div className="client-logo">
-      VISTARA
-    </div>
+          <ServiceCard
+            icon="📊"
+            title="GST Registration"
+            description="Complete your GST registration with expert assistance."
+            link="/services/gst"
+          />
 
-    <div className="client-logo">
-      NOVAFOODS
-    </div>
+          <ServiceCard
+            icon="📋"
+            title="Udyam Registration"
+            description="Register your MSME business with Udyam."
+            link="/services/udyam"
+          />
 
-    <div className="client-logo">
-      FINEDGE
-    </div>
+          <ServiceCard
+            icon="🍴"
+            title="FSSAI Registration"
+            description="Get the required registration for your food business."
+            link="/services/fssai"
+          />
 
-    <div className="client-logo">
-      GREENCORE
-    </div>
+          <ServiceCard
+            icon="™️"
+            title="Trademark Registration"
+            description="Protect your brand name and business identity."
+            link="/services/trademark"
+          />
 
-  </div>
+          <ServiceCard
+            icon="💰"
+            title="Income Tax Filing"
+            description="File your income tax return with professional assistance."
+            link="/services/itr"
+          />
 
-</section>
+        </div>
+
+      </section>
+
+
       {/* WHY US */}
+
       <section className="why-us">
 
-        <div>
+        <div className="section-title">
 
           <p className="tagline">
             WHY UDYAM KENDRA
           </p>
 
           <h2>
-            Your Trusted Business Partner
+            Your Business. Our Support.
           </h2>
 
           <p>
-            We simplify complex business registrations,
-            compliance and professional services so that
-            you can focus on growing your business.
+            We make business services simple, transparent and convenient.
           </p>
 
         </div>
 
 
-        <div className="benefits">
+        <div className="why-grid">
 
-          <div>
-            <span>01</span>
-            <h3>Expert Assistance</h3>
-            <p>
-              Get guidance from experienced professionals.
-            </p>
-          </div>
-
-          <div>
-            <span>02</span>
+          <div className="why-card">
+            <div>✓</div>
             <h3>Simple Process</h3>
             <p>
-              Easy documentation and transparent processes.
+              Easy and guided process from start to completion.
             </p>
           </div>
 
-          <div>
-            <span>03</span>
-            <h3>End-to-End Support</h3>
+          <div className="why-card">
+            <div>₹</div>
+            <h3>Transparent Pricing</h3>
             <p>
-              We support you from application to completion.
+              Clear pricing with no unnecessary surprises.
+            </p>
+          </div>
+
+          <div className="why-card">
+            <div>⚡</div>
+            <h3>Quick Assistance</h3>
+            <p>
+              Get professional assistance whenever you need it.
+            </p>
+          </div>
+
+          <div className="why-card">
+            <div>🤝</div>
+            <h3>Expert Support</h3>
+            <p>
+              Get guidance throughout your business journey.
             </p>
           </div>
 
@@ -424,6 +601,7 @@ function Home() {
 
 
       {/* CTA */}
+
       <section className="cta">
 
         <h2>
@@ -431,97 +609,164 @@ function Home() {
         </h2>
 
         <p>
-          Let Udyam Kendra handle the paperwork while
-          you focus on your business.
+          Choose the right service and take the next step with Udyam Kendra.
         </p>
 
-        <Link to="/services">
-          <button className="primary-btn">
-            Get Started
-          </button>
+        <Link
+          to="/services"
+          className="primary-btn"
+        >
+          Explore Services →
         </Link>
 
       </section>
 
 
       {/* FOOTER */}
+
       <footer className="footer">
 
-        <div>
+        <div className="footer-container">
 
-          <div className="logo">
-            Udyam <span>Kendra</span>
+          <div>
+
+            <h2>
+              Udyam Kendra
+            </h2>
+
+            <p>
+              A Single Window Business Service
+            </p>
+
           </div>
 
-          <p>
-            A single window business service platform
-            helping businesses start, manage and grow.
-          </p>
+
+          <div>
+
+            <h3>
+              Services
+            </h3>
+
+            <Link to="/services/company">
+              Company Registration
+            </Link>
+
+            <Link to="/services/gst">
+              GST Registration
+            </Link>
+
+            <Link to="/services/udyam">
+              Udyam Registration
+            </Link>
+
+            <Link to="/services/trademark">
+              Trademark
+            </Link>
+
+          </div>
+
+
+          <div>
+
+            <h3>
+              Company
+            </h3>
+
+            <Link to="/services">
+              All Services
+            </Link>
+
+            <a href="#about">
+              About Us
+            </a>
+
+            <a href="#contact">
+              Contact Us
+            </a>
+
+          </div>
 
         </div>
 
 
-        <div>
-
-          <h4>
-            Services
-          </h4>
-
-          <p>Company Registration</p>
-          <p>GST Registration</p>
-          <p>Udyam Registration</p>
-          <p>Trademark Registration</p>
-
-        </div>
-
-
-        <div>
-
-          <h4>
-            Contact
-          </h4>
-
-          <p>
-            Email: support@udyamkendra.com
-          </p>
-
-          <p>
-            Phone: +91 XXXXX XXXXX
-          </p>
-
+        <div className="footer-bottom">
+          © 2026 Udyam Kendra. All rights reserved.
         </div>
 
       </footer>
-    </>
+
+    </div>
   );
 }
 
 
+/* ================= SERVICE CARD ================= */
+
+function ServiceCard({
+  icon,
+  title,
+  description,
+  link,
+}) {
+  return (
+    <div className="service-card">
+
+      <div className="service-icon">
+        {icon}
+      </div>
+
+      <h3>
+        {title}
+      </h3>
+
+      <p>
+        {description}
+      </p>
+
+      <Link to={link}>
+        View Service →
+      </Link>
+
+    </div>
+  );
+}
+
+
+/* ================= MAIN APP ================= */
+
 function App() {
+
   return (
     <BrowserRouter>
 
+      <Navbar />
+
       <Routes>
 
-  <Route
-    path="/"
-    element={<Home />}
-  />
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
-  <Route
-    path="/services"
-    element={<Services />}
-  />
+        <Route
+          path="/services"
+          element={<Services />}
+        />
 
-  <Route
-    path="/services/:serviceId"
-    element={<ServicePage />}
-  />
+        <Route
+          path="/services/:serviceId"
+          element={<ServicePage />}
+        />
+        <Route
+  path="/login"
+  element={<Login />}
+/>
 
-</Routes>
+      </Routes>
 
     </BrowserRouter>
   );
 }
+
 
 export default App;
