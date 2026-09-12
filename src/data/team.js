@@ -1,20 +1,18 @@
 /*
-  Verified leadership/team data.
-
-  This file intentionally ships empty. The source the project asked us to
-  use for team information (https://udyama-kendra-ram-s-project.vercel.app)
-  was not reachable from this environment, and team names/titles must never
-  be invented. Populate this array with verified entries — About.jsx will
-  render a team grid automatically as soon as it is non-empty.
-
+  Verified leadership/team data, sourced from the names and roles provided
+  for this project (originating from the old Udyam Kendra team page).
   Shape of each entry:
   {
     name: "Full Name",
     role: "Exact role/title as verified",
-    bio: "Optional one-line description.",
   }
 */
 
-const team = [];
+const team = [
+  { name: "Pavan Kumar", role: "Global Evangelist" },
+  { name: "CSV Prasad", role: "Global Advisor" },
+  { name: "Ram", role: "Founder" },
+  { name: "Shivaprasad", role: "Business Advisor" },
+];
 
 export default team;

@@ -1877,6 +1877,54 @@ img {
 
 
 /* ========================================
+   STAT STRIP
+======================================== */
+
+.stat-strip {
+  width: 100%;
+  padding: 36px 7%;
+  background: var(--navy-800);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.stat-strip-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 34px;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.stat-strip-item:last-child {
+  border-right: none;
+}
+
+.stat-strip-icon {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.stat-strip-item strong {
+  display: block;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-strip-item p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* ========================================
    TEAM SECTION
 ======================================== */
 
@@ -1884,6 +1932,23 @@ img {
   width: 100%;
   padding: 84px 7%;
   background: var(--navy-50);
+}
+
+.team-section .section-title h2 {
+  position: relative;
+  padding-bottom: 22px;
+}
+
+.team-section .section-title h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--gold-600);
 }
 
 .team-grid {
@@ -1997,5 +2062,14 @@ img {
 
   .team-grid {
     grid-template-columns: 1fr;
+  }
+
+  .stat-strip {
+    padding: 24px 20px;
+  }
+
+  .stat-strip-item {
+    padding: 10px 18px;
+    border-right: none;
   }
 }

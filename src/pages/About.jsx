@@ -59,6 +59,41 @@ function About() {
         </div>
       </section>
 
+      {/* STAT STRIP */}
+      <section className="stat-strip">
+        <div className="stat-strip-item">
+          <span className="stat-strip-icon">🧾</span>
+          <div>
+            <strong>20+</strong>
+            <p>Business Services</p>
+          </div>
+        </div>
+
+        <div className="stat-strip-item">
+          <span className="stat-strip-icon">🤝</span>
+          <div>
+            <strong>10K+</strong>
+            <p>Businesses Served</p>
+          </div>
+        </div>
+
+        <div className="stat-strip-item">
+          <span className="stat-strip-icon">🗂️</span>
+          <div>
+            <strong>6</strong>
+            <p>Service Categories</p>
+          </div>
+        </div>
+
+        <div className="stat-strip-item">
+          <span className="stat-strip-icon">⏱️</span>
+          <div>
+            <strong>24/7</strong>
+            <p>Online Support</p>
+          </div>
+        </div>
+      </section>
+
       {/* TEAM */}
       <section className="team-section">
         <div className="section-title">
