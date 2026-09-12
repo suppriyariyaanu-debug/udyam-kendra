@@ -79,152 +79,112 @@ function ScrollToTop() {
 
 /* ================= NAVBAR ================= */
 
+const navDropdowns = [
+  { label: "Start Business", category: "Start Business" },
+  { label: "Registrations", category: "Registrations" },
+  { label: "Compliances", category: "Compliances" },
+  { label: "IT Services", category: "IT Services" },
+  { label: "Financial Services", category: "Financial Services" },
+];
+
 function Navbar() {
+
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [openDropdown, setOpenDropdown] = React.useState(null);
+
+  const closeAll = () => {
+    setMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
+  const toggleDropdown = (index) => {
+    setOpenDropdown((current) => (current === index ? null : index));
+  };
 
   return (
     <nav className="navbar">
 
       <div className="navbar-container">
 
-        <Link to="/" className="logo">
+        <Link to="/" className="logo" onClick={closeAll}>
           Udyam Kendra
         </Link>
 
+        <button
+          type="button"
+          className={`nav-toggle ${menuOpen ? "is-open" : ""}`}
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-        <div className="nav-links">
+        <div
+          className={`nav-panel ${menuOpen ? "is-open" : ""}`}
+          onClick={(event) => {
+            if (event.target.tagName === "A") closeAll();
+          }}
+        >
 
-          {/* START BUSINESS */}
+          <div className="nav-links">
 
-          <div className="nav-dropdown">
+            {navDropdowns.map((dropdown, index) => (
+              <div className="nav-dropdown" key={dropdown.category}>
 
-            <span className="nav-dropdown-title">
-              Start Business ▾
-            </span>
+                <span
+                  className="nav-dropdown-title"
+                  onClick={() => toggleDropdown(index)}
+                >
+                  {dropdown.label} ▾
+                </span>
 
-            <div className="dropdown-menu">
-              {services
-                .filter((service) => service.category === "Start Business")
-                .map((service) => (
-                  <Link key={service.id} to={`/services/${service.id}`}>
-                    {service.shortTitle}
-                  </Link>
-                ))}
-            </div>
+                <div
+                  className={`dropdown-menu ${openDropdown === index ? "is-open" : ""}`}
+                >
+                  {services
+                    .filter((service) => service.category === dropdown.category)
+                    .map((service) => (
+                      <Link key={service.id} to={`/services/${service.id}`}>
+                        {service.shortTitle}
+                      </Link>
+                    ))}
+                </div>
 
-          </div>
+              </div>
+            ))}
 
+            <Link to="/services/trademark">
+              Trademark
+            </Link>
 
-          {/* REGISTRATIONS */}
+            <Link to="/services/gst">
+              GST
+            </Link>
 
-          <div className="nav-dropdown">
+            <Link to="/services/itr">
+              Income Tax
+            </Link>
 
-            <span className="nav-dropdown-title">
-              Registrations ▾
-            </span>
-
-            <div className="dropdown-menu">
-              {services
-                .filter((service) => service.category === "Registrations")
-                .map((service) => (
-                  <Link key={service.id} to={`/services/${service.id}`}>
-                    {service.shortTitle}
-                  </Link>
-                ))}
-            </div>
-
-          </div>
-
-
-          {/* COMPLIANCES */}
-
-          <div className="nav-dropdown">
-
-            <span className="nav-dropdown-title">
-              Compliances ▾
-            </span>
-
-            <div className="dropdown-menu">
-              {services
-                .filter((service) => service.category === "Compliances")
-                .map((service) => (
-                  <Link key={service.id} to={`/services/${service.id}`}>
-                    {service.shortTitle}
-                  </Link>
-                ))}
-            </div>
-
-          </div>
-
-
-          {/* IT SERVICES */}
-
-          <div className="nav-dropdown">
-
-            <span className="nav-dropdown-title">
-              IT Services ▾
-            </span>
-
-            <div className="dropdown-menu">
-              {services
-                .filter((service) => service.category === "IT Services")
-                .map((service) => (
-                  <Link key={service.id} to={`/services/${service.id}`}>
-                    {service.shortTitle}
-                  </Link>
-                ))}
-            </div>
+            <Link to="/services">
+              All Services
+            </Link>
 
           </div>
 
+          <div className="navbar-actions">
 
-          {/* FINANCIAL SERVICES */}
+            <Link to="/login" className="login-btn">
+              Login
+            </Link>
 
-          <div className="nav-dropdown">
-
-            <span className="nav-dropdown-title">
-              Financial Services ▾
-            </span>
-
-            <div className="dropdown-menu">
-              {services
-                .filter((service) => service.category === "Financial Services")
-                .map((service) => (
-                  <Link key={service.id} to={`/services/${service.id}`}>
-                    {service.shortTitle}
-                  </Link>
-                ))}
-            </div>
+            <Link to="/services" className="get-started-btn">
+              Get Started
+            </Link>
 
           </div>
-
-
-          <Link to="/services/trademark">
-            Trademark
-          </Link>
-
-          <Link to="/services/gst">
-            GST
-          </Link>
-
-          <Link to="/services/itr">
-            Income Tax
-          </Link>
-
-          <Link to="/services">
-            All Services
-          </Link>
-
-        </div>
-
-        <div className="navbar-actions">
-
-          <Link to="/login" className="login-btn">
-            Login
-          </Link>
-
-          <Link to="/services" className="get-started-btn">
-            Get Started
-          </Link>
 
         </div>
 
