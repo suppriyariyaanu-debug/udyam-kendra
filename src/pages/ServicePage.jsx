@@ -1,68 +1,12 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-
-const serviceData = {
-  company: {
-    title: "Company Registration",
-    category: "START YOUR BUSINESS",
-    description: "Register your company with professional assistance and start your business with confidence.",
-    price: "₹999",
-  },
-
-  llp: {
-    title: "LLP Registration",
-    category: "START YOUR BUSINESS",
-    description: "Set up your Limited Liability Partnership with a simple and guided registration process.",
-    price: "₹999",
-  },
-
-  gst: {
-    title: "GST Registration",
-    category: "TAX & GST",
-    description: "Get your GST registration completed quickly with professional assistance.",
-    price: "₹499",
-  },
-
-  udyam: {
-    title: "Udyam Registration",
-    category: "BUSINESS REGISTRATION",
-    description: "Register your MSME business and get your Udyam Registration certificate.",
-    price: "₹299",
-  },
-
-  fssai: {
-    title: "FSSAI Registration",
-    category: "BUSINESS REGISTRATION",
-    description: "Get your food business registered with the required FSSAI license.",
-    price: "₹999",
-  },
-
-  iec: {
-    title: "Import Export Code",
-    category: "BUSINESS REGISTRATION",
-    description: "Get your IEC registration to start importing and exporting goods.",
-    price: "₹999",
-  },
-
-  trademark: {
-    title: "Trademark Registration",
-    category: "PROTECT YOUR BRAND",
-    description: "Protect your brand name, logo and identity with trademark registration.",
-    price: "₹999",
-  },
-
-  itr: {
-    title: "Income Tax Return Filing",
-    category: "TAX & COMPLIANCE",
-    description: "File your income tax returns accurately with professional assistance.",
-    price: "₹499",
-  },
-};
+import services from "../data/services";
 
 function ServicePage() {
   const { serviceId } = useParams();
 
-  const service = serviceData[serviceId] || serviceData.company;
+  const service =
+    services.find((item) => item.id === serviceId) || services[0];
 
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -103,31 +47,31 @@ function ServicePage() {
 
   const faqs = [
     {
-      question: "What documents are required?",
+      question: "What information will I need to provide?",
       answer:
-        "The documents required depend on the selected service. Generally, PAN Card, Aadhaar Card, address proof, business details and bank details may be required.",
+        "The requirements depend on the selected service. Generally, PAN, Aadhaar, address proof and basic business details may be required — the exact list is shown above under \"What We'll Need From You\".",
     },
     {
       question: "How does the process work?",
       answer:
-        "Submit your basic details, share the required documents and our team will guide you through the application and completion process.",
+        "Submit your basic details, share the required information and our team will guide you through the application and completion process.",
     },
     {
       question: "How long does the service take?",
       answer:
-        "The processing time depends on the type of service and the respective government authority.",
+        "The turnaround time depends on the type of service and, where applicable, the respective government authority. Our team will keep you updated throughout.",
     },
     {
-      question: "Will I receive a certificate?",
+      question: "Will I receive a confirmation or certificate?",
       answer:
-        "Where applicable, you will receive the relevant registration certificate or confirmation after successful completion.",
+        "Where applicable, you will receive the relevant registration certificate, filing acknowledgement or confirmation after successful completion.",
     },
   ];
 
   return (
     <div className="service-page">
 
-      {/* HERO */}
+      {/* ================= HERO ================= */}
 
       <section className="service-hero">
 
@@ -146,7 +90,8 @@ function ServicePage() {
           </p>
 
           <div className="service-price">
-            Starting from <strong>{service.price}</strong>
+            Starting from{" "}
+            <strong>{service.price.replace(/^Starting from /, "")}</strong>
           </div>
 
           <button
@@ -167,7 +112,7 @@ function ServicePage() {
       </section>
 
 
-      {/* BENEFITS */}
+      {/* ================= BENEFITS ================= */}
 
       <section className="service-benefits">
 
@@ -191,35 +136,70 @@ function ServicePage() {
         <div className="benefit-grid">
 
           <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Simple Process</h3>
+
+            <div className="benefit-icon">
+              ✓
+            </div>
+
+            <h3>
+              Simple Process
+            </h3>
+
             <p>
               Easy and guided process from start to completion.
             </p>
+
           </div>
 
+
           <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Expert Assistance</h3>
+
+            <div className="benefit-icon">
+              ✓
+            </div>
+
+            <h3>
+              Expert Assistance
+            </h3>
+
             <p>
               Get professional guidance throughout the application process.
             </p>
+
           </div>
 
+
           <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Documentation Support</h3>
+
+            <div className="benefit-icon">
+              ✓
+            </div>
+
+            <h3>
+              Transparent Process
+            </h3>
+
             <p>
-              Understand the documents required for your service.
+              Know exactly what's required and what happens at every step.
             </p>
+
           </div>
 
+
           <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Complete Support</h3>
+
+            <div className="benefit-icon">
+              ✓
+            </div>
+
+            <h3>
+              Complete Support
+            </h3>
+
             <p>
               Get assistance until your service is completed.
             </p>
+
           </div>
 
         </div>
@@ -227,7 +207,7 @@ function ServicePage() {
       </section>
 
 
-      {/* SERVICE INFORMATION */}
+      {/* ================= INFORMATION ================= */}
 
       <section className="service-information">
 
@@ -240,23 +220,20 @@ function ServicePage() {
           <p>
             Udyam Kendra provides simple, transparent and professional
             assistance for businesses. Our team helps you understand the
-            process, prepare the required documents and complete the
-            necessary formalities.
+            process, prepare what's required and complete the necessary
+            formalities.
           </p>
 
 
           <h2>
-            Documents Required
+            What We'll Need From You
           </h2>
 
           <div className="document-list">
 
-            <div>✓ PAN Card</div>
-            <div>✓ Aadhaar Card</div>
-            <div>✓ Address Proof</div>
-            <div>✓ Business Details</div>
-            <div>✓ Bank Account Details</div>
-            <div>✓ Mobile Number & Email</div>
+            {service.requirements.map((item) => (
+              <div key={item}>✓ {item}</div>
+            ))}
 
           </div>
 
@@ -268,35 +245,62 @@ function ServicePage() {
           <div className="process-list">
 
             <div>
+
               <span>01</span>
-              <h3>Submit Your Details</h3>
+
+              <h3>
+                Submit Your Details
+              </h3>
+
               <p>
                 Provide your basic information and requirements.
               </p>
+
             </div>
 
+
             <div>
+
               <span>02</span>
-              <h3>Share Documents</h3>
+
+              <h3>
+                Share Information
+              </h3>
+
               <p>
-                Submit the documents required for the selected service.
+                Submit the details required for the selected service.
               </p>
+
             </div>
 
+
             <div>
+
               <span>03</span>
-              <h3>Application Processing</h3>
+
+              <h3>
+                Application Processing
+              </h3>
+
               <p>
                 Our team assists with the application and required formalities.
               </p>
+
             </div>
 
+
             <div>
+
               <span>04</span>
-              <h3>Service Completion</h3>
+
+              <h3>
+                Service Completion
+              </h3>
+
               <p>
                 Receive confirmation or the required certificate.
               </p>
+
             </div>
 
           </div>
@@ -304,7 +308,7 @@ function ServicePage() {
         </div>
 
 
-        {/* ENQUIRY FORM */}
+        {/* ================= ENQUIRY FORM ================= */}
 
         <div
           className="enquiry-card"
@@ -361,8 +365,6 @@ function ServicePage() {
             />
 
 
-            {/* CITY / LOCATION */}
-
             <input
               type="text"
               name="location"
@@ -396,7 +398,7 @@ function ServicePage() {
       </section>
 
 
-      {/* FAQ */}
+      {/* ================= FAQ ================= */}
 
       <section className="service-faq">
 
@@ -430,7 +432,9 @@ function ServicePage() {
                 className="faq-question"
                 onClick={() =>
                   setOpenFaq(
-                    openFaq === index ? null : index
+                    openFaq === index
+                      ? null
+                      : index
                   )
                 }
               >
@@ -440,7 +444,9 @@ function ServicePage() {
                 </span>
 
                 <span>
-                  {openFaq === index ? "−" : "+"}
+                  {openFaq === index
+                    ? "−"
+                    : "+"}
                 </span>
 
               </button>
@@ -463,7 +469,7 @@ function ServicePage() {
       </section>
 
 
-      {/* CTA */}
+      {/* ================= CTA ================= */}
 
       <section className="services-cta">
 
