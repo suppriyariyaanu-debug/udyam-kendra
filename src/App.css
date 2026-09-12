@@ -243,7 +243,7 @@ a {
   font-size: 17px;
 }
 
-.service-grid {
+.services-grid {
   max-width: 1200px;
 
   margin: 0 auto;
@@ -277,7 +277,7 @@ a {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-.icon {
+.service-icon {
   width: 55px;
   height: 55px;
 
@@ -312,7 +312,8 @@ a {
   margin-bottom: 18px;
 }
 
-.service-card button {
+.service-card button,
+.service-card > a {
   color: #d49300;
 
   border: none;
@@ -326,6 +327,10 @@ a {
   cursor: pointer;
 }
 
+.service-card > a:hover {
+  color: #b57d00;
+}
+
 
 /* ========================================
    WHY UDYAM KENDRA
@@ -337,76 +342,73 @@ a {
   padding: 85px 8%;
 
   background: #fafafa;
+}
+
+.why-grid {
+  max-width: 1200px;
+
+  margin: 0 auto;
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
 
-  gap: 70px;
-
-  align-items: center;
+  gap: 22px;
 }
 
-.why-us h2 {
-  color: #222222;
-
-  font-size: 40px;
-
-  line-height: 1.2;
-
-  margin: 15px 0 20px;
-}
-
-.why-us > div:first-child p:last-child {
-  color: #666666;
-
-  font-size: 17px;
-
-  line-height: 1.8;
-
-  max-width: 550px;
-}
-
-.benefits {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 18px;
-}
-
-.benefits div {
+.why-card {
   background: #ffffff;
 
   border: 1px solid #eeeeee;
 
   border-radius: 10px;
 
-  padding: 22px;
+  padding: 30px 25px;
 
   transition: 0.2s;
 }
 
-.benefits div:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+.why-card:hover {
+  transform: translateY(-6px);
+
+  border-color: #e5a400;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-.benefits span {
-  color: #e5a400;
+.why-card > div {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff5d6;
+  color: #d49300;
+
+  border-radius: 50%;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  margin-bottom: 20px;
+}
+
+.why-card h3 {
+  color: #222222;
+
+  font-size: 18px;
+
+  margin-bottom: 10px;
+}
+
+.why-card p {
+  color: #666666;
 
   font-size: 14px;
 
-  font-weight: 700;
-}
-
-.benefits h3 {
-  color: #222222;
-
-  margin: 8px 0;
-}
-
-.benefits p {
-  color: #666666;
+  line-height: 1.6;
 
   margin: 0;
 }
@@ -450,21 +452,32 @@ a {
 .footer {
   width: 100%;
 
-  padding: 60px 8%;
+  padding: 60px 8% 0;
 
   background: #222222;
 
   color: #ffffff;
+}
+
+.footer-container {
+  max-width: 1250px;
+
+  margin: 0 auto;
 
   display: grid;
 
   grid-template-columns: 2fr 1fr 1fr;
 
   gap: 50px;
+
+  padding-bottom: 40px;
 }
 
-.footer .logo {
+.footer .logo,
+.footer-container h2 {
   color: #ffffff;
+
+  font-size: 22px;
 
   margin-bottom: 12px;
 }
@@ -477,10 +490,48 @@ a {
   line-height: 1.8;
 }
 
-.footer h4 {
+.footer-container h3 {
   color: #ffffff;
 
-  margin-bottom: 15px;
+  font-size: 16px;
+
+  margin-bottom: 18px;
+}
+
+.footer-container > div {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.footer-container > div a {
+  color: #bbbbbb;
+
+  font-size: 14px;
+
+  line-height: 2.4;
+
+  transition: color 0.2s ease;
+}
+
+.footer-container > div a:hover {
+  color: #e5a400;
+}
+
+.footer-bottom {
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  padding: 22px 0;
+
+  border-top: 1px solid #3a3a3a;
+
+  color: #999999;
+
+  font-size: 13px;
+
+  text-align: center;
 }
 
 
@@ -547,7 +598,7 @@ a {
     padding: 65px 25px;
   }
 
-  .service-grid {
+  .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -607,7 +658,7 @@ a {
     font-size: 30px;
   }
 
-  .service-grid {
+  .services-grid {
     grid-template-columns: 1fr;
   }
 

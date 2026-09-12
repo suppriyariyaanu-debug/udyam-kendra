@@ -1,87 +1,15 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const serviceData = {
-  company: {
-    title: "Company Registration",
-    category: "START YOUR BUSINESS",
-    description:
-      "Register your company with professional assistance and start your business with confidence.",
-    price: "₹999",
-  },
+function Login() {
+  const navigate = useNavigate();
 
-  llp: {
-    title: "LLP Registration",
-    category: "START YOUR BUSINESS",
-    description:
-      "Set up your Limited Liability Partnership with a simple and guided registration process.",
-    price: "₹999",
-  },
-
-  gst: {
-    title: "GST Registration",
-    category: "TAX & GST",
-    description:
-      "Get your GST registration completed quickly with professional assistance.",
-    price: "₹499",
-  },
-
-  udyam: {
-    title: "Udyam Registration",
-    category: "BUSINESS REGISTRATION",
-    description:
-      "Register your MSME business and get your Udyam Registration certificate.",
-    price: "₹299",
-  },
-
-  fssai: {
-    title: "FSSAI Registration",
-    category: "BUSINESS REGISTRATION",
-    description:
-      "Get your food business registered with the required FSSAI license.",
-    price: "₹999",
-  },
-
-  iec: {
-    title: "Import Export Code",
-    category: "BUSINESS REGISTRATION",
-    description:
-      "Get your IEC registration to start importing and exporting goods.",
-    price: "₹999",
-  },
-
-  trademark: {
-    title: "Trademark Registration",
-    category: "PROTECT YOUR BRAND",
-    description:
-      "Protect your brand name, logo and identity with trademark registration.",
-    price: "₹999",
-  },
-
-  itr: {
-    title: "Income Tax Return Filing",
-    category: "TAX & COMPLIANCE",
-    description:
-      "File your income tax returns accurately with professional assistance.",
-    price: "₹499",
-  },
-};
-
-function ServicePage() {
-  const { serviceId } = useParams();
-
-  const service =
-    serviceData[serviceId] || serviceData.company;
-
-  const [openFaq, setOpenFaq] = useState(null);
+  const [mode, setMode] = useState("login");
 
   const [formData, setFormData] = useState({
     name: "",
-    mobile: "",
     email: "",
-    businessName: "",
-    location: "",
-    requirement: "",
+    password: "",
   });
 
   const handleChange = (event) => {
@@ -97,479 +25,129 @@ function ServicePage() {
     event.preventDefault();
 
     alert(
-      `Thank you ${formData.name}! Our team will contact you shortly regarding ${service.title}.`
+      mode === "login"
+        ? "Login successful. Redirecting to your dashboard shortly."
+        : "Account created successfully. You can now log in."
     );
+
+    if (mode === "register") {
+      setMode("login");
+    }
 
     setFormData({
       name: "",
-      mobile: "",
       email: "",
-      businessName: "",
-      location: "",
-      requirement: "",
+      password: "",
     });
+
+    navigate("/");
   };
 
-  const faqs = [
-    {
-      question: "What documents are required?",
-      answer:
-        "The documents required depend on the selected service. Generally, PAN Card, Aadhaar Card, address proof, business details and bank details may be required.",
-    },
-    {
-      question: "How does the process work?",
-      answer:
-        "Submit your basic details, share the required documents and our team will guide you through the application and completion process.",
-    },
-    {
-      question: "How long does the service take?",
-      answer:
-        "The processing time depends on the type of service and the respective government authority. Our team will provide guidance throughout the process.",
-    },
-    {
-      question: "Will I receive a certificate?",
-      answer:
-        "Where applicable, you will receive the relevant registration certificate or confirmation after successful completion of the process.",
-    },
-  ];
-
   return (
-    <div className="service-page">
+    <div className="login-page">
+      <div className="login-card">
+        <Link to="/" className="login-logo">
+          Udyam Kendra
+        </Link>
 
-      {/* ================= HERO ================= */}
+        <h1>{mode === "login" ? "Welcome Back" : "Create Account"}</h1>
 
-      <section className="service-hero">
+        <p className="login-subtitle">
+          {mode === "login"
+            ? "Log in to manage your business services and track your applications."
+            : "Register for free and get access to all business services."}
+        </p>
 
-        <div className="service-hero-content">
-
-          <p className="tagline">
-            {service.category}
-          </p>
-
-          <h1>
-            {service.title}
-          </h1>
-
-          <p>
-            {service.description}
-          </p>
-
-          <div className="service-price">
-            Starting from{" "}
-            <strong>{service.price}</strong>
-          </div>
-
-          <button
-            className="primary-btn"
-            onClick={() =>
-              document
-                .getElementById("enquiry")
-                ?.scrollIntoView({
-                  behavior: "smooth",
-                })
-            }
-          >
-            Get Started →
-          </button>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= BENEFITS ================= */}
-
-      <section className="service-benefits">
-
-        <div className="section-title">
-
-          <p className="tagline">
-            WHY CHOOSE US
-          </p>
-
-          <h2>
-            Benefits of Our Service
-          </h2>
-
-          <p>
-            Get professional guidance and support from start to finish.
-          </p>
-
-        </div>
-
-
-        <div className="benefit-grid">
-
-          <div className="benefit-card">
-
-            <div className="benefit-icon">
-              ✓
+        <form onSubmit={handleSubmit}>
+          {mode === "register" && (
+            <div className="login-field">
+              <label htmlFor="name">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your full name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
             </div>
+          )}
 
-            <h3>
-              Simple Process
-            </h3>
-
-            <p>
-              Easy and guided process from start to completion.
-            </p>
-
-          </div>
-
-
-          <div className="benefit-card">
-
-            <div className="benefit-icon">
-              ✓
-            </div>
-
-            <h3>
-              Expert Assistance
-            </h3>
-
-            <p>
-              Get professional guidance throughout the application process.
-            </p>
-
-          </div>
-
-
-          <div className="benefit-card">
-
-            <div className="benefit-icon">
-              ✓
-            </div>
-
-            <h3>
-              Documentation Support
-            </h3>
-
-            <p>
-              Understand the documents required for your service.
-            </p>
-
-          </div>
-
-
-          <div className="benefit-card">
-
-            <div className="benefit-icon">
-              ✓
-            </div>
-
-            <h3>
-              Complete Support
-            </h3>
-
-            <p>
-              Get assistance until your service is completed.
-            </p>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= INFORMATION ================= */}
-
-      <section className="service-information">
-
-        <div className="service-info">
-
-          <h2>
-            About This Service
-          </h2>
-
-          <p>
-            Udyam Kendra provides simple, transparent and professional
-            assistance for businesses. Our team helps you understand the
-            process, prepare the required documents and complete the
-            necessary formalities.
-          </p>
-
-
-          <h2>
-            Documents Required
-          </h2>
-
-          <div className="document-list">
-
-            <div>✓ PAN Card</div>
-
-            <div>✓ Aadhaar Card</div>
-
-            <div>✓ Address Proof</div>
-
-            <div>✓ Business Details</div>
-
-            <div>✓ Bank Account Details</div>
-
-            <div>✓ Mobile Number & Email</div>
-
-          </div>
-
-
-          <h2>
-            Our Process
-          </h2>
-
-          <div className="process-list">
-
-            <div>
-
-              <span>01</span>
-
-              <h3>
-                Submit Your Details
-              </h3>
-
-              <p>
-                Provide your basic information and requirements.
-              </p>
-
-            </div>
-
-
-            <div>
-
-              <span>02</span>
-
-              <h3>
-                Share Documents
-              </h3>
-
-              <p>
-                Submit the documents required for the selected service.
-              </p>
-
-            </div>
-
-
-            <div>
-
-              <span>03</span>
-
-              <h3>
-                Application Processing
-              </h3>
-
-              <p>
-                Our team assists with the application and required formalities.
-              </p>
-
-            </div>
-
-
-            <div>
-
-              <span>04</span>
-
-              <h3>
-                Service Completion
-              </h3>
-
-              <p>
-                Receive confirmation or the required certificate.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        {/* ================= ENQUIRY FORM ================= */}
-
-        <div
-          className="enquiry-card"
-          id="enquiry"
-        >
-
-          <h2>
-            Get Started
-          </h2>
-
-          <p>
-            Fill in your details and our team will contact you.
-          </p>
-
-
-          <form onSubmit={handleSubmit}>
-
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-
-
-            <input
-              type="tel"
-              name="mobile"
-              placeholder="Mobile Number"
-              value={formData.mobile}
-              onChange={handleChange}
-              required
-            />
-
-
+          <div className="login-field">
+            <label htmlFor="email">Email Address</label>
             <input
               type="email"
+              id="email"
               name="email"
-              placeholder="Email Address"
+              placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
               required
             />
+          </div>
 
-
+          <div className="login-field">
+            <label htmlFor="password">Password</label>
             <input
-              type="text"
-              name="businessName"
-              placeholder="Business Name"
-              value={formData.businessName}
-              onChange={handleChange}
-            />
-
-
-            <input
-              type="text"
-              name="location"
-              placeholder="City / Location"
-              value={formData.location}
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              value={formData.password}
               onChange={handleChange}
               required
             />
+          </div>
 
-
-            <textarea
-              name="requirement"
-              rows="4"
-              placeholder="Tell us about your requirement"
-              value={formData.requirement}
-              onChange={handleChange}
-            ></textarea>
-
-
-            <button
-              type="submit"
-              className="primary-btn"
-            >
-              Submit Enquiry
-            </button>
-
-          </form>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= FAQ ================= */}
-
-      <section className="service-faq">
-
-        <div className="section-title">
-
-          <p className="tagline">
-            FAQ
-          </p>
-
-          <h2>
-            Frequently Asked Questions
-          </h2>
-
-          <p>
-            Find answers to common questions about this service.
-          </p>
-
-        </div>
-
-
-        <div className="faq-list">
-
-          {faqs.map((faq, index) => (
-
-            <div
-              className="faq-item"
-              key={index}
-            >
+          {mode === "login" && (
+            <div className="login-options">
+              <label className="remember-me">
+                <input type="checkbox" />
+                Remember me
+              </label>
 
               <button
-                className="faq-question"
+                type="button"
+                className="forgot-password"
                 onClick={() =>
-                  setOpenFaq(
-                    openFaq === index
-                      ? null
-                      : index
-                  )
+                  alert("Password reset instructions will be sent to your email.")
                 }
               >
-
-                <span>
-                  {faq.question}
-                </span>
-
-                <span>
-                  {openFaq === index
-                    ? "−"
-                    : "+"}
-                </span>
-
+                Forgot password?
               </button>
-
-
-              {openFaq === index && (
-
-                <div className="faq-answer">
-                  {faq.answer}
-                </div>
-
-              )}
-
             </div>
+          )}
 
-          ))}
+          <button type="submit" className="login-submit">
+            {mode === "login" ? "Log In" : "Create Account"}
+          </button>
+        </form>
 
+        <div className="login-divider">
+          <span>OR</span>
         </div>
 
-      </section>
-
-
-      {/* ================= CTA ================= */}
-
-      <section className="services-cta">
-
-        <h2>
-          Need Help With Your Business?
-        </h2>
-
-        <p>
-          Our team can help you choose the right service for your business.
+        <p className="register-text">
+          {mode === "login"
+            ? "Don't have an account?"
+            : "Already have an account?"}
+          <button
+            type="button"
+            onClick={() =>
+              setMode(mode === "login" ? "register" : "login")
+            }
+          >
+            {mode === "login" ? "Sign Up" : "Log In"}
+          </button>
         </p>
 
-        <button
-          onClick={() =>
-            document
-              .getElementById("enquiry")
-              ?.scrollIntoView({
-                behavior: "smooth",
-              })
-          }
-        >
-          Talk to an Expert
-        </button>
-
-      </section>
-
+        <Link to="/" className="back-home">
+          ← Back to Home
+        </Link>
+      </div>
     </div>
   );
 }
 
-export default ServicePage;
+export default Login;
