@@ -1,575 +1,205 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useId, useState } from 'react'
+import { Link } from 'react-router-dom'
+import Icon from '../components/ui/Icon'
+import Logo from '../components/ui/Logo'
+import { company } from '../data/company'
 
-const serviceData = {
-  company: {
-    title: "Company Registration",
-    category: "START YOUR BUSINESS",
-    description:
-      "Register your company with professional assistance and start your business with confidence.",
-    price: "₹999",
-  },
+const benefits = [
+  'Track every application in one place',
+  'Upload documents once, reuse them',
+  'See what is due and when',
+  'Message your advisor directly',
+]
 
-  llp: {
-    title: "LLP Registration",
-    category: "START YOUR BUSINESS",
-    description:
-      "Set up your Limited Liability Partnership with a simple and guided registration process.",
-    price: "₹999",
-  },
+/**
+ * Client login.
+ *
+ * This file previously contained a duplicate of ServicePage — the route existed
+ * but rendered a service page. This is the real login screen, built against the
+ * login styles that were already written for it.
+ *
+ * There is no authentication backend in this project, so the form validates
+ * locally and then says so plainly rather than pretending to sign anyone in.
+ */
+function Login() {
+  const baseId = useId()
+  const [values, setValues] = useState({ identifier: '', password: '' })
+  const [errors, setErrors] = useState({})
+  const [showPassword, setShowPassword] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
 
-  gst: {
-    title: "GST Registration",
-    category: "TAX & GST",
-    description:
-      "Get your GST registration completed quickly with professional assistance.",
-    price: "₹499",
-  },
-
-  udyam: {
-    title: "Udyam Registration",
-    category: "BUSINESS REGISTRATION",
-    description:
-      "Register your MSME business and get your Udyam Registration certificate.",
-    price: "₹299",
-  },
-
-  fssai: {
-    title: "FSSAI Registration",
-    category: "BUSINESS REGISTRATION",
-    description:
-      "Get your food business registered with the required FSSAI license.",
-    price: "₹999",
-  },
-
-  iec: {
-    title: "Import Export Code",
-    category: "BUSINESS REGISTRATION",
-    description:
-      "Get your IEC registration to start importing and exporting goods.",
-    price: "₹999",
-  },
-
-  trademark: {
-    title: "Trademark Registration",
-    category: "PROTECT YOUR BRAND",
-    description:
-      "Protect your brand name, logo and identity with trademark registration.",
-    price: "₹999",
-  },
-
-  itr: {
-    title: "Income Tax Return Filing",
-    category: "TAX & COMPLIANCE",
-    description:
-      "File your income tax returns accurately with professional assistance.",
-    price: "₹499",
-  },
-};
-
-function ServicePage() {
-  const { serviceId } = useParams();
-
-  const service =
-    serviceData[serviceId] || serviceData.company;
-
-  const [openFaq, setOpenFaq] = useState(null);
-
-  const [formData, setFormData] = useState({
-    name: "",
-    mobile: "",
-    email: "",
-    businessName: "",
-    location: "",
-    requirement: "",
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const change = (event) => {
+    const { name, value } = event.target
+    setValues((current) => ({ ...current, [name]: value }))
+  }
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
+    const found = {}
 
-    alert(
-      `Thank you ${formData.name}! Our team will contact you shortly regarding ${service.title}.`
-    );
+    if (!values.identifier.trim()) {
+      found.identifier = 'Enter your email address or mobile number.'
+    }
+    if (!values.password) {
+      found.password = 'Enter your password.'
+    } else if (values.password.length < 6) {
+      found.password = 'Passwords are at least 6 characters.'
+    }
 
-    setFormData({
-      name: "",
-      mobile: "",
-      email: "",
-      businessName: "",
-      location: "",
-      requirement: "",
-    });
-  };
+    setErrors(found)
+    if (Object.keys(found).length > 0) {
+      document.getElementById(`${baseId}-${Object.keys(found)[0]}`)?.focus()
+      return
+    }
 
-  const faqs = [
-    {
-      question: "What documents are required?",
-      answer:
-        "The documents required depend on the selected service. Generally, PAN Card, Aadhaar Card, address proof, business details and bank details may be required.",
-    },
-    {
-      question: "How does the process work?",
-      answer:
-        "Submit your basic details, share the required documents and our team will guide you through the application and completion process.",
-    },
-    {
-      question: "How long does the service take?",
-      answer:
-        "The processing time depends on the type of service and the respective government authority. Our team will provide guidance throughout the process.",
-    },
-    {
-      question: "Will I receive a certificate?",
-      answer:
-        "Where applicable, you will receive the relevant registration certificate or confirmation after successful completion of the process.",
-    },
-  ];
+    setSubmitted(true)
+  }
 
   return (
-    <div className="service-page">
+    <div className="login-page">
+      <div className="login-aside">
+        <div className="login-aside__inner">
+          <Logo inverse />
 
-      {/* ================= HERO ================= */}
-
-      <section className="service-hero">
-
-        <div className="service-hero-content">
-
-          <p className="tagline">
-            {service.category}
-          </p>
-
-          <h1>
-            {service.title}
-          </h1>
-
-          <p>
-            {service.description}
-          </p>
-
-          <div className="service-price">
-            Starting from{" "}
-            <strong>{service.price}</strong>
-          </div>
-
-          <button
-            className="primary-btn"
-            onClick={() =>
-              document
-                .getElementById("enquiry")
-                ?.scrollIntoView({
-                  behavior: "smooth",
-                })
-            }
-          >
-            Get Started →
-          </button>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= BENEFITS ================= */}
-
-      <section className="service-benefits">
-
-        <div className="section-title">
-
-          <p className="tagline">
-            WHY CHOOSE US
-          </p>
-
-          <h2>
-            Benefits of Our Service
-          </h2>
-
-          <p>
-            Get professional guidance and support from start to finish.
-          </p>
-
-        </div>
-
-
-        <div className="benefit-grid">
-
-          <div className="benefit-card">
-
-            <div className="benefit-icon">
-              ✓
-            </div>
-
-            <h3>
-              Simple Process
-            </h3>
-
+          <div>
+            <h1>Your business, tracked in one place.</h1>
             <p>
-              Easy and guided process from start to completion.
+              The client area brings your registrations, filings and documents together so
+              nothing slips between deadlines.
             </p>
-
           </div>
 
+          <ul className="login-benefits">
+            {benefits.map((benefit) => (
+              <li key={benefit}>
+                <Icon name="checkCircle" size={17} />
+                {benefit}
+              </li>
+            ))}
+          </ul>
 
-          <div className="benefit-card">
-
-            <div className="benefit-icon">
-              ✓
-            </div>
-
-            <h3>
-              Expert Assistance
-            </h3>
-
-            <p>
-              Get professional guidance throughout the application process.
-            </p>
-
-          </div>
-
-
-          <div className="benefit-card">
-
-            <div className="benefit-icon">
-              ✓
-            </div>
-
-            <h3>
-              Documentation Support
-            </h3>
-
-            <p>
-              Understand the documents required for your service.
-            </p>
-
-          </div>
-
-
-          <div className="benefit-card">
-
-            <div className="benefit-icon">
-              ✓
-            </div>
-
-            <h3>
-              Complete Support
-            </h3>
-
-            <p>
-              Get assistance until your service is completed.
-            </p>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= INFORMATION ================= */}
-
-      <section className="service-information">
-
-        <div className="service-info">
-
-          <h2>
-            About This Service
-          </h2>
-
-          <p>
-            Udyam Kendra provides simple, transparent and professional
-            assistance for businesses. Our team helps you understand the
-            process, prepare the required documents and complete the
-            necessary formalities.
+          <p className="login-aside__contact">
+            <Icon name="phone" size={15} />
+            Need help? {company.phone}
           </p>
-
-
-          <h2>
-            Documents Required
-          </h2>
-
-          <div className="document-list">
-
-            <div>✓ PAN Card</div>
-
-            <div>✓ Aadhaar Card</div>
-
-            <div>✓ Address Proof</div>
-
-            <div>✓ Business Details</div>
-
-            <div>✓ Bank Account Details</div>
-
-            <div>✓ Mobile Number & Email</div>
-
-          </div>
-
-
-          <h2>
-            Our Process
-          </h2>
-
-          <div className="process-list">
-
-            <div>
-
-              <span>01</span>
-
-              <h3>
-                Submit Your Details
-              </h3>
-
-              <p>
-                Provide your basic information and requirements.
-              </p>
-
-            </div>
-
-
-            <div>
-
-              <span>02</span>
-
-              <h3>
-                Share Documents
-              </h3>
-
-              <p>
-                Submit the documents required for the selected service.
-              </p>
-
-            </div>
-
-
-            <div>
-
-              <span>03</span>
-
-              <h3>
-                Application Processing
-              </h3>
-
-              <p>
-                Our team assists with the application and required formalities.
-              </p>
-
-            </div>
-
-
-            <div>
-
-              <span>04</span>
-
-              <h3>
-                Service Completion
-              </h3>
-
-              <p>
-                Receive confirmation or the required certificate.
-              </p>
-
-            </div>
-
-          </div>
-
         </div>
+      </div>
 
+      <div className="login-main">
+        <div className="login-card">
+          <Link to="/" className="login-back">
+            <Icon name="arrowLeft" size={16} />
+            Back to site
+          </Link>
 
-        {/* ================= ENQUIRY FORM ================= */}
+          <h2>Client login</h2>
+          <p className="login-subtitle">Sign in to view your services and documents.</p>
 
-        <div
-          className="enquiry-card"
-          id="enquiry"
-        >
+          {submitted ? (
+            <div className="login-notice" role="status">
+              <span className="login-notice__icon">
+                <Icon name="alertCircle" size={20} />
+              </span>
+              <div>
+                <strong>Sign-in is not connected yet</strong>
+                <p>
+                  The client area is still being set up, so there is nothing to sign in to
+                  right now. Our team can help you directly in the meantime.
+                </p>
+                <div className="login-notice__actions">
+                  <Link to="/contact" className="btn btn--primary btn--sm">
+                    Contact the team
+                  </Link>
+                  <button
+                    type="button"
+                    className="btn btn--outline btn--sm"
+                    onClick={() => setSubmitted(false)}
+                  >
+                    Back to form
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} noValidate className="login-form">
+              <div className={`field${errors.identifier ? ' field--invalid' : ''}`}>
+                <label htmlFor={`${baseId}-identifier`}>Email or mobile</label>
+                <input
+                  id={`${baseId}-identifier`}
+                  name="identifier"
+                  type="text"
+                  className="input"
+                  autoComplete="username"
+                  placeholder="you@company.com"
+                  value={values.identifier}
+                  onChange={change}
+                  aria-invalid={errors.identifier ? 'true' : undefined}
+                  aria-describedby={errors.identifier ? `${baseId}-identifier-error` : undefined}
+                />
+                {errors.identifier ? (
+                  <p className="field__error" id={`${baseId}-identifier-error`}>
+                    <Icon name="alertCircle" size={15} />
+                    {errors.identifier}
+                  </p>
+                ) : null}
+              </div>
 
-          <h2>
-            Get Started
-          </h2>
+              <div className={`field${errors.password ? ' field--invalid' : ''}`}>
+                <label htmlFor={`${baseId}-password`}>Password</label>
+                <div className="input-group">
+                  <input
+                    id={`${baseId}-password`}
+                    name="password"
+                    type={showPassword ? 'text' : 'password'}
+                    className="input"
+                    autoComplete="current-password"
+                    placeholder="Your password"
+                    value={values.password}
+                    onChange={change}
+                    aria-invalid={errors.password ? 'true' : undefined}
+                    aria-describedby={errors.password ? `${baseId}-password-error` : undefined}
+                  />
+                  <button
+                    type="button"
+                    className="input-group__action"
+                    onClick={() => setShowPassword((current) => !current)}
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  >
+                    <Icon name={showPassword ? 'eyeOff' : 'eye'} size={18} />
+                  </button>
+                </div>
+                {errors.password ? (
+                  <p className="field__error" id={`${baseId}-password-error`}>
+                    <Icon name="alertCircle" size={15} />
+                    {errors.password}
+                  </p>
+                ) : null}
+              </div>
 
-          <p>
-            Fill in your details and our team will contact you.
-          </p>
+              <div className="login-options">
+                <label className="checkbox">
+                  <input type="checkbox" />
+                  Keep me signed in
+                </label>
+                <Link to="/contact" className="login-forgot">
+                  Forgot password?
+                </Link>
+              </div>
 
-
-          <form onSubmit={handleSubmit}>
-
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-
-
-            <input
-              type="tel"
-              name="mobile"
-              placeholder="Mobile Number"
-              value={formData.mobile}
-              onChange={handleChange}
-              required
-            />
-
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-
-
-            <input
-              type="text"
-              name="businessName"
-              placeholder="Business Name"
-              value={formData.businessName}
-              onChange={handleChange}
-            />
-
-
-            <input
-              type="text"
-              name="location"
-              placeholder="City / Location"
-              value={formData.location}
-              onChange={handleChange}
-              required
-            />
-
-
-            <textarea
-              name="requirement"
-              rows="4"
-              placeholder="Tell us about your requirement"
-              value={formData.requirement}
-              onChange={handleChange}
-            ></textarea>
-
-
-            <button
-              type="submit"
-              className="primary-btn"
-            >
-              Submit Enquiry
-            </button>
-
-          </form>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= FAQ ================= */}
-
-      <section className="service-faq">
-
-        <div className="section-title">
-
-          <p className="tagline">
-            FAQ
-          </p>
-
-          <h2>
-            Frequently Asked Questions
-          </h2>
-
-          <p>
-            Find answers to common questions about this service.
-          </p>
-
-        </div>
-
-
-        <div className="faq-list">
-
-          {faqs.map((faq, index) => (
-
-            <div
-              className="faq-item"
-              key={index}
-            >
-
-              <button
-                className="faq-question"
-                onClick={() =>
-                  setOpenFaq(
-                    openFaq === index
-                      ? null
-                      : index
-                  )
-                }
-              >
-
-                <span>
-                  {faq.question}
-                </span>
-
-                <span>
-                  {openFaq === index
-                    ? "−"
-                    : "+"}
-                </span>
-
+              <button type="submit" className="btn btn--primary btn--block btn--lg">
+                Sign in
+                <Icon name="arrowRight" size={18} />
               </button>
 
-
-              {openFaq === index && (
-
-                <div className="faq-answer">
-                  {faq.answer}
-                </div>
-
-              )}
-
-            </div>
-
-          ))}
-
+              <p className="login-register">
+                Don’t have an account yet? <Link to="/contact">Talk to our team</Link>
+              </p>
+            </form>
+          )}
         </div>
-
-      </section>
-
-
-      {/* ================= CTA ================= */}
-
-      <section className="services-cta">
-
-        <h2>
-          Need Help With Your Business?
-        </h2>
-
-        <p>
-          Our team can help you choose the right service for your business.
-        </p>
-
-        <button
-          onClick={() =>
-            document
-              .getElementById("enquiry")
-              ?.scrollIntoView({
-                behavior: "smooth",
-              })
-          }
-        >
-          Talk to an Expert
-        </button>
-
-      </section>
-
+      </div>
     </div>
-  );
+  )
 }
 
-export default ServicePage;
+export default Login

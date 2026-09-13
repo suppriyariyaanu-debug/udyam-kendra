@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Udyama Kendra — design tokens
+   The single place the whole site is themed from.
+   ========================================================================== */
+
+:root {
+  /* --- Brand: ink (authority) --------------------------------------------- */
+  --ink-950: #070e18;
+  --ink-900: #0b1626;
+  --ink-800: #0f1b2d;
+  --ink-700: #16273e;
+  --ink-600: #22374f;
+  --ink-500: #3b5170;
+  --ink-400: #5b6e8a;
+  --ink-300: #8090a6;
+  --ink-200: #b3bdcc;
+  --ink-100: #dde3ea;
+
+  /* --- Brand: gold (accent, carried over from the existing site) ---------- */
+  --gold-700: #9a6b00;
+  --gold-600: #c08900;
+  --gold-500: #e5a400;
+  --gold-400: #f2b937;
+  --gold-300: #f6cd6c;
+  --gold-200: #f8dfa3;
+  --gold-100: #fdf4e0;
+
+  /* --- Surfaces ----------------------------------------------------------- */
+  --paper: #ffffff;
+  --paper-2: #faf9f6;
+  --paper-3: #f2f0ea;
+  --line: #e7e3da;
+  --line-strong: #d6d1c5;
+
+  /* --- Status ------------------------------------------------------------- */
+  --success: #0f7a5a;
+  --success-bg: #e8f5f0;
+  --danger: #b3261e;
+  --danger-bg: #fdeceb;
+
+  /* --- Semantic ----------------------------------------------------------- */
+  --text: var(--ink-600);
+  --text-strong: var(--ink-900);
+  --text-muted: var(--ink-400);
+  --text-inverse: #ffffff;
+  --brand: var(--gold-500);
+  --brand-hover: var(--gold-600);
+
+  /* --- Type --------------------------------------------------------------- */
+  --font-heading: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-base: 0.9375rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.3125rem;
+  --fs-2xl: 1.625rem;
+  --fs-3xl: 2rem;
+  --fs-4xl: 2.5rem;
+  --fs-display: clamp(2.1rem, 1.35rem + 3.1vw, 3.65rem);
+  --fs-display-sm: clamp(1.8rem, 1.3rem + 2.1vw, 2.75rem);
+
+  --lh-tight: 1.15;
+  --lh-snug: 1.35;
+  --lh-normal: 1.65;
+
+  /* --- Space -------------------------------------------------------------- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-24: 96px;
+
+  --section-y: clamp(56px, 7vw, 104px);
+
+  /* --- Shape -------------------------------------------------------------- */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 26px;
+  --r-full: 999px;
+
+  /* --- Elevation ---------------------------------------------------------- */
+  --sh-1: 0 1px 2px rgba(11, 22, 38, 0.05), 0 1px 3px rgba(11, 22, 38, 0.04);
+  --sh-2: 0 4px 10px rgba(11, 22, 38, 0.06), 0 2px 4px rgba(11, 22, 38, 0.04);
+  --sh-3: 0 14px 34px rgba(11, 22, 38, 0.1), 0 4px 10px rgba(11, 22, 38, 0.05);
+  --sh-4: 0 28px 64px rgba(11, 22, 38, 0.16), 0 8px 20px rgba(11, 22, 38, 0.07);
+  --sh-gold: 0 10px 26px rgba(229, 164, 0, 0.28);
+
+  /* --- Layout ------------------------------------------------------------- */
+  --container: 1200px;
+  --container-narrow: 860px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --header-h: 74px;
+  --topbar-h: 38px;
+
+  /* --- Motion ------------------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-fast: 140ms var(--ease);
+  --t-base: 220ms var(--ease);
+  --t-slow: 420ms var(--ease);
+
+  color-scheme: light;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --header-h: 64px;
+  }
+}

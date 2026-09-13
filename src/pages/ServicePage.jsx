@@ -1,496 +1,187 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-
-const serviceData = {
-  company: {
-    title: "Company Registration",
-    category: "START YOUR BUSINESS",
-    description: "Register your company with professional assistance and start your business with confidence.",
-    price: "₹999",
-  },
-
-  llp: {
-    title: "LLP Registration",
-    category: "START YOUR BUSINESS",
-    description: "Set up your Limited Liability Partnership with a simple and guided registration process.",
-    price: "₹999",
-  },
-
-  gst: {
-    title: "GST Registration",
-    category: "TAX & GST",
-    description: "Get your GST registration completed quickly with professional assistance.",
-    price: "₹499",
-  },
-
-  udyam: {
-    title: "Udyam Registration",
-    category: "BUSINESS REGISTRATION",
-    description: "Register your MSME business and get your Udyam Registration certificate.",
-    price: "₹299",
-  },
-
-  fssai: {
-    title: "FSSAI Registration",
-    category: "BUSINESS REGISTRATION",
-    description: "Get your food business registered with the required FSSAI license.",
-    price: "₹999",
-  },
-
-  iec: {
-    title: "Import Export Code",
-    category: "BUSINESS REGISTRATION",
-    description: "Get your IEC registration to start importing and exporting goods.",
-    price: "₹999",
-  },
-
-  trademark: {
-    title: "Trademark Registration",
-    category: "PROTECT YOUR BRAND",
-    description: "Protect your brand name, logo and identity with trademark registration.",
-    price: "₹999",
-  },
-
-  itr: {
-    title: "Income Tax Return Filing",
-    category: "TAX & COMPLIANCE",
-    description: "File your income tax returns accurately with professional assistance.",
-    price: "₹499",
-  },
-};
+import { Link, useParams } from 'react-router-dom'
+import Icon from '../components/ui/Icon'
+import Accordion from '../components/ui/Accordion'
+import EnquiryForm from '../components/sections/EnquiryForm'
+import CtaBand from '../components/sections/CtaBand'
+import NotFound from './NotFound'
+import { QUOTE_LABEL, allServices, getService } from '../data/catalogue'
+import { defaultFaqs, getServiceDetail, processSteps } from '../data/serviceDetails'
+import { company } from '../data/company'
 
 function ServicePage() {
-  const { serviceId } = useParams();
+  const { serviceId } = useParams()
+  const service = getService(serviceId)
 
-  const service = serviceData[serviceId] || serviceData.company;
+  // Previously an unknown slug silently rendered Company Registration.
+  if (!service) return <NotFound />
 
-  const [openFaq, setOpenFaq] = useState(null);
+  const detail = getServiceDetail(service)
+  const hasPrice = Boolean(service.price)
 
-  const [formData, setFormData] = useState({
-    name: "",
-    mobile: "",
-    email: "",
-    businessName: "",
-    location: "",
-    requirement: "",
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    alert(
-      `Thank you ${formData.name}! Our team will contact you shortly regarding ${service.title}.`
-    );
-
-    setFormData({
-      name: "",
-      mobile: "",
-      email: "",
-      businessName: "",
-      location: "",
-      requirement: "",
-    });
-  };
-
-  const faqs = [
-    {
-      question: "What documents are required?",
-      answer:
-        "The documents required depend on the selected service. Generally, PAN Card, Aadhaar Card, address proof, business details and bank details may be required.",
-    },
-    {
-      question: "How does the process work?",
-      answer:
-        "Submit your basic details, share the required documents and our team will guide you through the application and completion process.",
-    },
-    {
-      question: "How long does the service take?",
-      answer:
-        "The processing time depends on the type of service and the respective government authority.",
-    },
-    {
-      question: "Will I receive a certificate?",
-      answer:
-        "Where applicable, you will receive the relevant registration certificate or confirmation after successful completion.",
-    },
-  ];
+  const related = allServices
+    .filter(
+      (item) =>
+        item.groupName === service.groupName &&
+        item.categorySlug === service.categorySlug &&
+        item.slug !== service.slug,
+    )
+    .slice(0, 4)
 
   return (
     <div className="service-page">
+      <section className="page-hero">
+        <div className="container page-hero__inner">
+          <nav className="breadcrumbs" aria-label="Breadcrumb">
+            <Link to="/">Home</Link>
+            <Icon name="chevronRight" size={13} />
+            <Link to="/services">Services</Link>
+            <Icon name="chevronRight" size={13} />
+            <Link to={`/services/category/${service.categorySlug}`}>{service.categoryName}</Link>
+            <Icon name="chevronRight" size={13} />
+            <span aria-current="page">{service.name}</span>
+          </nav>
 
-      {/* HERO */}
+          <p className="eyebrow">{detail.eyebrow}</p>
+          <h1>{service.name}</h1>
+          <p className="page-hero__lede">{detail.summary}</p>
 
-      <section className="service-hero">
-
-        <div className="service-hero-content">
-
-          <p className="tagline">
-            {service.category}
-          </p>
-
-          <h1>
-            {service.title}
-          </h1>
-
-          <p>
-            {service.description}
-          </p>
-
-          <div className="service-price">
-            Starting from <strong>{service.price}</strong>
+          <div className="page-hero__meta">
+            <span className={`badge ${hasPrice ? 'badge--price' : 'badge--quote'}`}>
+              {hasPrice ? `Starting from ${service.price}` : QUOTE_LABEL}
+            </span>
+            <span className="badge">{service.groupName}</span>
           </div>
 
-          <button
-            className="primary-btn"
-            onClick={() =>
-              document
-                .getElementById("enquiry")
-                ?.scrollIntoView({
-                  behavior: "smooth",
-                })
-            }
-          >
-            Get Started →
-          </button>
-
+          <div className="page-hero__actions">
+            <a href="#enquiry" className="btn btn--primary btn--lg">
+              Get started
+              <Icon name="arrowRight" size={18} />
+            </a>
+            <a href={company.phoneHref} className="btn btn--ghost-light btn--lg">
+              <Icon name="phone" size={17} />
+              {company.phone}
+            </a>
+          </div>
         </div>
-
       </section>
 
-
-      {/* BENEFITS */}
-
-      <section className="service-benefits">
-
-        <div className="section-title">
-
-          <p className="tagline">
-            WHY CHOOSE US
-          </p>
-
-          <h2>
-            Benefits of Our Service
-          </h2>
-
-          <p>
-            Get professional guidance and support from start to finish.
-          </p>
-
-        </div>
-
-
-        <div className="benefit-grid">
-
-          <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Simple Process</h3>
-            <p>
-              Easy and guided process from start to completion.
-            </p>
-          </div>
-
-          <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Expert Assistance</h3>
-            <p>
-              Get professional guidance throughout the application process.
-            </p>
-          </div>
-
-          <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Documentation Support</h3>
-            <p>
-              Understand the documents required for your service.
-            </p>
-          </div>
-
-          <div className="benefit-card">
-            <div className="benefit-icon">✓</div>
-            <h3>Complete Support</h3>
-            <p>
-              Get assistance until your service is completed.
-            </p>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* SERVICE INFORMATION */}
-
-      <section className="service-information">
-
-        <div className="service-info">
-
-          <h2>
-            About This Service
-          </h2>
-
-          <p>
-            Udyam Kendra provides simple, transparent and professional
-            assistance for businesses. Our team helps you understand the
-            process, prepare the required documents and complete the
-            necessary formalities.
-          </p>
-
-
-          <h2>
-            Documents Required
-          </h2>
-
-          <div className="document-list">
-
-            <div>✓ PAN Card</div>
-            <div>✓ Aadhaar Card</div>
-            <div>✓ Address Proof</div>
-            <div>✓ Business Details</div>
-            <div>✓ Bank Account Details</div>
-            <div>✓ Mobile Number & Email</div>
-
-          </div>
-
-
-          <h2>
-            Our Process
-          </h2>
-
-          <div className="process-list">
-
-            <div>
-              <span>01</span>
-              <h3>Submit Your Details</h3>
+      <section className="section">
+        <div className="container service-layout">
+          <div className="service-main">
+            <article className="prose">
+              <h2>About this service</h2>
               <p>
-                Provide your basic information and requirements.
+                Udyama Kendra provides simple, transparent and professional assistance for
+                businesses. Our team helps you understand the process, prepare the required
+                documents and complete the necessary formalities.
+              </p>
+
+              {!hasPrice ? (
+                <p className="callout">
+                  <Icon name="alertCircle" size={17} />
+                  <span>
+                    We publish a price only where it is confirmed. For {service.name}, our team
+                    will quote the exact fee for your requirement before any work begins.
+                  </span>
+                </p>
+              ) : null}
+            </article>
+
+            <div className="doc-block">
+              <h2>Documents required</h2>
+              {!detail.hasPublishedDetail ? (
+                <p className="doc-block__note">
+                  These are the documents commonly requested. Our team will confirm the exact
+                  list for your case.
+                </p>
+              ) : null}
+              <ul className="doc-list">
+                {detail.documents.map((document) => (
+                  <li key={document}>
+                    <Icon name="check" size={15} />
+                    {document}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="process-block">
+              <h2>How it works</h2>
+              <ol className="process-list">
+                {processSteps.map((step) => (
+                  <li key={step.step}>
+                    <span className="process-list__num">{step.step}</span>
+                    <div>
+                      <h3>{step.title}</h3>
+                      <p>{step.description}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <div className="faq-block">
+              <h2>Frequently asked questions</h2>
+              <Accordion items={defaultFaqs} />
+            </div>
+          </div>
+
+          <aside className="service-aside">
+            <div className="enquiry-card" id="enquiry">
+              <header className="enquiry-card__head">
+                <h2>Get started</h2>
+                <p>Share your details and our team will get in touch.</p>
+              </header>
+              <EnquiryForm serviceName={service.name} compact />
+            </div>
+
+            <div className="aside-contact">
+              <h3>Prefer to talk?</h3>
+              <a href={company.phoneHref} className="aside-contact__row">
+                <Icon name="phone" size={16} />
+                {company.phone}
+              </a>
+              <a href={company.emailHref} className="aside-contact__row">
+                <Icon name="mail" size={16} />
+                {company.email}
+              </a>
+              <p className="aside-contact__hours">
+                <Icon name="clock" size={15} />
+                {company.hours}
               </p>
             </div>
+          </aside>
+        </div>
+      </section>
 
-            <div>
-              <span>02</span>
-              <h3>Share Documents</h3>
-              <p>
-                Submit the documents required for the selected service.
-              </p>
+      {related.length > 0 ? (
+        <section className="section section--paper section--tight">
+          <div className="container">
+            <h2 className="related-title">Related services</h2>
+            <div className="related-grid">
+              {related.map((item) => (
+                <Link key={item.slug} to={`/services/${item.slug}`} className="related-card">
+                  <span className="related-card__icon">
+                    <Icon name="fileText" size={18} />
+                  </span>
+                  <span>
+                    <strong>{item.name}</strong>
+                    <span>{item.groupName}</span>
+                  </span>
+                  <Icon name="arrowRight" size={17} />
+                </Link>
+              ))}
             </div>
-
-            <div>
-              <span>03</span>
-              <h3>Application Processing</h3>
-              <p>
-                Our team assists with the application and required formalities.
-              </p>
-            </div>
-
-            <div>
-              <span>04</span>
-              <h3>Service Completion</h3>
-              <p>
-                Receive confirmation or the required certificate.
-              </p>
-            </div>
-
           </div>
+        </section>
+      ) : null}
 
-        </div>
-
-
-        {/* ENQUIRY FORM */}
-
-        <div
-          className="enquiry-card"
-          id="enquiry"
-        >
-
-          <h2>
-            Get Started
-          </h2>
-
-          <p>
-            Fill in your details and our team will contact you.
-          </p>
-
-
-          <form onSubmit={handleSubmit}>
-
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-
-
-            <input
-              type="tel"
-              name="mobile"
-              placeholder="Mobile Number"
-              value={formData.mobile}
-              onChange={handleChange}
-              required
-            />
-
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-
-
-            <input
-              type="text"
-              name="businessName"
-              placeholder="Business Name"
-              value={formData.businessName}
-              onChange={handleChange}
-            />
-
-
-            {/* CITY / LOCATION */}
-
-            <input
-              type="text"
-              name="location"
-              placeholder="City / Location"
-              value={formData.location}
-              onChange={handleChange}
-              required
-            />
-
-
-            <textarea
-              name="requirement"
-              rows="4"
-              placeholder="Tell us about your requirement"
-              value={formData.requirement}
-              onChange={handleChange}
-            ></textarea>
-
-
-            <button
-              type="submit"
-              className="primary-btn"
-            >
-              Submit Enquiry
-            </button>
-
-          </form>
-
-        </div>
-
-      </section>
-
-
-      {/* FAQ */}
-
-      <section className="service-faq">
-
-        <div className="section-title">
-
-          <p className="tagline">
-            FAQ
-          </p>
-
-          <h2>
-            Frequently Asked Questions
-          </h2>
-
-          <p>
-            Find answers to common questions about this service.
-          </p>
-
-        </div>
-
-
-        <div className="faq-list">
-
-          {faqs.map((faq, index) => (
-
-            <div
-              className="faq-item"
-              key={index}
-            >
-
-              <button
-                className="faq-question"
-                onClick={() =>
-                  setOpenFaq(
-                    openFaq === index ? null : index
-                  )
-                }
-              >
-
-                <span>
-                  {faq.question}
-                </span>
-
-                <span>
-                  {openFaq === index ? "−" : "+"}
-                </span>
-
-              </button>
-
-
-              {openFaq === index && (
-
-                <div className="faq-answer">
-                  {faq.answer}
-                </div>
-
-              )}
-
-            </div>
-
-          ))}
-
-        </div>
-
-      </section>
-
-
-      {/* CTA */}
-
-      <section className="services-cta">
-
-        <h2>
-          Need Help With Your Business?
-        </h2>
-
-        <p>
-          Our team can help you choose the right service for your business.
-        </p>
-
-        <button
-          onClick={() =>
-            document
-              .getElementById("enquiry")
-              ?.scrollIntoView({
-                behavior: "smooth",
-              })
-          }
-        >
-          Talk to an Expert
-        </button>
-
-      </section>
-
+      <CtaBand
+        title="Need help choosing?"
+        description="Our team can confirm what applies to your business before you commit to anything."
+      />
     </div>
-  );
+  )
 }
 
-export default ServicePage;
+export default ServicePage
