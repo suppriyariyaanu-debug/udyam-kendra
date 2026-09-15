@@ -1,23 +1,11 @@
 import Icon from '../ui/Icon'
-import { countServices } from '../../data/catalogue'
-import { company, partners, team } from '../../data/company'
+import { stats } from '../../data/company'
 
 /**
- * Counters derived from real catalogue and company data — never invented.
- * The previous site showed these four labels but published no figures.
+ * Published business figures. See the note on `stats` in data/company.js —
+ * these are the company's own numbers, not counts derived from the catalogue.
  */
 function TrustStrip() {
-  const stats = [
-    {
-      icon: 'layers',
-      value: `${Math.floor(countServices() / 10) * 10}+`,
-      label: 'Services',
-    },
-    { icon: 'handshake', value: String(partners.length), label: 'Partners' },
-    { icon: 'users', value: String(team.length), label: 'Advisors' },
-    { icon: 'globe', value: String(company.locations.length), label: 'Global Locations' },
-  ]
-
   return (
     <section className="trust-strip" aria-label="Udyama Kendra at a glance">
       <div className="container trust-strip__inner">

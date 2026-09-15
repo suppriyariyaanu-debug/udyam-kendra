@@ -4,21 +4,28 @@ import Icon from '../ui/Icon'
 import Logo from '../ui/Logo'
 import MegaMenu from './MegaMenu'
 import MobileDrawer from './MobileDrawer'
-import { categories } from '../../data/catalogue'
 import { company } from '../../data/company'
+
+const links = [
+  { to: '/', label: 'Home', end: true },
+  { to: '/#solutions', label: 'Solutions' },
+  { to: '/about', label: 'About' },
+  { to: '/about#team', label: 'Team' },
+  { to: '/contact', label: 'Contact' },
+]
 
 function Navbar() {
   const location = useLocation()
-  const [openCategory, setOpenCategory] = useState(null)
+  const [servicesOpen, setServicesOpen] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [stuck, setStuck] = useState(false)
-  const [lastPath, setLastPath] = useState(location.pathname)
+  const [lastKey, setLastKey] = useState(location.key)
 
-  // Close every menu on navigation — adjusted during render rather than in an
-  // effect, so no cascading re-render is queued.
-  if (location.pathname !== lastPath) {
-    setLastPath(location.pathname)
-    setOpenCategory(null)
+  // Close menus on navigation — adjusted during render, not in an effect, so
+  // no cascading re-render is queued.
+  if (location.key !== lastKey) {
+    setLastKey(location.key)
+    setServicesOpen(false)
     setDrawerOpen(false)
   }
 
@@ -31,13 +38,11 @@ function Navbar() {
 
   useEffect(() => {
     const onKeyDown = (event) => {
-      if (event.key === 'Escape') setOpenCategory(null)
+      if (event.key === 'Escape') setServicesOpen(false)
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [])
-
-  const active = categories.find((category) => category.slug === openCategory) || null
 
   return (
     <>
@@ -52,78 +57,69 @@ function Navbar() {
               <Icon name="mail" size={14} />
               {company.email}
             </a>
-            <span className="topbar__item">
+            <span className="topbar__item topbar__item--hours">
               <Icon name="clock" size={14} />
               {company.hours}
             </span>
           </div>
 
-          <div className="topbar__group">
-            <span className="topbar__item">
-              <Icon name="globe" size={14} />
-              <span className="topbar__locations">
-                {company.locations.map((place) => (
-                  <span key={place}>{place}</span>
-                ))}
-              </span>
+          <span className="topbar__item">
+            <Icon name="globe" size={14} />
+            <span className="topbar__locations">
+              {company.locations.map((place) => (
+                <span key={place}>{place}</span>
+              ))}
             </span>
-            <Link className="topbar__item" to="/about">
-              About
-            </Link>
-            <Link className="topbar__item" to="/contact">
-              Contact
-            </Link>
-          </div>
+          </span>
         </div>
       </div>
 
-      <header
-        className="header"
-        data-stuck={stuck}
-        onMouseLeave={() => setOpenCategory(null)}
-      >
+      <header className="header" data-stuck={stuck} onMouseLeave={() => setServicesOpen(false)}>
         <div className="container header__inner">
           <Logo />
 
           <nav className="nav" aria-label="Primary">
-            {categories.map((category) => (
-              <div className="nav__item" key={category.slug}>
-                <button
-                  type="button"
-                  className="nav__trigger"
-                  aria-expanded={openCategory === category.slug}
-                  aria-haspopup="true"
-                  onMouseEnter={() => setOpenCategory(category.slug)}
-                  onFocus={() => setOpenCategory(category.slug)}
-                  onClick={() =>
-                    setOpenCategory((current) =>
-                      current === category.slug ? null : category.slug,
-                    )
-                  }
-                >
-                  {category.name}
-                  <Icon name="chevronDown" size={15} />
-                </button>
-              </div>
-            ))}
-
             <NavLink
-              to="/services"
+              to="/"
               end
               className={({ isActive }) => `nav__link${isActive ? ' is-active' : ''}`}
-              onMouseEnter={() => setOpenCategory(null)}
+              onMouseEnter={() => setServicesOpen(false)}
             >
-              All Services
+              Home
             </NavLink>
+
+            <div className="nav__item">
+              <button
+                type="button"
+                className="nav__trigger"
+                aria-expanded={servicesOpen}
+                aria-haspopup="true"
+                onMouseEnter={() => setServicesOpen(true)}
+                onFocus={() => setServicesOpen(true)}
+                onClick={() => setServicesOpen((open) => !open)}
+              >
+                Services
+                <Icon name="chevronDown" size={15} />
+              </button>
+            </div>
+
+            {links.slice(1).map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  `nav__link${isActive && !link.to.includes('#') ? ' is-active' : ''}`
+                }
+                onMouseEnter={() => setServicesOpen(false)}
+              >
+                {link.label}
+              </NavLink>
+            ))}
           </nav>
 
           <div className="header__actions">
-            <Link to="/login" className="btn btn--outline btn--sm">
-              <Icon name="user" size={16} />
-              Login
-            </Link>
             <Link to="/contact" className="btn btn--primary btn--sm">
-              Talk to an Expert
+              Get Started
             </Link>
             <button
               type="button"
@@ -137,7 +133,7 @@ function Navbar() {
           </div>
         </div>
 
-        {active ? <MegaMenu category={active} onClose={() => setOpenCategory(null)} /> : null}
+        {servicesOpen ? <MegaMenu onClose={() => setServicesOpen(false)} /> : null}
       </header>
 
       {drawerOpen ? <MobileDrawer onClose={() => setDrawerOpen(false)} /> : null}

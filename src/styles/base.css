@@ -115,7 +115,7 @@ hr {
 /* --- Focus ---------------------------------------------------------------- */
 
 :focus-visible {
-  outline: 2px solid var(--gold-600);
+  outline: 2px solid var(--blue-700);
   outline-offset: 2px;
   border-radius: var(--r-xs);
 }
@@ -126,7 +126,7 @@ hr {
   top: -60px;
   z-index: 200;
   padding: var(--sp-3) var(--sp-5);
-  background: var(--ink-900);
+  background: var(--slate-900);
   color: var(--text-inverse);
   border-radius: var(--r-sm);
   font-weight: 600;
@@ -177,14 +177,12 @@ hr {
   background: var(--paper-2);
 }
 
+/* Formerly a dark band. The corporate palette keeps full-width sections
+   light, so this is now the tinted section — the class name is kept so no
+   component markup has to change. */
 .section--ink {
-  background: var(--ink-900);
-  color: var(--ink-200);
-}
-
-.section--ink h2,
-.section--ink h3 {
-  color: var(--text-inverse);
+  background: var(--light-blue);
+  color: var(--body-text);
 }
 
 main {
@@ -201,19 +199,19 @@ main {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold-700);
+  color: var(--blue-700);
 }
 
 .eyebrow::before {
   content: '';
   width: 22px;
   height: 2px;
-  background: var(--gold-500);
+  background: var(--blue-600);
   border-radius: var(--r-full);
 }
 
 .section--ink .eyebrow {
-  color: var(--gold-400);
+  color: var(--teal-700);
 }
 
 .section-head {
@@ -242,7 +240,7 @@ main {
 }
 
 .section--ink .section-head p {
-  color: var(--ink-300);
+  color: var(--text-muted);
 }
 
 /* --- Motion preferences --------------------------------------------------- */

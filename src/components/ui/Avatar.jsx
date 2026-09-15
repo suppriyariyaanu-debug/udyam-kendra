@@ -11,11 +11,14 @@ function initials(name) {
 }
 
 /**
- * Photograph with a monogram fallback.
+ * Team portrait.
  *
- * The real team photographs are not in the repository yet. Until a file exists
- * at `src`, this renders a monogram — dropping the image into public/images/team
- * is all that is needed to show the photo, with no code change.
+ * Every photograph is rendered into the same 4:5 frame with object-fit: cover
+ * and anchored just above centre, so portraits of different dimensions crop
+ * consistently and no face is cut off. Nothing is stretched.
+ *
+ * The monogram branch is a safety net for a missing file — with real photos in
+ * place it should never render.
  */
 function Avatar({ src, name }) {
   const [failed, setFailed] = useState(false)
@@ -24,7 +27,13 @@ function Avatar({ src, name }) {
   return (
     <div className="avatar">
       {showImage ? (
-        <img src={src} alt={name} loading="lazy" onError={() => setFailed(true)} />
+        <img
+          src={src}
+          alt={name}
+          loading="lazy"
+          decoding="async"
+          onError={() => setFailed(true)}
+        />
       ) : (
         <span className="avatar__monogram" aria-hidden="true">
           {initials(name)}

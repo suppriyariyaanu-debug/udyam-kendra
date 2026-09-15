@@ -12,7 +12,7 @@ import { searchServices } from '../../data/catalogue'
  */
 function SearchCommand({
   variant = 'hero',
-  placeholder = 'Search 100+ services — GST, Private Limited, Trademark…',
+  placeholder = 'Search services like GST, Trademark, MSME…',
   showButton = true,
   onNavigate,
 }) {

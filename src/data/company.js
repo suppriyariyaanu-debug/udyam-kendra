@@ -1,3 +1,8 @@
+import pavanKumar from '../assets/team/PavanKumar.jpg'
+import csvPrasad from '../assets/team/CSVPrasad.jpg'
+import ram from '../assets/team/Ram.jpg'
+import shivaprasad from '../assets/team/Shivaprasad.jpg'
+
 /**
  * Udyama Kendra company information.
  *
@@ -19,6 +24,31 @@ export const company = {
   locations: ['India', 'UAE', 'Singapore'],
   copyright: 'Udyama Kendra. All Rights Reserved',
 }
+
+/**
+ * Published business figures.
+ *
+ * These are the counters from the previous site's statistics strip, confirmed
+ * by the business. They are NOT derived from the catalogue in this repository
+ * and must not be recomputed from it — the catalogue lists the services with
+ * their own pages, which is a smaller number than the services offered.
+ * Because these are the published figures, no other part of the UI quotes a
+ * service total, so the site never contradicts itself.
+ */
+export const stats = [
+  { value: '126+', label: 'Services', icon: 'layers' },
+  { value: '54+', label: 'Partners', icon: 'handshake' },
+  { value: '18+', label: 'Advisors', icon: 'users' },
+  { value: '3', label: 'Global Locations', icon: 'globe' },
+]
+
+/** Hero trust points, drawn from the published differentiators. */
+export const trustPoints = [
+  'Reliable Support',
+  'Industry Specialists',
+  'On-time Service',
+  'Long-term Partnerships',
+]
 
 /**
  * The six service pillars from the previous site, with their published
@@ -82,18 +112,17 @@ export const differentiators = [
 ]
 
 /**
- * Team, exactly as published.
+ * Team, exactly as published — real photographs supplied by the business.
  *
- * `image` points at where the real photograph should live once it is added to
- * the repository. Until a file exists at that path the Avatar component shows a
- * monogram instead — no code change is needed when the photos are dropped in.
- * Source filenames on the previous site: /images/team/<file>.
+ * The images are imported rather than referenced by an absolute URL so Vite
+ * fingerprints them and resolves the path correctly whatever base the site is
+ * served from. Names and designations are as given and must not be altered.
  */
 export const team = [
-  { name: 'Pavan Kumar', role: 'Global Evangelist', image: '/images/team/PavanKumar.jpg' },
-  { name: 'CSV Prasad', role: 'Global Advisor', image: '/images/team/CSVPrasad.jpg' },
-  { name: 'Ram', role: 'Founder', image: '/images/team/Ram.jpg' },
-  { name: 'Shivaprasad', role: 'Business Advisor', image: '/images/team/Shivaprasad.jpg' },
+  { name: 'Pavan Kumar', role: 'Global Evangelist', image: pavanKumar },
+  { name: 'CSV Prasad', role: 'Global Advisor', image: csvPrasad },
+  { name: 'Ram', role: 'Founder', image: ram },
+  { name: 'Shivaprasad', role: 'Business Advisor', image: shivaprasad },
 ]
 
 export const teamIntro =

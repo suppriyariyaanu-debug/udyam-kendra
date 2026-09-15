@@ -92,17 +92,23 @@ function MobileDrawer({ onClose }) {
           <Link to="/services" className="drawer__link" onClick={onClose}>
             All Services
           </Link>
+          <Link to="/#solutions" className="drawer__link" onClick={onClose}>
+            Solutions
+          </Link>
           <Link to="/about" className="drawer__link" onClick={onClose}>
-            About Us
+            About
+          </Link>
+          <Link to="/about#team" className="drawer__link" onClick={onClose}>
+            Team
           </Link>
           <Link to="/contact" className="drawer__link" onClick={onClose}>
-            Contact Us
+            Contact
           </Link>
         </div>
 
         <div className="drawer__foot">
           <Link to="/contact" className="btn btn--primary btn--block" onClick={onClose}>
-            Talk to an Expert
+            Get Started
           </Link>
           <div style={{ display: 'flex', gap: 'var(--sp-3)' }}>
             <Link to="/login" className="btn btn--outline" style={{ flex: 1 }} onClick={onClose}>

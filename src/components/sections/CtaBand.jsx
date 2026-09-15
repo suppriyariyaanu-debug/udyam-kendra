@@ -3,8 +3,8 @@ import Icon from '../ui/Icon'
 import { company } from '../../data/company'
 
 function CtaBand({
-  title = 'Ready to start your business?',
-  description = 'Tell us what you need and our team will guide you to the right service.',
+  title = 'Ready to take your business forward?',
+  description = 'Talk to a Udyama Kendra expert today.',
 }) {
   return (
     <section className="cta-band">
@@ -15,14 +15,14 @@ function CtaBand({
         </div>
 
         <div className="cta-band__actions">
-          <Link to="/contact" className="btn btn--primary btn--lg">
-            Talk to an Expert
-            <Icon name="arrowRight" size={18} />
-          </Link>
           <a href={company.phoneHref} className="btn btn--ghost-light btn--lg">
             <Icon name="phone" size={17} />
-            {company.phone}
+            Talk to an Expert
           </a>
+          <Link to="/contact" className="btn btn--primary btn--lg">
+            Get Started
+            <Icon name="arrowRight" size={18} />
+          </Link>
         </div>
       </div>
     </section>

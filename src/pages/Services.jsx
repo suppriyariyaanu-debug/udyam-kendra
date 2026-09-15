@@ -69,8 +69,8 @@ function Services() {
             <span> made simple</span>
           </h1>
           <p className="page-hero__lede">
-            Every service Udyama Kendra offers — {allServices.length} of them across{' '}
-            {categories.length} categories. Search, filter, and start where you need to.
+            Everything Udyama Kendra handles, across {categories.length} categories. Search,
+            filter, and start where you need to.
           </p>
         </div>
       </section>
@@ -129,7 +129,7 @@ function Services() {
       <section className="section">
         <div className="container">
           <p className="result-count" role="status">
-            {filtered.length} {filtered.length === 1 ? 'service' : 'services'}
+            Showing {filtered.length} {filtered.length === 1 ? 'service' : 'services'}
             {query.trim() ? ` matching “${query.trim()}”` : ''}
           </p>
 

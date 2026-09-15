@@ -1,70 +1,99 @@
 /* ==========================================================================
    Udyama Kendra — design tokens
    The single place the whole site is themed from.
+
+   The palette is built around the company logo, whose own marks sample as
+   teal #48B4A8, blue #0078B4 and light blue #3CA8E4. The scales below are the
+   approved corporate blue/teal system, which sits comfortably beside it.
    ========================================================================== */
 
 :root {
-  /* --- Brand: ink (authority) --------------------------------------------- */
-  --ink-950: #070e18;
-  --ink-900: #0b1626;
-  --ink-800: #0f1b2d;
-  --ink-700: #16273e;
-  --ink-600: #22374f;
-  --ink-500: #3b5170;
-  --ink-400: #5b6e8a;
-  --ink-300: #8090a6;
-  --ink-200: #b3bdcc;
-  --ink-100: #dde3ea;
+  /* --- Brand: blue (primary / action) ------------------------------------- */
+  --blue-800: #0b3e86;
+  --blue-700: #0f4fa8;
+  --blue-600: #1464d2;
+  --blue-500: #3d82dc;
+  --blue-400: #6ba3e8;
+  --blue-300: #93bef0;
+  --blue-200: #c7ddf8;
+  --blue-100: #eef6ff;
+  --blue-50: #f7fafc;
 
-  /* --- Brand: gold (accent, carried over from the existing site) ---------- */
-  --gold-700: #9a6b00;
-  --gold-600: #c08900;
-  --gold-500: #e5a400;
-  --gold-400: #f2b937;
-  --gold-300: #f6cd6c;
-  --gold-200: #f8dfa3;
-  --gold-100: #fdf4e0;
+  /* --- Brand: teal (secondary accent) ------------------------------------- */
+  --teal-800: #0a6660;
+  --teal-700: #0e837b;
+  --teal-600: #13a89e;
+  --teal-500: #3dbdb4;
+  --teal-200: #b9e7e3;
+  --teal-100: #e4f6f4;
+
+  /* --- Neutrals ----------------------------------------------------------- */
+  --slate-900: #102a43;
+  --slate-800: #1b3a5c;
+  --slate-700: #243b53;
+  --slate-600: #52606d;
+  --slate-550: #5b7086; /* darkest muted tone that still clears AA on white */
+  --slate-500: #627d98;
+  --slate-400: #7b8794;
+  --slate-300: #9aa5b1;
+  --slate-200: #cbd2d9;
+  --slate-100: #e2e8f0;
+  --slate-50: #f0f4f8;
+
+  /* --- Named aliases ------------------------------------------------------ */
+  --primary-blue: var(--blue-600);
+  --dark-heading: var(--slate-900);
+  --teal: var(--teal-600);
+  --light-blue: var(--blue-100);
+  --background: var(--blue-50);
+  --border: var(--slate-100);
+  --body-text: var(--slate-600);
 
   /* --- Surfaces ----------------------------------------------------------- */
   --paper: #ffffff;
-  --paper-2: #faf9f6;
-  --paper-3: #f2f0ea;
-  --line: #e7e3da;
-  --line-strong: #d6d1c5;
+  --paper-2: var(--blue-50);
+  --paper-3: var(--blue-100);
+  --line: var(--slate-100);
+  --line-strong: var(--slate-200);
 
   /* --- Status ------------------------------------------------------------- */
-  --success: #0f7a5a;
-  --success-bg: #e8f5f0;
-  --danger: #b3261e;
-  --danger-bg: #fdeceb;
+  --success: #0e7c66;
+  --success-bg: #e3f5f0;
+  --danger: #c0392b;
+  --danger-bg: #fdecea;
 
   /* --- Semantic ----------------------------------------------------------- */
-  --text: var(--ink-600);
-  --text-strong: var(--ink-900);
-  --text-muted: var(--ink-400);
+  --text: var(--body-text);
+  --text-strong: var(--dark-heading);
+  --text-muted: var(--slate-550);
   --text-inverse: #ffffff;
-  --brand: var(--gold-500);
-  --brand-hover: var(--gold-600);
+  --brand: var(--primary-blue);
+  --brand-hover: var(--blue-700);
+
+  /* Focus / accent rings, expressed once so a palette change carries. */
+  --ring-blue: rgba(20, 100, 210, 0.18);
+  --ring-danger: rgba(192, 57, 43, 0.16);
 
   /* --- Type --------------------------------------------------------------- */
   --font-heading: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
 
+  /* Body text sits at 16px — comfortable rather than compact. */
   --fs-xs: 0.75rem;
-  --fs-sm: 0.8125rem;
-  --fs-base: 0.9375rem;
-  --fs-md: 1rem;
-  --fs-lg: 1.125rem;
-  --fs-xl: 1.3125rem;
-  --fs-2xl: 1.625rem;
-  --fs-3xl: 2rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: 1.1875rem;
+  --fs-xl: 1.375rem;
+  --fs-2xl: 1.75rem;
+  --fs-3xl: 2.125rem;
   --fs-4xl: 2.5rem;
-  --fs-display: clamp(2.1rem, 1.35rem + 3.1vw, 3.65rem);
-  --fs-display-sm: clamp(1.8rem, 1.3rem + 2.1vw, 2.75rem);
+  --fs-display: clamp(2.1rem, 1.45rem + 2.6vw, 3.25rem);
+  --fs-display-sm: clamp(1.85rem, 1.35rem + 2.1vw, 2.75rem);
 
-  --lh-tight: 1.15;
-  --lh-snug: 1.35;
-  --lh-normal: 1.65;
+  --lh-tight: 1.16;
+  --lh-snug: 1.4;
+  --lh-normal: 1.7;
 
   /* --- Space -------------------------------------------------------------- */
   --sp-1: 4px;
@@ -86,35 +115,36 @@
   --r-xs: 4px;
   --r-sm: 8px;
   --r-md: 12px;
-  --r-lg: 18px;
-  --r-xl: 26px;
+  --r-lg: 16px;
+  --r-xl: 22px;
   --r-full: 999px;
 
   /* --- Elevation ---------------------------------------------------------- */
-  --sh-1: 0 1px 2px rgba(11, 22, 38, 0.05), 0 1px 3px rgba(11, 22, 38, 0.04);
-  --sh-2: 0 4px 10px rgba(11, 22, 38, 0.06), 0 2px 4px rgba(11, 22, 38, 0.04);
-  --sh-3: 0 14px 34px rgba(11, 22, 38, 0.1), 0 4px 10px rgba(11, 22, 38, 0.05);
-  --sh-4: 0 28px 64px rgba(11, 22, 38, 0.16), 0 8px 20px rgba(11, 22, 38, 0.07);
-  --sh-gold: 0 10px 26px rgba(229, 164, 0, 0.28);
+  /* Deliberately soft: the design leans on borders and space, not shadow. */
+  --sh-1: 0 1px 2px rgba(16, 42, 67, 0.04);
+  --sh-2: 0 2px 6px rgba(16, 42, 67, 0.06), 0 1px 2px rgba(16, 42, 67, 0.04);
+  --sh-3: 0 8px 20px rgba(16, 42, 67, 0.08), 0 2px 6px rgba(16, 42, 67, 0.04);
+  --sh-4: 0 18px 44px rgba(16, 42, 67, 0.12), 0 4px 12px rgba(16, 42, 67, 0.06);
+  --sh-brand: 0 6px 18px rgba(20, 100, 210, 0.22);
 
   /* --- Layout ------------------------------------------------------------- */
-  --container: 1200px;
-  --container-narrow: 860px;
+  --container: 1240px;
+  --container-narrow: 880px;
   --gutter: clamp(16px, 4vw, 40px);
-  --header-h: 74px;
-  --topbar-h: 38px;
+  --header-h: 76px;
+  --topbar-h: 40px;
 
   /* --- Motion ------------------------------------------------------------- */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --t-fast: 140ms var(--ease);
-  --t-base: 220ms var(--ease);
-  --t-slow: 420ms var(--ease);
+  --t-fast: 180ms var(--ease);
+  --t-base: 260ms var(--ease);
+  --t-slow: 400ms var(--ease);
 
   color-scheme: light;
 }
 
 @media (max-width: 900px) {
   :root {
-    --header-h: 64px;
+    --header-h: 66px;
   }
 }

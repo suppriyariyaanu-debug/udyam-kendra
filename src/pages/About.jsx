@@ -6,8 +6,8 @@ import Team from '../components/sections/Team'
 import Partners from '../components/sections/Partners'
 import Testimonials from '../components/sections/Testimonials'
 import CtaBand from '../components/sections/CtaBand'
-import { countServices, categories } from '../data/catalogue'
-import { company, differentiators, positioning } from '../data/company'
+import { categories } from '../data/catalogue'
+import { company, differentiators, pillars, positioning } from '../data/company'
 
 function About() {
   return (
@@ -36,9 +36,9 @@ function About() {
             <p>{positioning.servicesIntro}</p>
             <p>
               From incorporation and licences through to filings, intellectual property,
-              technology and finance, Udyama Kendra covers {countServices()} services across{' '}
-              {categories.length} categories — so a growing business does not have to hold
-              relationships with a different specialist for every requirement.
+              technology and finance, Udyama Kendra spans {categories.length} service
+              categories — so a growing business does not have to hold relationships with a
+              different specialist for every requirement.
             </p>
 
             <div className="about-facts">
@@ -95,7 +95,39 @@ function About() {
         </div>
       </section>
 
+      {/* The six service pillars, with the descriptions the business published. */}
       <section className="section section--paper">
+        <div className="container">
+          <SectionHead
+            eyebrow="Our Services"
+            title="Six pillars of support"
+            description={positioning.servicesIntro}
+            center
+          />
+
+          <div className="pillar-grid">
+            {pillars.map((pillar, index) => (
+              <Reveal key={pillar.title} delay={index * 60}>
+                <Link to={`/services/category/${pillar.categorySlug}`} className="card card--link">
+                  <span className="card__icon">
+                    <Icon name={pillar.icon} size={22} />
+                  </span>
+                  <h3>{pillar.title}</h3>
+                  <p>{pillar.description}</p>
+                  <span className="card__foot">
+                    <span className="link-arrow">
+                      Explore
+                      <Icon name="arrowRight" size={16} />
+                    </span>
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="container">
           <SectionHead
             eyebrow="What Makes Us Different"

@@ -1,18 +1,14 @@
 import { Link } from 'react-router-dom'
 import Icon from '../ui/Icon'
 import Logo from '../ui/Logo'
-import { categories } from '../../data/catalogue'
+import { getService } from '../../data/catalogue'
+import { journeys } from '../../data/journeys'
 import { company } from '../../data/company'
 
-const popular = [
-  { slug: 'company', name: 'Private Limited Company' },
-  { slug: 'gst', name: 'GST Registration' },
-  { slug: 'udyam', name: 'Udyam Aadhar Registration' },
-  { slug: 'trademark', name: 'Trademark Registration' },
-  { slug: 'itr', name: 'IT Returns Filing' },
-  { slug: 'fssai', name: 'FSSAI Registration' },
-]
-
+/**
+ * Footer organised by the four business journeys, so it works as navigation
+ * rather than a list of links nobody reads.
+ */
 function Footer() {
   return (
     <footer className="footer">
@@ -20,9 +16,12 @@ function Footer() {
         <div className="footer__grid">
           <div className="footer__about">
             <Logo inverse />
-            <p>{company.tagline} — start, manage, protect and grow your business from one place.</p>
+            <p>
+              {company.tagline} — start, manage, protect and grow your business from one
+              place.
+            </p>
 
-            <div className="footer__contact">
+            <address className="footer__contact">
               <a href={company.phoneHref}>
                 <Icon name="phone" size={16} />
                 {company.phone}
@@ -39,64 +38,46 @@ function Footer() {
                 <Icon name="globe" size={16} />
                 {company.locations.join(' · ')}
               </span>
+            </address>
+          </div>
+
+          {journeys.map((journey) => (
+            <div className="footer__col" key={journey.id}>
+              <h4>{journey.title}</h4>
+              <ul>
+                {journey.services.slice(0, 5).map((slug) => {
+                  const service = getService(slug)
+                  if (!service) return null
+                  return (
+                    <li key={slug}>
+                      <Link to={`/services/${slug}`}>{service.name}</Link>
+                    </li>
+                  )
+                })}
+                <li>
+                  <Link to={`/services/category/${journey.categorySlug}`}>
+                    All {journey.label.toLowerCase()} services
+                  </Link>
+                </li>
+              </ul>
             </div>
-          </div>
+          ))}
+        </div>
 
-          <div className="footer__col">
-            <h4>Categories</h4>
-            <ul>
-              {categories.map((category) => (
-                <li key={category.slug}>
-                  <Link to={`/services/category/${category.slug}`}>{category.name}</Link>
-                </li>
-              ))}
-              <li>
-                <Link to="/services">All Services</Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className="footer__col">
-            <h4>Popular</h4>
-            <ul>
-              {popular.map((service) => (
-                <li key={service.slug}>
-                  <Link to={`/services/${service.slug}`}>{service.name}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="footer__col">
-            <h4>Company</h4>
-            <ul>
-              <li>
-                <Link to="/about">About Us</Link>
-              </li>
-              <li>
-                <Link to="/about#team">Our Team</Link>
-              </li>
-              <li>
-                <Link to="/about#partners">Partners</Link>
-              </li>
-              <li>
-                <Link to="/contact">Contact Us</Link>
-              </li>
-              <li>
-                <Link to="/login">Client Login</Link>
-              </li>
-            </ul>
-          </div>
+        <div className="footer__links">
+          <Link to="/services">All Services</Link>
+          <Link to="/about">About Us</Link>
+          <Link to="/about#team">Our Team</Link>
+          <Link to="/about#partners">Partners</Link>
+          <Link to="/contact">Contact</Link>
+          <Link to="/login">Client Login</Link>
         </div>
 
         <div className="footer__bottom">
           <p>
             Copyright ©{new Date().getFullYear()} {company.copyright}
           </p>
-          <div className="footer__legal">
-            <Link to="/contact">Support</Link>
-            <a href={company.phoneHref}>Call us</a>
-          </div>
+          <p className="footer__locations">{company.locations.join(' · ')}</p>
         </div>
       </div>
     </footer>

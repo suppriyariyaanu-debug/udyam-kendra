@@ -1,29 +1,24 @@
 import { Link } from 'react-router-dom'
 import Icon from '../components/ui/Icon'
-import Reveal from '../components/ui/Reveal'
-import SectionHead from '../components/ui/SectionHead'
 import SearchCommand from '../components/sections/SearchCommand'
 import TrustStrip from '../components/sections/TrustStrip'
-import Differentiators from '../components/sections/Differentiators'
+import ServiceFinder from '../components/sections/ServiceFinder'
+import ServiceTabs from '../components/sections/ServiceTabs'
+import ServiceRecommender from '../components/sections/ServiceRecommender'
+import BusinessJourney from '../components/sections/BusinessJourney'
+import HowItWorks from '../components/sections/HowItWorks'
+import WhyChooseUs from '../components/sections/WhyChooseUs'
 import Team from '../components/sections/Team'
 import Testimonials from '../components/sections/Testimonials'
 import Partners from '../components/sections/Partners'
+import FaqSection from '../components/sections/FaqSection'
 import CtaBand from '../components/sections/CtaBand'
-import { categories, countServices, getService } from '../data/catalogue'
-import { pillars, positioning } from '../data/company'
+import { getService } from '../data/catalogue'
+import { company, pillars, trustPoints } from '../data/company'
 
-const quickLinks = ['company', 'gst', 'udyam', 'trademark', 'itr']
-
-const journey = [
-  { icon: 'building', label: 'Start', text: 'Incorporate the right entity' },
-  { icon: 'shield', label: 'Manage', text: 'Stay filed and compliant' },
-  { icon: 'trademark', label: 'Protect', text: 'Secure your brand and IP' },
-  { icon: 'trendingUp', label: 'Grow', text: 'Funding, credit and tech' },
-]
+const quickLinks = ['gst', 'udyam', 'company', 'trademark', 'itr']
 
 function Home() {
-  const total = countServices()
-
   return (
     <>
       {/* ---------------------------------------------------------------- Hero */}
@@ -31,151 +26,102 @@ function Home() {
         <div className="hero__glow" aria-hidden="true" />
         <div className="container hero__inner">
           <div className="hero__content">
-            <p className="eyebrow">{positioning.eyebrow}</p>
+            <p className="eyebrow">Business today. A stronger tomorrow.</p>
 
             <h1>
-              Start, manage, protect and grow
-              <span> your business</span>
+              Your Business Journey
+              <span>Our Expertise</span>
             </h1>
 
-            <p className="hero__lede">{positioning.statement}</p>
-
-            <div className="hero__search">
-              <SearchCommand />
-            </div>
-
-            <div className="hero__quick">
-              <span>Popular:</span>
-              {quickLinks.map((slug) => {
-                const service = getService(slug)
-                if (!service) return null
-                return (
-                  <Link key={slug} to={`/services/${slug}`} className="hero__quick-link">
-                    {service.name}
-                  </Link>
-                )
-              })}
-            </div>
+            <p className="hero__lede">
+              Business registration, MSME, GST, compliance, trademark, banking and digital
+              solutions — all under one roof.
+            </p>
 
             <div className="hero__actions">
-              <Link to="/services" className="btn btn--primary btn--lg">
-                Explore all {total} services
+              <Link to="/contact" className="btn btn--primary btn--lg">
+                Get Started
                 <Icon name="arrowRight" size={18} />
               </Link>
-              <Link to="/contact" className="btn btn--ghost-light btn--lg">
+              <a href={company.phoneHref} className="btn btn--outline btn--lg">
+                <Icon name="phone" size={17} />
                 Talk to an Expert
-              </Link>
+              </a>
             </div>
-          </div>
 
-          <aside className="hero__panel" aria-label="How we work with you">
-            <h2 className="hero__panel-title">One partner, four stages</h2>
-            <ul className="journey">
-              {journey.map((stage) => (
-                <li className="journey__item" key={stage.label}>
-                  <span className="journey__icon">
-                    <Icon name={stage.icon} size={19} />
-                  </span>
-                  <span className="journey__body">
-                    <strong>{stage.label}</strong>
-                    <span>{stage.text}</span>
-                  </span>
+            <ul className="hero__trust">
+              {trustPoints.map((point) => (
+                <li key={point}>
+                  <Icon name="check" size={15} />
+                  {point}
                 </li>
               ))}
             </ul>
-            <p className="hero__panel-note">
-              <Icon name="checkCircle" size={15} />
-              Registrations, compliance, IP, technology and finance under one roof.
-            </p>
+
+            <div className="hero__search">
+              <SearchCommand />
+              <div className="hero__quick">
+                <span>Popular:</span>
+                {quickLinks.map((slug) => {
+                  const service = getService(slug)
+                  if (!service) return null
+                  return (
+                    <Link key={slug} to={`/services/${slug}`} className="hero__quick-link">
+                      {service.name}
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* The repository holds no photograph of the business, so rather than
+              drop in stock imagery this panel shows what the company actually
+              does — the six published service pillars. */}
+          <aside className="hero__panel" aria-label="What Udyama Kendra covers">
+            <p className="hero__panel-label">Everything under one roof</p>
+            <ul className="hero__pillars">
+              {pillars.map((pillar) => (
+                <li key={pillar.title}>
+                  <Link to={`/services/category/${pillar.categorySlug}`}>
+                    <span className="hero__pillar-icon">
+                      <Icon name={pillar.icon} size={19} />
+                    </span>
+                    {pillar.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="hero__panel-foot">
+              <span>
+                <Icon name="globe" size={15} />
+                {company.locations.join(' · ')}
+              </span>
+              <Link to="/services" className="link-arrow">
+                All services
+                <Icon name="arrowRight" size={15} />
+              </Link>
+            </div>
           </aside>
         </div>
       </section>
 
       <TrustStrip />
-
-      {/* ------------------------------------------------------------ Pillars */}
-      <section className="section">
-        <div className="container">
-          <SectionHead
-            eyebrow="Our Services"
-            title="Built for every stage of your business"
-            description={positioning.servicesIntro}
-            center
-          />
-
-          <div className="pillar-grid">
-            {pillars.map((pillar, index) => (
-              <Reveal key={pillar.title} delay={index * 60}>
-                <Link to={`/services/category/${pillar.categorySlug}`} className="card card--link">
-                  <span className="card__icon">
-                    <Icon name={pillar.icon} size={22} />
-                  </span>
-                  <h3>{pillar.title}</h3>
-                  <p>{pillar.description}</p>
-                  <span className="card__foot">
-                    <span className="link-arrow">
-                      Explore
-                      <Icon name="arrowRight" size={16} />
-                    </span>
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --------------------------------------------------------- Categories */}
-      <section className="section section--paper">
-        <div className="container">
-          <SectionHead
-            eyebrow="Browse by category"
-            title="Find the service you need"
-            description={`All ${total} services, organised the way a business actually needs them.`}
-          />
-
-          <div className="category-grid">
-            {categories.map((category, index) => {
-              const count = category.groups.reduce(
-                (sum, group) => sum + group.services.length,
-                0,
-              )
-
-              return (
-                <Reveal key={category.slug} delay={index * 60}>
-                  <Link
-                    to={`/services/category/${category.slug}`}
-                    className="category-card"
-                  >
-                    <span className="category-card__icon">
-                      <Icon name={category.icon} size={22} />
-                    </span>
-                    <div className="category-card__body">
-                      <h3>{category.name}</h3>
-                      <p>{category.tagline}</p>
-                      <ul className="category-card__groups">
-                        {category.groups.map((group) => (
-                          <li key={group.name}>{group.name}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <span className="category-card__meta">
-                      <span className="badge">{count} services</span>
-                      <Icon name="arrowRight" size={18} />
-                    </span>
-                  </Link>
-                </Reveal>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      <Differentiators />
+      <ServiceFinder />
+      <ServiceTabs />
+      <ServiceRecommender />
+      <BusinessJourney />
+      <HowItWorks />
+      <WhyChooseUs />
       <Team />
       <Testimonials />
       <Partners />
-      <CtaBand />
+      <FaqSection />
+
+      <CtaBand
+        title="Ready to take your business forward?"
+        description="Talk to a Udyama Kendra expert today."
+      />
     </>
   )
 }

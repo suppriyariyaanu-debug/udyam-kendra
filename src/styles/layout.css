@@ -5,8 +5,9 @@
 /* --- Top bar -------------------------------------------------------------- */
 
 .topbar {
-  background: var(--ink-950);
-  color: var(--ink-300);
+  background: var(--blue-50);
+  border-bottom: 1px solid var(--line);
+  color: var(--slate-600);
   font-size: var(--fs-sm);
 }
 
@@ -34,12 +35,12 @@
 }
 
 a.topbar__item:hover {
-  color: var(--gold-400);
+  color: var(--primary-blue);
 }
 
 .topbar__item svg {
   flex: none;
-  color: var(--gold-500);
+  color: var(--teal-600);
 }
 
 .topbar__locations {
@@ -51,7 +52,7 @@ a.topbar__item:hover {
 .topbar__locations span:not(:last-child)::after {
   content: '·';
   margin-left: var(--sp-2);
-  color: var(--ink-600);
+  color: var(--slate-300);
 }
 
 @media (max-width: 900px) {
@@ -83,65 +84,36 @@ a.topbar__item:hover {
   min-width: 0;
 }
 
-/* Logo */
+/* Logo — the company's own mark, used as supplied. */
 
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: var(--sp-3);
   flex: none;
 }
 
-.logo__mark {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
+.logo img {
+  width: auto;
+  height: 56px;
+  object-fit: contain;
+}
+
+/* On the dark footer the logo sits on a white plaque so its blue and teal
+   keep full contrast rather than being read against navy. */
+.logo--inverse {
+  padding: var(--sp-3) var(--sp-4);
   border-radius: var(--r-md);
-  background: linear-gradient(145deg, var(--ink-800), var(--ink-950));
-  color: var(--gold-500);
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: var(--fs-md);
-  letter-spacing: -0.03em;
-  box-shadow: var(--sh-2);
+  background: #fff;
 }
 
-.logo__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
+.logo--inverse img {
+  height: 52px;
 }
 
-.logo__name {
-  font-family: var(--font-heading);
-  font-size: var(--fs-lg);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--ink-900);
-}
-
-.logo__tag {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-300);
-}
-
-/* The tagline is long; it earns its place in the footer, not in the header row
-   where it pushes the nav past the container. */
-.header .logo__tag {
-  display: none;
-}
-
-.logo--inverse .logo__name {
-  color: #fff;
-}
-
-.logo--inverse .logo__mark {
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+@media (max-width: 440px) {
+  .logo img {
+    height: 44px;
+  }
 }
 
 /* Primary nav */
@@ -169,7 +141,7 @@ a.topbar__item:hover {
   font-family: var(--font-heading);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--ink-600);
+  color: var(--slate-600);
   white-space: nowrap;
   transition: color var(--t-fast), background var(--t-fast);
 }
@@ -177,12 +149,12 @@ a.topbar__item:hover {
 .nav__link:hover,
 .nav__trigger:hover,
 .nav__trigger[aria-expanded='true'] {
-  color: var(--ink-900);
+  color: var(--slate-900);
   background: var(--paper-3);
 }
 
 .nav__link.is-active {
-  color: var(--gold-700);
+  color: var(--primary-blue);
 }
 
 .nav__trigger svg {
@@ -206,33 +178,28 @@ a.topbar__item:hover {
   width: 40px;
   height: 40px;
   border-radius: var(--r-sm);
-  color: var(--ink-600);
+  color: var(--slate-600);
   transition: background var(--t-fast), color var(--t-fast);
 }
 
 .icon-btn:hover {
   background: var(--paper-3);
-  color: var(--ink-900);
+  color: var(--slate-900);
 }
 
-@media (max-width: 1200px) {
-  .nav,
-  .header__actions .btn--outline {
+@media (max-width: 1024px) {
+  .nav {
     display: none;
   }
 }
 
-@media (min-width: 1201px) {
+@media (min-width: 1025px) {
   .header__burger {
     display: none;
   }
 }
 
-@media (max-width: 620px) {
-  .header__actions .btn--primary {
-    display: none;
-  }
-}
+
 
 /* --- Mega menu ------------------------------------------------------------ */
 
@@ -256,63 +223,15 @@ a.topbar__item:hover {
 }
 
 .mega__inner {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: var(--sp-10);
   padding-block: var(--sp-8);
-}
-
-.mega__aside h3 {
-  font-size: var(--fs-xl);
-  margin-bottom: var(--sp-3);
-}
-
-.mega__aside p {
-  color: var(--text-muted);
-  margin-bottom: var(--sp-5);
 }
 
 .mega__groups {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--sp-6) var(--sp-8);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--sp-6);
 }
 
-.mega__group h4 {
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold-700);
-  margin-bottom: var(--sp-3);
-}
-
-.mega__group ul {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.mega__group a {
-  display: block;
-  padding: 5px var(--sp-2);
-  margin-left: calc(var(--sp-2) * -1);
-  border-radius: var(--r-xs);
-  font-size: var(--fs-base);
-  color: var(--ink-500);
-  transition: color var(--t-fast), background var(--t-fast);
-}
-
-.mega__group a:hover {
-  color: var(--ink-900);
-  background: var(--paper-2);
-}
-
-@media (max-width: 1240px) {
-  .mega__groups {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
 
 /* --- Search --------------------------------------------------------------- */
 
@@ -335,13 +254,13 @@ a.topbar__item:hover {
 }
 
 .search__field:focus-within {
-  border-color: var(--gold-500);
-  box-shadow: 0 0 0 4px rgba(229, 164, 0, 0.16), var(--sh-2);
+  border-color: var(--blue-600);
+  box-shadow: 0 0 0 4px var(--ring-blue), var(--sh-2);
 }
 
 .search__field svg {
   flex: none;
-  color: var(--ink-300);
+  color: var(--slate-300);
 }
 
 .search__field input {
@@ -360,7 +279,7 @@ a.topbar__item:hover {
 }
 
 .search__field input::placeholder {
-  color: var(--ink-300);
+  color: var(--slate-500);
 }
 
 .search__field .btn {
@@ -502,7 +421,7 @@ a.topbar__item:hover {
 
 .drawer__trigger svg {
   flex: none;
-  color: var(--ink-300);
+  color: var(--slate-300);
   transition: transform var(--t-fast);
 }
 
@@ -523,7 +442,7 @@ a.topbar__item:hover {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gold-700);
+  color: var(--teal-700);
   margin-bottom: var(--sp-2);
 }
 
@@ -531,11 +450,11 @@ a.topbar__item:hover {
   display: block;
   padding: var(--sp-2) 0;
   font-size: var(--fs-base);
-  color: var(--ink-500);
+  color: var(--slate-500);
 }
 
 .drawer__group a:hover {
-  color: var(--ink-900);
+  color: var(--slate-900);
 }
 
 .drawer__link {
@@ -561,15 +480,15 @@ a.topbar__item:hover {
 /* --- Footer --------------------------------------------------------------- */
 
 .footer {
-  background: var(--ink-950);
-  color: var(--ink-300);
+  background: var(--dark-heading);
+  color: var(--slate-200);
   padding-top: var(--sp-20);
   margin-top: auto;
 }
 
 .footer__grid {
   display: grid;
-  grid-template-columns: 1.5fr repeat(3, 1fr);
+  grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr));
   gap: var(--sp-10) var(--sp-8);
   padding-bottom: var(--sp-16);
 }
@@ -577,7 +496,7 @@ a.topbar__item:hover {
 .footer__about p {
   margin-top: var(--sp-5);
   max-width: 34ch;
-  color: var(--ink-300);
+  color: var(--slate-300);
 }
 
 .footer__contact {
@@ -592,18 +511,18 @@ a.topbar__item:hover {
   display: inline-flex;
   align-items: flex-start;
   gap: var(--sp-3);
-  color: var(--ink-200);
+  color: var(--slate-200);
   transition: color var(--t-fast);
 }
 
 .footer__contact a:hover {
-  color: var(--gold-400);
+  color: var(--teal-500);
 }
 
 .footer__contact svg {
   flex: none;
   margin-top: 3px;
-  color: var(--gold-500);
+  color: var(--teal-500);
 }
 
 .footer__col h4 {
@@ -622,13 +541,13 @@ a.topbar__item:hover {
 }
 
 .footer__col a {
-  color: var(--ink-300);
+  color: var(--slate-300);
   font-size: var(--fs-base);
   transition: color var(--t-fast);
 }
 
 .footer__col a:hover {
-  color: var(--gold-400);
+  color: var(--teal-500);
 }
 
 .footer__bottom {
@@ -640,7 +559,7 @@ a.topbar__item:hover {
   padding-block: var(--sp-6);
   border-top: 1px solid rgba(255, 255, 255, 0.09);
   font-size: var(--fs-sm);
-  color: var(--ink-400);
+  color: var(--slate-300);
 }
 
 .footer__legal {
@@ -670,5 +589,201 @@ a.topbar__item:hover {
   .footer__bottom {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+
+/* --- Mega menu columns ---------------------------------------------------- */
+
+.mega__col-head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding-bottom: var(--sp-3);
+  margin-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.mega__col-head strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--fs-base);
+  color: var(--text-strong);
+}
+
+.mega__col-head span span {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.mega__col-head:hover strong {
+  color: var(--primary-blue);
+}
+
+.mega__col-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  background: var(--blue-100);
+  color: var(--primary-blue);
+}
+
+.mega__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.mega__col a:not(.mega__col-head) {
+  display: block;
+  padding: 5px var(--sp-2);
+  margin-left: calc(var(--sp-2) * -1);
+  border-radius: var(--r-xs);
+  font-size: var(--fs-base);
+  color: var(--slate-500);
+  transition: color var(--t-fast), background var(--t-fast);
+}
+
+.mega__col a:not(.mega__col-head):hover {
+  color: var(--slate-900);
+  background: var(--paper-2);
+}
+
+.mega__foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--line);
+}
+
+.mega__foot-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-700);
+}
+
+.mega__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  flex: 1;
+}
+
+.mega__chips .chip {
+  height: 32px;
+  font-size: var(--fs-sm);
+}
+
+/* --- Footer link row ------------------------------------------------------ */
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3) var(--sp-6);
+  padding-block: var(--sp-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.footer__links a {
+  font-size: var(--fs-base);
+  color: var(--slate-300);
+  transition: color var(--t-fast);
+}
+
+.footer__links a:hover {
+  color: var(--teal-500);
+}
+
+.footer__locations {
+  color: var(--slate-300);
+}
+
+.footer__contact {
+  font-style: normal;
+}
+
+@media (max-width: 1100px) {
+  .footer__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .footer__about {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --- Small-phone header --------------------------------------------------- */
+
+/* At 360px the logo, the Get Started button and the burger together exceed the
+   container. Tighten the logo and the gaps rather than dropping the CTA — it is
+   the primary conversion control and has to stay reachable. */
+@media (max-width: 440px) {
+  .header__inner {
+    gap: var(--sp-3);
+  }
+
+  .logo {
+    gap: var(--sp-2);
+    min-width: 0;
+  }
+
+  .logo__mark {
+    width: 36px;
+    height: 36px;
+    font-size: var(--fs-base);
+  }
+
+  .logo__name {
+    font-size: var(--fs-md);
+  }
+
+  .header__actions {
+    gap: var(--sp-1);
+  }
+
+  .header__actions .btn--sm {
+    padding-inline: var(--sp-4);
+  }
+}
+
+/* --- Touch targets -------------------------------------------------------- */
+
+/* The brief sets a 44px minimum. Height only — widths are unchanged, so this
+   does not reintroduce the header overflow fixed above. */
+@media (max-width: 768px) {
+  .btn--sm,
+  .chip,
+  .icon-btn,
+  .tabs__tab,
+  .search__field .btn {
+    min-height: 44px;
+  }
+
+  .icon-btn {
+    width: 44px;
+  }
+
+  .input-group__action {
+    width: 44px;
+    height: 44px;
+  }
+
+  .accordion__trigger,
+  .drawer__trigger,
+  .drawer__link {
+    min-height: 48px;
   }
 }
