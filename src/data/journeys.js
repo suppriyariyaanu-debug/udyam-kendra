@@ -55,6 +55,85 @@ export const journeys = [
   },
 ]
 
+/**
+ * "What do you need help with?" — the five real catalogue categories.
+ *
+ * This section points at categories rather than the four journeys above, so it
+ * does not repeat the Start / Manage / Protect / Grow content that now runs as
+ * "How can we help you grow?". Every `categorySlug` resolves through
+ * catalogue.js to a real `/services/category/:slug` route; the name, tagline
+ * and description are read from the catalogue at render time rather than
+ * duplicated here, so the two can never drift apart.
+ */
+export const helpTopics = [
+  { categorySlug: 'start-business', need: 'I want to start a business' },
+  { categorySlug: 'registrations', need: 'I need a licence or registration' },
+  { categorySlug: 'compliances', need: 'I need to stay compliant' },
+  { categorySlug: 'financial-services', need: 'I need funding or banking' },
+  { categorySlug: 'it-services', need: 'I need to get online' },
+]
+
+/**
+ * "What problem are we solving?" — framed from the business owner's side.
+ *
+ * These describe the difficulty of dealing with business formalities in
+ * general and what a single-window service does about it. They make no claim
+ * about any named competitor and quote no statistics, because none has been
+ * supplied by the business.
+ */
+export const problemPoints = [
+  {
+    icon: 'scatter',
+    problem: 'The work is scattered across too many people',
+    response:
+      'One point of contact covers registration, compliance, intellectual property, technology and finance, so you are not managing several providers at once.',
+  },
+  {
+    icon: 'compass',
+    problem: 'It is hard to know what actually applies to you',
+    response:
+      'We confirm which registrations and filings your business genuinely needs before anything starts, rather than handing you a generic checklist.',
+  },
+  {
+    icon: 'clock',
+    problem: 'Deadlines are easy to miss and expensive to forget',
+    response:
+      'Returns, renewals and statutory filings are tracked and filed on schedule so a missed date does not turn into a penalty.',
+  },
+  {
+    icon: 'scale',
+    problem: 'Costs and timelines are rarely clear up front',
+    response:
+      'You are told the documents required and the fee for your specific requirement before any work begins.',
+  },
+]
+
+/**
+ * "How can we collaborate with you to grow?" — the ways a business works with
+ * Udyama Kendra. Descriptive of the service model only; no packages, prices or
+ * commitments are stated here because none have been published.
+ */
+export const collaborationModes = [
+  {
+    icon: 'route',
+    title: 'Tell us where you are',
+    description:
+      'Starting out, already running, or expanding — we begin from your situation rather than a fixed package.',
+  },
+  {
+    icon: 'headset',
+    title: 'Work with one team',
+    description:
+      'A single point of contact coordinates the CA, legal, technology and finance specialists your requirement needs.',
+  },
+  {
+    icon: 'handshake',
+    title: 'Stay supported as you grow',
+    description:
+      'As the business changes, the same team handles the filings, protection and support that come with it.',
+  },
+]
+
 /** Tabs for the service discovery section. Curated, all real slugs. */
 export const serviceTabs = [
   {

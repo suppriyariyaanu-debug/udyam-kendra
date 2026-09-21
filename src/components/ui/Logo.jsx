@@ -9,20 +9,27 @@ import logo from '../../assets/brand/udyama-kendra-logo.png'
  * fingerprints it. An absolute path only works when the site is served from a
  * domain root; under any sub-path it 404s and the browser shows a broken
  * image, which is exactly what happened in the hosted preview.
+ *
+ * `interactive={false}` renders the same mark without a link, for places that
+ * are already on the page it would navigate to — the homepage hero, for one.
+ * `size="lg"` is the larger homepage treatment; the header stays compact.
  */
-function Logo({ inverse = false, to = '/' }) {
+function Logo({ inverse = false, to = '/', interactive = true, size = 'md', className = '' }) {
+  const classes = `logo${size !== 'md' ? ` logo--${size}` : ''}${
+    inverse ? ' logo--inverse' : ''
+  }${className ? ` ${className}` : ''}`
+
+  const image = (
+    <img src={logo} alt={`${company.name} — ${company.tagline}`} width="250" height="114" />
+  )
+
+  if (!interactive) {
+    return <span className={classes}>{image}</span>
+  }
+
   return (
-    <Link
-      to={to}
-      className={`logo${inverse ? ' logo--inverse' : ''}`}
-      aria-label={`${company.name} — home`}
-    >
-      <img
-        src={logo}
-        alt={`${company.name} — ${company.tagline}`}
-        width="250"
-        height="114"
-      />
+    <Link to={to} className={classes} aria-label={`${company.name} — home`}>
+      {image}
     </Link>
   )
 }

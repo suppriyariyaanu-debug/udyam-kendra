@@ -110,9 +110,18 @@ a.topbar__item:hover {
   height: 52px;
 }
 
+/* The homepage treatment. The header stays compact; this is the one place the
+   mark is given room, so it reads as branding rather than navigation. */
+.logo--lg img {
+  height: clamp(64px, 6vw, 88px);
+}
+
 @media (max-width: 440px) {
   .logo img {
     height: 44px;
+  }
+  .logo--lg img {
+    height: 60px;
   }
 }
 
@@ -153,8 +162,31 @@ a.topbar__item:hover {
   background: var(--paper-3);
 }
 
-.nav__link.is-active {
+/* Active state. The underline carries the meaning, so it survives Windows
+   High Contrast and does not rely on colour alone. The Services trigger takes
+   the same treatment — it is the parent of every /services route and stays lit
+   inside them. */
+.nav__link.is-active,
+.nav__trigger.is-active {
+  position: relative;
   color: var(--primary-blue);
+}
+
+.nav__link.is-active::after,
+.nav__trigger.is-active::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 3px;
+  height: 2px;
+  border-radius: var(--r-full);
+  background: currentColor;
+}
+
+.nav__trigger.is-active:hover,
+.nav__trigger.is-active[aria-expanded='true'] {
+  color: var(--blue-700);
 }
 
 .nav__trigger svg {
@@ -465,6 +497,13 @@ a.topbar__item:hover {
   font-weight: 600;
   color: var(--text-strong);
   border-top: 1px solid var(--line);
+}
+
+.drawer__link.is-active {
+  padding-left: var(--sp-4);
+  margin-left: calc(var(--sp-4) * -1);
+  border-left: 3px solid var(--primary-blue);
+  color: var(--primary-blue);
 }
 
 .drawer__foot {

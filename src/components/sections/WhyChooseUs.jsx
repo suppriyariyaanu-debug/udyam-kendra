@@ -9,12 +9,17 @@ function WhyChooseUs() {
     <section className="section" id="why-us">
       <div className="container">
         <SectionHead
-          eyebrow="Why Udyama Kendra"
-          title="Built to be the one number you call"
+          eyebrow="Why us"
+          title="Why choose Udyama Kendra?"
           description={positioning.differenceIntro}
           center
         />
 
+        {/* Each benefit is one entry in `benefits` (src/data/journeys.js).
+            The list is data-driven so the client can add, reword or reorder
+            points — including verified differences, once supplied — by editing
+            that array alone. Nothing here compares Udyama Kendra to a named
+            competitor, because no such comparison has been provided. */}
         <div className="benefit-grid">
           {benefits.map((benefit, index) => (
             <Reveal className="benefit" key={benefit.title} delay={index * 55}>

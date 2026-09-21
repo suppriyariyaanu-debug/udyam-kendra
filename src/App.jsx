@@ -2,6 +2,7 @@ import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ScrollToTop from './components/layout/ScrollToTop'
+import ChatWidget from './components/chat/ChatWidget'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import CategoryPage from './pages/CategoryPage'
@@ -24,6 +25,11 @@ function SiteLayout() {
         <Outlet />
       </main>
       <Footer />
+
+      {/* Mounted once, here — every page inside this layout gets the assistant
+          without a single page importing it, and the conversation survives
+          navigation because the component never unmounts. */}
+      <ChatWidget />
     </>
   )
 }

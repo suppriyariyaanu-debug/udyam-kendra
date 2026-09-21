@@ -1,134 +1,15 @@
 /* ==========================================================================
    Homepage sections
-   Service finder, service tabs, recommender, journey band, timeline,
-   benefits, rails (testimonials + partners), FAQ layout.
+   Hero brand card, "what do you need help with?", the problem section,
+   service tabs, recommender, journey band, timeline, benefits, the
+   collaboration section, rails (testimonials + partners), FAQ layout.
    ========================================================================== */
 
-/* --- Hero trust points ---------------------------------------------------- */
-
-.hero__trust {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-3) var(--sp-6);
-  margin-top: var(--sp-6);
-}
-
-.hero__trust li {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-size: var(--fs-base);
-  font-weight: 600;
-  color: var(--slate-700);
-}
-
-.hero__trust svg {
-  flex: none;
-  color: var(--teal-600);
-}
+/* --- Hero spacing --------------------------------------------------------- */
 
 @media (max-width: 620px) {
   .hero {
     padding-block: var(--sp-10) var(--sp-16);
-  }
-  .hero__trust {
-    gap: var(--sp-2) var(--sp-5);
-  }
-  .hero__trust li {
-    font-size: var(--fs-sm);
-  }
-}
-
-/* --- Service finder ------------------------------------------------------- */
-
-.finder-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--sp-5);
-}
-
-.finder-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: var(--sp-6);
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  transition: border-color var(--t-base), box-shadow var(--t-base),
-    transform var(--t-base);
-}
-
-.finder-card:hover {
-  border-color: var(--line-strong);
-  box-shadow: var(--sh-3);
-  transform: translateY(-3px);
-}
-
-.finder-card__icon {
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  margin-bottom: var(--sp-5);
-  border-radius: var(--r-md);
-  background: var(--blue-100);
-  color: var(--primary-blue);
-}
-
-.finder-card h3 {
-  font-size: var(--fs-lg);
-}
-
-.finder-card > p {
-  margin-top: var(--sp-2);
-  font-size: var(--fs-base);
-  color: var(--text-muted);
-}
-
-.finder-card__list {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  flex: 1;
-  margin-block: var(--sp-5);
-  padding-top: var(--sp-4);
-  border-top: 1px solid var(--line);
-}
-
-.finder-card__list a {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  padding: 7px 0;
-  font-size: var(--fs-base);
-  color: var(--slate-600);
-  transition: color var(--t-fast), gap var(--t-fast);
-}
-
-.finder-card__list a:hover {
-  color: var(--blue-700);
-  gap: var(--sp-3);
-}
-
-.finder-card__list svg {
-  flex: none;
-  color: var(--slate-300);
-}
-
-.finder-card__cta {
-  width: 100%;
-}
-
-@media (max-width: 1100px) {
-  .finder-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 620px) {
-  .finder-grid {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -833,118 +714,403 @@
   }
 }
 
-/* --- Hero panel ----------------------------------------------------------- */
 
-.hero__panel {
+/* --- Hero brand card ------------------------------------------------------ */
+/* Replaces the former "Everything under one roof" pillar panel. Carries the
+   company's own logo at homepage scale plus the published reasons businesses
+   stay, so the right column is never empty. */
+
+.hero__brand {
   position: relative;
+  display: flex;
+  flex-direction: column;
   padding: var(--sp-8);
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--r-xl);
-  /* A second plane behind the panel gives the right column weight. Drawn as an
-     offset shadow rather than a pseudo-element: a negative z-index would fall
-     behind the section's own background and never be seen. */
+  /* A second plane gives the right column weight. Drawn as an offset shadow
+     rather than a pseudo-element: a negative z-index would fall behind the
+     section's own background and never be seen. */
   box-shadow: var(--sh-3), 18px 18px 0 0 var(--blue-200);
 }
 
-.hero__panel-label {
+.hero__brand-logo {
+  align-self: flex-start;
+}
+
+.hero__brand-tagline {
+  margin-top: var(--sp-4);
+  padding-bottom: var(--sp-5);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  color: var(--dark-heading);
+}
+
+.hero__brand-label {
+  margin-top: var(--sp-5);
   font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--teal-700);
-  padding-bottom: var(--sp-4);
-  margin-bottom: var(--sp-2);
-  border-bottom: 1px solid var(--line);
 }
 
-.hero__pillars {
+.hero__brand-points {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--sp-1) var(--sp-3);
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
 }
 
-.hero__pillars a {
+.hero__brand-points li {
   display: flex;
   align-items: center;
   gap: var(--sp-3);
-  min-height: 52px;
-  padding: var(--sp-2) var(--sp-2) var(--sp-2) 0;
   font-family: var(--font-heading);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   font-weight: 600;
   line-height: var(--lh-snug);
   color: var(--slate-700);
-  transition: color var(--t-fast);
 }
 
-.hero__pillars a:hover {
-  color: var(--primary-blue);
-}
-
-.hero__pillar-icon {
-  display: grid;
-  place-items: center;
+.hero__brand-points svg {
   flex: none;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--r-sm);
-  background: var(--blue-100);
-  color: var(--primary-blue);
-  transition: background var(--t-fast), color var(--t-fast);
+  padding: 5px;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-full);
+  background: var(--teal-100);
+  color: var(--teal-700);
 }
 
-.hero__pillars a:hover .hero__pillar-icon {
-  background: var(--primary-blue);
-  color: #fff;
-}
-
-.hero__panel-foot {
+.hero__brand-foot {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--sp-3);
-  margin-top: var(--sp-5);
+  gap: var(--sp-2);
+  margin-top: var(--sp-6);
   padding-top: var(--sp-4);
   border-top: 1px solid var(--line);
   font-size: var(--fs-sm);
   color: var(--text-muted);
 }
 
-.hero__panel-foot > span {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-}
-
-.hero__panel-foot svg {
+.hero__brand-foot svg {
   flex: none;
-}
-
-.hero__panel-foot > span svg {
   color: var(--teal-600);
 }
 
-.hero__panel-foot .link-arrow {
-  font-size: var(--fs-sm);
-}
-
 @media (max-width: 980px) {
-  .hero__panel {
+  .hero__brand {
     padding: var(--sp-6);
     box-shadow: var(--sh-3), 12px 12px 0 0 var(--blue-200);
   }
-}
-
-@media (max-width: 480px) {
-  .hero__panel {
-    box-shadow: var(--sh-3), 8px 8px 0 0 var(--blue-200);
+  .hero__brand-points {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 560px) {
-  .hero__pillars {
+  .hero__brand-points {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__brand {
+    box-shadow: var(--sh-3), 8px 8px 0 0 var(--blue-200);
+  }
+}
+
+/* --- "What do you need help with?" ---------------------------------------- */
+
+.need-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-5);
+}
+
+.need-card {
+  display: flex;
+  height: 100%;
+}
+
+.need-card__link {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--sp-6);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  color: inherit;
+  transition: border-color var(--t-base), box-shadow var(--t-base),
+    transform var(--t-base);
+}
+
+.need-card__link:hover {
+  border-color: var(--blue-300);
+  box-shadow: var(--sh-3);
+  transform: translateY(-3px);
+}
+
+.need-card__icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-md);
+  background: var(--blue-100);
+  color: var(--primary-blue);
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.need-card__icon--all {
+  background: var(--teal-100);
+  color: var(--teal-700);
+}
+
+.need-card__link:hover .need-card__icon {
+  background: var(--primary-blue);
+  color: #fff;
+}
+
+.need-card__link:hover .need-card__icon--all {
+  background: var(--teal-700);
+}
+
+.need-card h3 {
+  margin-top: var(--sp-5);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  color: var(--dark-heading);
+}
+
+.need-card p {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  color: var(--body-text);
+}
+
+.need-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+  margin-top: auto;
+  padding-top: var(--sp-5);
+  font-size: var(--fs-sm);
+}
+
+.need-card__count {
+  color: var(--text-muted);
+}
+
+.need-card__go {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-left: auto;
+  font-weight: 600;
+  color: var(--primary-blue);
+}
+
+.need-card__go svg {
+  flex: none;
+  transition: transform var(--t-fast);
+}
+
+.need-card__link:hover .need-card__go svg {
+  transform: translateX(3px);
+}
+
+@media (max-width: 980px) {
+  .need-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .need-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- "What problem are we solving?" --------------------------------------- */
+
+.problem-section {
+  background: var(--paper-2);
+}
+
+.problem-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-5);
+  counter-reset: problem;
+}
+
+.problem-item {
+  display: flex;
+  gap: var(--sp-5);
+  padding: var(--sp-6);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--teal-600);
+  border-radius: var(--r-lg);
+}
+
+.problem-item__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-md);
+  background: var(--blue-100);
+  color: var(--primary-blue);
+}
+
+.problem-item__body {
+  min-width: 0;
+}
+
+.problem-item__label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.problem-item__label--answer {
+  margin-top: var(--sp-5);
+  color: var(--teal-700);
+}
+
+.problem-item h3 {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  color: var(--dark-heading);
+}
+
+.problem-item__response {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  color: var(--body-text);
+}
+
+@media (max-width: 860px) {
+  .problem-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .problem-item {
+    flex-direction: column;
+    gap: var(--sp-4);
+    padding: var(--sp-5);
+  }
+}
+
+/* --- "How can we collaborate with you to grow?" --------------------------- */
+
+.collab-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: center;
+}
+
+.collab-copy .section-head {
+  margin-bottom: 0;
+}
+
+.collab-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-8);
+}
+
+.collab-note {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.collab-note svg {
+  flex: none;
+  color: var(--teal-600);
+}
+
+.collab-steps {
+  display: grid;
+  gap: var(--sp-4);
+  counter-reset: collab;
+}
+
+.collab-step {
+  display: flex;
+  gap: var(--sp-5);
+  padding: var(--sp-6);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color var(--t-base), box-shadow var(--t-base);
+}
+
+.collab-step:hover {
+  border-color: var(--blue-300);
+  box-shadow: var(--sh-2);
+}
+
+.collab-step__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-md);
+  background: var(--paper);
+  border: 1px solid var(--blue-200);
+  color: var(--primary-blue);
+}
+
+.collab-step h3 {
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+  color: var(--dark-heading);
+}
+
+.collab-step p {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  color: var(--body-text);
+}
+
+@media (max-width: 980px) {
+  .collab-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .collab-actions .btn {
+    width: 100%;
+  }
+  .collab-step {
+    flex-direction: column;
+    gap: var(--sp-4);
+    padding: var(--sp-5);
   }
 }

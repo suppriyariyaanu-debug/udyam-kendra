@@ -7,15 +7,19 @@ import { journeys } from '../../data/journeys'
 /**
  * The arc of a business: start, manage, protect, grow — as one connected band
  * rather than four unrelated cards.
+ *
+ * This is the only place the four stages appear on the homepage. "What do you
+ * need help with?" higher up is organised by catalogue category instead, so
+ * the two sections do not restate each other.
  */
 function BusinessJourney() {
   return (
-    <section className="section section--ink journey-section">
+    <section className="section section--ink journey-section" id="how-we-help">
       <div className="container">
         <SectionHead
-          eyebrow="Business Journey"
-          title="We stay with you the whole way"
-          description="From the day you register to the year you scale."
+          eyebrow="Start · Manage · Protect · Grow"
+          title="How can we help you grow?"
+          description="We stay with you the whole way — from the day you register to the year you scale."
           center
         />
 

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Icon from '../ui/Icon'
 import Logo from '../ui/Logo'
 import SearchCommand from '../sections/SearchCommand'
 import { categories } from '../../data/catalogue'
 import { company } from '../../data/company'
+import { isNavActive, navItems } from '../../lib/nav'
 
 /**
  * Touch-friendly navigation.
@@ -13,6 +14,11 @@ import { company } from '../../data/company'
  */
 function MobileDrawer({ onClose }) {
   const [expanded, setExpanded] = useState(null)
+  const location = useLocation()
+
+  // The same navigation model the header uses, minus Home (the drawer's logo
+  // already goes there) and Services (expanded above as the category list).
+  const drawerLinks = navItems.filter((item) => !item.trigger && item.id !== 'home')
 
   useEffect(() => {
     const onKeyDown = (event) => {
@@ -89,21 +95,30 @@ function MobileDrawer({ onClose }) {
             )
           })}
 
-          <Link to="/services" className="drawer__link" onClick={onClose}>
+          <Link
+            to="/services"
+            className={`drawer__link${
+              location.pathname.startsWith('/services') ? ' is-active' : ''
+            }`}
+            onClick={onClose}
+          >
             All Services
           </Link>
-          <Link to="/#solutions" className="drawer__link" onClick={onClose}>
-            Solutions
-          </Link>
-          <Link to="/about" className="drawer__link" onClick={onClose}>
-            About
-          </Link>
-          <Link to="/about#team" className="drawer__link" onClick={onClose}>
-            Team
-          </Link>
-          <Link to="/contact" className="drawer__link" onClick={onClose}>
-            Contact
-          </Link>
+
+          {drawerLinks.map((item) => {
+            const active = isNavActive(item, location)
+            return (
+              <Link
+                key={item.id}
+                to={item.to}
+                className={`drawer__link${active ? ' is-active' : ''}`}
+                aria-current={active ? 'page' : undefined}
+                onClick={onClose}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
         </div>
 
         <div className="drawer__foot">

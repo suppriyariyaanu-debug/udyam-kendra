@@ -1,18 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Icon from '../ui/Icon'
 import Logo from '../ui/Logo'
 import MegaMenu from './MegaMenu'
 import MobileDrawer from './MobileDrawer'
 import { company } from '../../data/company'
-
-const links = [
-  { to: '/', label: 'Home', end: true },
-  { to: '/#solutions', label: 'Solutions' },
-  { to: '/about', label: 'About' },
-  { to: '/about#team', label: 'Team' },
-  { to: '/contact', label: 'Contact' },
-]
+import { isNavActive, navItems } from '../../lib/nav'
 
 function Navbar() {
   const location = useLocation()
@@ -78,43 +71,46 @@ function Navbar() {
         <div className="container header__inner">
           <Logo />
 
+          {/* Active state is resolved from the router's location through
+              lib/nav.js rather than NavLink's own matching, which could not
+              light the Services trigger (a <button>, not a link) or tell the
+              homepage apart from its #solutions anchor. */}
           <nav className="nav" aria-label="Primary">
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) => `nav__link${isActive ? ' is-active' : ''}`}
-              onMouseEnter={() => setServicesOpen(false)}
-            >
-              Home
-            </NavLink>
+            {navItems.map((item) => {
+              const active = isNavActive(item, location)
 
-            <div className="nav__item">
-              <button
-                type="button"
-                className="nav__trigger"
-                aria-expanded={servicesOpen}
-                aria-haspopup="true"
-                onMouseEnter={() => setServicesOpen(true)}
-                onFocus={() => setServicesOpen(true)}
-                onClick={() => setServicesOpen((open) => !open)}
-              >
-                Services
-                <Icon name="chevronDown" size={15} />
-              </button>
-            </div>
+              if (item.trigger) {
+                return (
+                  <div className="nav__item" key={item.id}>
+                    <button
+                      type="button"
+                      className={`nav__trigger${active ? ' is-active' : ''}`}
+                      aria-expanded={servicesOpen}
+                      aria-haspopup="true"
+                      aria-current={active ? 'page' : undefined}
+                      onMouseEnter={() => setServicesOpen(true)}
+                      onFocus={() => setServicesOpen(true)}
+                      onClick={() => setServicesOpen((open) => !open)}
+                    >
+                      {item.label}
+                      <Icon name="chevronDown" size={15} />
+                    </button>
+                  </div>
+                )
+              }
 
-            {links.slice(1).map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className={({ isActive }) =>
-                  `nav__link${isActive && !link.to.includes('#') ? ' is-active' : ''}`
-                }
-                onMouseEnter={() => setServicesOpen(false)}
-              >
-                {link.label}
-              </NavLink>
-            ))}
+              return (
+                <Link
+                  key={item.id}
+                  to={item.to}
+                  className={`nav__link${active ? ' is-active' : ''}`}
+                  aria-current={active ? 'page' : undefined}
+                  onMouseEnter={() => setServicesOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
           </nav>
 
           <div className="header__actions">

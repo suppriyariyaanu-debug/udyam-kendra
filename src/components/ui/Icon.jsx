@@ -221,6 +221,48 @@ const paths = {
       <path d="M3.5 16.5L12 21l8.5-4.5" />
     </>
   ),
+  message: (
+    <>
+      <path d="M20.5 12.2c0 4-3.8 7.2-8.5 7.2a9.8 9.8 0 0 1-2.6-.35L4.5 20.5l1.2-3.4A6.9 6.9 0 0 1 3.5 12.2C3.5 8.2 7.3 5 12 5s8.5 3.2 8.5 7.2z" />
+      <path d="M8.6 12h.01M12 12h.01M15.4 12h.01" />
+    </>
+  ),
+  send: (
+    <>
+      <path d="M20.5 3.5L11 13" />
+      <path d="M20.5 3.5l-6.2 17-3.3-7.5-7.5-3.3z" />
+    </>
+  ),
+  minimize: <path d="M5 12h14" />,
+  compass: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M15.6 8.4l-2 5.2-5.2 2 2-5.2z" />
+    </>
+  ),
+  /* Four separate tiles — the "scattered across too many places" metaphor. */
+  scatter: (
+    <>
+      <rect x="3" y="3" width="7.5" height="7.5" rx="1.6" />
+      <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6" />
+      <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6" />
+      <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6" />
+    </>
+  ),
+  route: (
+    <>
+      <circle cx="6" cy="18" r="2.5" />
+      <circle cx="18" cy="6" r="2.5" />
+      <path d="M15.5 6H10a4 4 0 0 0 0 8h4a4 4 0 0 1 0 8H8.5" />
+    </>
+  ),
+  headset: (
+    <>
+      <path d="M4 14v-2a8 8 0 0 1 16 0v2" />
+      <path d="M4 14h2.5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" />
+      <path d="M20 14h-2.5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1H19a1 1 0 0 0 1-1z" />
+    </>
+  ),
 }
 
 const filled = new Set(['quote', 'zap', 'star'])

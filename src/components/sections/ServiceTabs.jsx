@@ -18,7 +18,7 @@ const tabIcons = {
  * Service discovery by category, as tabs rather than a wall of cards.
  * Implements the WAI-ARIA tabs pattern including arrow-key navigation.
  */
-function ServiceTabs() {
+function ServiceTabs({ id = 'services' }) {
   const [active, setActive] = useState(serviceTabs[0].id)
   const tabRefs = useRef({})
 
@@ -42,10 +42,10 @@ function ServiceTabs() {
   }
 
   return (
-    <section className="section" id="services">
+    <section className="section" id={id}>
       <div className="container">
         <SectionHead
-          eyebrow="Our Services"
+          eyebrow="Services &amp; Solutions"
           title="Find the right service"
           description="Browse by what you are working on. Every service has its own page with documents, process and an enquiry form."
           center

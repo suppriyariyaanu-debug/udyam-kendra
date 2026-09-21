@@ -303,8 +303,16 @@ export function priceLabel(service) {
   return service && service.price ? service.price : QUOTE_LABEL
 }
 
-export function countServices() {
-  return allServices.length
+/**
+ * Number of services with their own page.
+ * With no argument, across the whole catalogue; with a category, within it.
+ * This counts pages in this repository — it is deliberately not the published
+ * "126+ Services" figure, which comes from the business and lives in
+ * company.js.
+ */
+export function countServices(category) {
+  if (!category) return allServices.length
+  return category.groups.reduce((total, group) => total + group.services.length, 0)
 }
 
 /**
